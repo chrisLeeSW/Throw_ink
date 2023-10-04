@@ -315,10 +315,11 @@ namespace Es.InkPainter
 				Debug.LogWarning("Sometimes if the MeshFilter or SkinnedMeshRenderer does not exist in the component part does not work correctly.");
 		}
 
-		/// <summary>
-		/// To initialize the shader property ID.
-		/// </summary>
-		private void InitPropertyID()
+        /// <summary>
+        /// To initialize the shader property ID.
+        /// </summary>
+        /// private int paintUVPropertyID;
+        private void InitPropertyID()
 		{
 			foreach(var p in paintSet)
 			{
@@ -441,7 +442,7 @@ namespace Es.InkPainter
 		/// <param name="brush">Brush data.</param>
 		/// <param name="uv">UV coordinates for the hit location.</param>
 		private void SetPaintMainData(Brush brush, Vector2 uv)
-		{
+		{ //3번째 검사로 들어옴
 			paintMainMaterial.SetVector(paintUVPropertyID, uv);
 			paintMainMaterial.SetTexture(brushTexturePropertyID, brush.BrushTexture);
 			paintMainMaterial.SetFloat(brushScalePropertyID, brush.Scale);
@@ -480,7 +481,7 @@ namespace Es.InkPainter
 		/// <param name="brush">Brush data.</param>
 		/// <param name="uv">UV coordinates for the hit location.</param>
 		private void SetPaintNormalData(Brush brush, Vector2 uv, bool erase)
-		{
+		{//4번
 			paintNormalMaterial.SetVector(paintUVPropertyID, uv);
 			paintNormalMaterial.SetTexture(brushTexturePropertyID, brush.BrushTexture);
 			paintNormalMaterial.SetTexture(brushNormalTexturePropertyID, brush.BrushNormalTexture);
@@ -666,7 +667,7 @@ namespace Es.InkPainter
 		/// <param name="uv">UV coordinates for the hit location.</param>
 		/// <returns>The success or failure of the paint.</returns>
 		public bool PaintUVDirect(Brush brush, Vector2 uv, Func<PaintSet, bool> materialSelector = null)
-		{
+		{//2번째 작업이 들어옴
 			#region ErrorCheck
 
 			if(brush == null)
@@ -780,7 +781,7 @@ namespace Es.InkPainter
 		/// <param name="hitInfo">Raycast hit info.</param>
 		/// <returns>The success or failure of the paint.</returns>
 		public bool Paint(Brush brush, RaycastHit hitInfo, Func<PaintSet, bool> materialSelector = null)
-		{
+		{ // Paint er 이후 작업이 일로 들어옴
 			if(hitInfo.collider != null)
 			{
 				if(hitInfo.collider is MeshCollider)

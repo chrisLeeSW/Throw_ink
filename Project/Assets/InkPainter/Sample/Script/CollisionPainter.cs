@@ -9,7 +9,7 @@ namespace Es.InkPainter.Sample
 		private Brush brush = null;
 
 		[SerializeField]
-		private int wait = 3;
+		private int wait = 3;	
 
 		private int waitCount;
 
