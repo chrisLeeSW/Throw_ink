@@ -58,7 +58,10 @@ namespace Es.InkPainter.Sample
 						}
 					if(!success)
 						Debug.LogError("Failed to paint.");
-				}
+					Debug.Log("MousePOS");
+					Debug.Log(hitInfo.point);
+
+                }
 			}
 		}
 

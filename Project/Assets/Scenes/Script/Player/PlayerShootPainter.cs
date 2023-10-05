@@ -10,7 +10,6 @@ public class PlayerShootPainter : MonoBehaviour
         NormalGun,
     } // gunType으로 컴퍼먼트 가져 올 수 있게 해볼 예정
 
-    private bool isChangeGun = false;
     NormalGun gun;
 
     private void Awake()

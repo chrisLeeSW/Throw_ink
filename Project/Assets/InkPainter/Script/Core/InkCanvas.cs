@@ -730,7 +730,7 @@ namespace Es.InkPainter
 				OnPaintEnd(this);
 
 			eraseFlag = false;
-			return true;
+      			return true;
 		}
 
 		/// <summary>
@@ -764,14 +764,17 @@ namespace Es.InkPainter
 
 			Vector3 p = transform.InverseTransformPoint(worldPos);
 			Matrix4x4 mvp = renderCamera.projectionMatrix * renderCamera.worldToCameraMatrix * transform.localToWorldMatrix;
-			if(MeshOperator.LocalPointToUV(p, mvp, out uv))
+			if (MeshOperator.LocalPointToUV(p, mvp, out uv))
+			{
 				return PaintUVDirect(brush, uv, materialSelector);
+			}
 			else
 			{
 				Debug.LogWarning("Could not get the point on the surface.");
 				return PaintNearestTriangleSurface(brush, worldPos, materialSelector, renderCamera);
 			}
-		}
+            
+        }
 
 		/// <summary>
 		/// Paint processing that use raycast hit data.
