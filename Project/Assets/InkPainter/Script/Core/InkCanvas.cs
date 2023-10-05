@@ -268,14 +268,16 @@ namespace Es.InkPainter
 			MeshDataCache();
 		}
 
-		private void Start()
+
+        private Texture2D _texture2D; // 2
+        private void Start()
 		{
 			if(OnInitializedStart != null)
 				OnInitializedStart(this);
 			SetRenderTexture();
 			if(OnInitializedAfter != null)
 				OnInitializedAfter(this);
-		}
+        }
 
 		private void OnDestroy()
 		{
@@ -283,7 +285,41 @@ namespace Es.InkPainter
 			ReleaseRenderTexture();
 		}
 
-		private void OnGUI()
+        private void Update()
+        {
+			if (Input.GetKeyDown(KeyCode.Space))
+            {
+
+                var pixels = _texture2D.GetPixels32();
+                int countOfTargetPixels = 0;
+                foreach (var pixel in pixels)
+                {
+                    // 예: 알파 값이 128 (0.5) 이상인 픽셀을 대상으로 설정.
+                    // 필요에 따라 다른 조건을 사용하여 픽셀을 확인하세요.
+                    if (pixel.a >= 128)
+                    {
+                        countOfTargetPixels++;
+                    }
+                }
+
+                float percentage = ((float)countOfTargetPixels / pixels.Length) * 100f;
+
+                if (percentage > 50f)
+                {
+                    Debug.Log("픽셀의 비율이 50%를 초과합니다.");
+                }
+                else
+                {
+                    Debug.Log($"픽셀의 비율: {percentage}%");
+                }
+                //foreach (var i in pixels)
+                //{
+
+                //}
+            }
+
+        }
+        private void OnGUI()
 		{
 			if(eraserDebug)
 			{
@@ -473,6 +509,7 @@ namespace Es.InkPainter
 					paintMainMaterial.EnableKeyword(COLOR_BLEND_USE_CONTROL);
 					break;
 			}
+
 		}
 
 		/// <summary>
@@ -488,7 +525,7 @@ namespace Es.InkPainter
 			paintNormalMaterial.SetFloat(brushScalePropertyID, brush.Scale);
 			paintNormalMaterial.SetFloat(brushRotatePropertyID, brush.RotateAngle);
 			paintNormalMaterial.SetFloat(brushNormalBlendPropertyID, brush.NormalBlend);
-
+			//paintNormalMaterial.
 			foreach(var key in paintNormalMaterial.shaderKeywords)
 				paintNormalMaterial.DisableKeyword(key);
 			switch(brush.NormalBlending)
@@ -527,6 +564,9 @@ namespace Es.InkPainter
 					paintNormalMaterial.EnableKeyword(DXT5NM_COMPRESS_USE);
 					break;
 			}
+
+
+			
 		}
 
 		/// <summary>
@@ -660,13 +700,14 @@ namespace Es.InkPainter
 
 		#region PublicMethod
 
-		/// <summary>
-		/// Paint processing that UV coordinates to the specified.
-		/// </summary>
-		/// <param name="brush">Brush data.</param>
-		/// <param name="uv">UV coordinates for the hit location.</param>
-		/// <returns>The success or failure of the paint.</returns>
-		public bool PaintUVDirect(Brush brush, Vector2 uv, Func<PaintSet, bool> materialSelector = null)
+		
+        /// <summary>
+        /// Paint processing that UV coordinates to the specified.
+        /// </summary>
+        /// <param name="brush">Brush data.</param>
+        /// <param name="uv">UV coordinates for the hit location.</param>
+        /// <returns>The success or failure of the paint.</returns>
+        public bool PaintUVDirect(Brush brush, Vector2 uv, Func<PaintSet, bool> materialSelector = null)
 		{//2번째 작업이 들어옴
 			#region ErrorCheck
 
@@ -701,8 +742,20 @@ namespace Es.InkPainter
 					SetPaintMainData(brush, uv);
 					Graphics.Blit(p.paintMainTexture, mainPaintTextureBuffer, paintMainMaterial);
 					Graphics.Blit(mainPaintTextureBuffer, p.paintMainTexture);
-					RenderTexture.ReleaseTemporary(mainPaintTextureBuffer);
-				}
+
+                    _texture2D = new Texture2D(mainPaintTextureBuffer.width, mainPaintTextureBuffer.height, TextureFormat.RGBA32, false);
+                    RenderTexture.active = mainPaintTextureBuffer;
+                    //Graphics.Blit(_texture2D, mainPaintTextureBuffer);
+                    _texture2D.ReadPixels(new Rect(0, 0, mainPaintTextureBuffer.width, mainPaintTextureBuffer.height), 0, 0);
+                    _texture2D.Apply();
+
+                    /*
+                    _texture2D = new Texture2D(mainPaintTextureBuffer.width, mainPaintTextureBuffer.height, TextureFormat.RGBA32, false);
+					_texture2D.ReadPixels(new Rect(0, 0, mainPaintTextureBuffer.width, mainPaintTextureBuffer.height), 0, 0);
+                    _texture2D.Apply();
+					 */
+                    RenderTexture.ReleaseTemporary(mainPaintTextureBuffer);
+                }
 
 				if(normalPaintConditions)
 				{
@@ -756,7 +809,7 @@ namespace Es.InkPainter
 		/// <param name="renderCamera">Camera to use to render the object.</param>
 		/// <returns>The success or failure of the paint.</returns>
 		public bool Paint(Brush brush, Vector3 worldPos, Func<PaintSet, bool> materialSelector = null, Camera renderCamera = null)
-		{
+		{//0
 			Vector2 uv;
 
 			if(renderCamera == null)
@@ -770,7 +823,7 @@ namespace Es.InkPainter
 			}
 			else
 			{
-				Debug.LogWarning("Could not get the point on the surface.");
+				//Debug.LogWarning("Could not get the point on the surface.");
 				return PaintNearestTriangleSurface(brush, worldPos, materialSelector, renderCamera);
 			}
             

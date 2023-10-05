@@ -26,15 +26,5 @@ public class ParticlesController : MonoBehaviour
                 p.Paint(canvas, paintPosition);
             }
         }
-
-        //InkCanvas canvas = other.GetComponent<InkCanvas>();
-        //if (canvas != null)
-        //{
-        //    // 파티클과 충돌한 정확한 위치를 가져오기 위한 로직이 필요합니다.
-        //    // 예제에서는 오브젝트의 중심을 사용합니다.
-        //    Vector3 paintPosition = other.transform.position;
-        //    p.Paint(canvas, paintPosition);
-        //}
-        // Debug.Log("Particle collided with: " + other.name);
     }
 }
