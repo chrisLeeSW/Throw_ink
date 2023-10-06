@@ -8,17 +8,17 @@ public class Test : MonoBehaviour
     private float time;
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Keypad0))
-        //{
-        //    GetColorRatio();
-        //}
-        time += Time.deltaTime;
-
-        if (time > 1.0f)
+        if (Input.GetKeyDown(KeyCode.Keypad0))
         {
             GetColorRatio();
-            time = 0f;
         }
+        //time += Time.deltaTime;
+
+        //if (time > 1.0f)
+        //{
+        //    GetColorRatio();
+        //    time = 0f;
+        //}
         //if (Input.GetMouseButton(0))
         //{
         //    GetColorRatio();

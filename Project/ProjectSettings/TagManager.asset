@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - JumpPadV1
+  - JumpPadV2
+  - UniqueJumpPad
+  - LowSpeedPad
+  - HighSpeedPad
   layers:
   - Default
   - TransparentFX
