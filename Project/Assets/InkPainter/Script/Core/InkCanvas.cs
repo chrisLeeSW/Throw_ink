@@ -268,8 +268,7 @@ namespace Es.InkPainter
 			MeshDataCache();
 		}
 
-
-        private Texture2D _texture2D; // 2
+        private Texture2D _texture2D; // test
         private void Start()
 		{
 			if(OnInitializedStart != null)
@@ -277,6 +276,9 @@ namespace Es.InkPainter
 			SetRenderTexture();
 			if(OnInitializedAfter != null)
 				OnInitializedAfter(this);
+
+
+
         }
 
 		private void OnDestroy()
@@ -287,37 +289,34 @@ namespace Es.InkPainter
 
         private void Update()
         {
-			if (Input.GetKeyDown(KeyCode.Space))
-            {
+			// test Update
+			//if (Input.GetKeyDown(KeyCode.Space))
+   //         {
 
-                var pixels = _texture2D.GetPixels32();
-                int countOfTargetPixels = 0;
-                foreach (var pixel in pixels)
-                {
-                    // 예: 알파 값이 128 (0.5) 이상인 픽셀을 대상으로 설정.
-                    // 필요에 따라 다른 조건을 사용하여 픽셀을 확인하세요.
-                    if (pixel.a >= 128)
-                    {
-                        countOfTargetPixels++;
-                    }
-                }
+   //             var pixels = _texture2D.GetPixels32();
+   //             int countOfTargetPixels = 0;
+   //             foreach (var pixel in pixels)
+   //             {
+   //                 // 예: 알파 값이 128 (0.5) 이상인 픽셀을 대상으로 설정.
+   //                 // 필요에 따라 다른 조건을 사용하여 픽셀을 확인하세요.
+   //                 if (pixel.a >= 128)
+   //                 {
+   //                     countOfTargetPixels++;
+   //                 }
+   //             }
 
-                float percentage = ((float)countOfTargetPixels / pixels.Length) * 100f;
+   //             float percentage = ((float)countOfTargetPixels / pixels.Length) * 100f;
 
-                if (percentage > 50f)
-                {
-                    Debug.Log("픽셀의 비율이 50%를 초과합니다.");
-                }
-                else
-                {
-                    Debug.Log($"픽셀의 비율: {percentage}%");
-                }
-                //foreach (var i in pixels)
-                //{
-
-                //}
-            }
-
+   //             if (percentage > 50f)
+   //             {
+   //                 Debug.Log("픽셀의 비율이 50%를 초과합니다.");
+   //             }
+   //             else
+   //             {
+   //                 Debug.Log($"픽셀의 비율: {percentage}%");
+   //             }
+   //         }
+            // test Update
         }
         private void OnGUI()
 		{
@@ -743,11 +742,14 @@ namespace Es.InkPainter
 					Graphics.Blit(p.paintMainTexture, mainPaintTextureBuffer, paintMainMaterial);
 					Graphics.Blit(mainPaintTextureBuffer, p.paintMainTexture);
 
+					// test Color
                     _texture2D = new Texture2D(mainPaintTextureBuffer.width, mainPaintTextureBuffer.height, TextureFormat.RGBA32, false);
                     RenderTexture.active = mainPaintTextureBuffer;
                     //Graphics.Blit(_texture2D, mainPaintTextureBuffer);
                     _texture2D.ReadPixels(new Rect(0, 0, mainPaintTextureBuffer.width, mainPaintTextureBuffer.height), 0, 0);
                     _texture2D.Apply();
+
+					// test Color 
 
                     /*
                     _texture2D = new Texture2D(mainPaintTextureBuffer.width, mainPaintTextureBuffer.height, TextureFormat.RGBA32, false);
