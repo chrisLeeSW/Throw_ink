@@ -18,7 +18,7 @@ public class ParticlesController : MonoBehaviour
         particle.GetCollisionEvents(other, collisionEvents);
         if (collisionEvents.Count > 0)
         {
-            Vector3 paintPosition = collisionEvents[0].intersection; // 첫 번째 충돌 지점
+            Vector3 paintPosition = collisionEvents[0].intersection;
             InkCanvas canvas = other.GetComponent<InkCanvas>();
 
             if (canvas != null)

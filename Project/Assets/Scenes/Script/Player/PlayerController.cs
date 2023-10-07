@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 direction;
     private float moveSpeed = 5f;
+    private float defaultPlayerSpeed = 5f;
 
     public GameObject testPivoit;
     public float xRotation;
@@ -21,10 +23,14 @@ public class PlayerController : MonoBehaviour
     private uint jumpState = 0;
     private uint maxJumpState = 2;
 
-    private bool isUniqueJump;
-    private float uniqueJumpForce;
-    private float uniqueJumpAngle;
     // 조이스틱으로 변경 해야됨 총 알 쏘는 위치 값을 변경시킴
+    private bool isOnHighSpeedPad = false;
+    private float speedIncreaseRate = 1f; // 초당 속도 증가량
+    private float speedDecreaseRate = 0.5f; // 초당 속도 감소량
+    private float maxSpeed = 10f; // HightSpeedPad에서의 최대 속도
+
+    public Image joyStickCircle;
+    public Image mainJoystick;
 
     private void Awake()
     {
@@ -51,14 +57,11 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        if(isUniqueJump)
-        {
-            // 곡선으로 앞으로 발사하는 형태 유지하며 입력값도 같이 받기
-        }
+
 
         var h = Input.GetAxis("Horizontal");
         var v = Input.GetAxis("Vertical");
-        if (Input.GetKeyDown(KeyCode.Space) && jumpState<maxJumpState)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpState < maxJumpState)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jumpState++;
@@ -93,11 +96,11 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         string collisionTag = collision.collider.tag;
-        switch(collisionTag)
+        switch (collisionTag)
         {
             case "Ground":
                 jumpState = 0;
-                isUniqueJump = false;
+                moveSpeed = defaultPlayerSpeed;
                 break;
             case "JumpPadV1":
                 float newJumpPad1Power = 10f;
@@ -109,45 +112,67 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(Vector3.up * newJumpPad2Power, ForceMode.Impulse);
                 jumpState = 2;
                 break;
-           
-        }
-        //if (collision.collider.CompareTag("Ground"))
-        //{
-        //    jumpState = 0;
-        //}
-
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        string collisionTag = other.tag;
-        switch (collisionTag)
-        {
             case "UniqueJumpPad":
-                GameObject collidedObject = other.gameObject;
+                float forwardForce = 10f;   // 앞으로 나아갈 힘의 크기
+                float upwardForce = 0.5f;     // 초기 수직 힘의 크기
+                float duration = 0.5f;      // 포물선 움직임의 지속 시간
 
-                if (collidedObject.transform.parent != null && collidedObject.transform.parent.name == "UniqueJumpPad")
-                {
-                    switch (collidedObject.name)
-                    {
-                        case "JumpPad1":
-                            Debug.Log("Collision with JumpPad1");
-                            isUniqueJump = true;
-                            float launchForce = 100f; // 플레이어가 날아갈 힘
-                            float jumpForce = 3f;
-                            Vector3 launchDirection = transform.forward * launchForce; // 앞과 위 방향 모두로
-                            launchDirection += Vector3.up * jumpForce;
-                            rb.AddForce(launchDirection , ForceMode.Impulse);
-                            break;
-
-                        case "JumpPad2":
-                            Debug.Log("Collision with JumpPad2");
-                            // 필요한 추가 처리 작업
-                            break;
-                    }
-                }
+                StartCoroutine(UniqueJumpRoutine(duration, forwardForce, upwardForce));
+                // 포물선으로 빠르게 앞으로 나가게끔해야함
+                break;
+            case "LowSpeedPad":
+                moveSpeed = 2f;
                 break;
         }
     }
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("HighSpeedPad"))
+        {
+            isOnHighSpeedPad = true;
+            StartCoroutine(IncreaseSpeedRoutine());
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("HighSpeedPad"))
+        {
+            isOnHighSpeedPad = false;
+            StartCoroutine(DecreaseSpeedRoutine());
+        }
+    }
+    private IEnumerator UniqueJumpRoutine(float forwardForce, float peakHeight, float timeToPeak)
+    {
+        float upwardVelocity = 2 * peakHeight / timeToPeak; // 포물선의 수직 속도 계산
+        float gravity = -2 * peakHeight / Mathf.Pow(timeToPeak, 2); // 포물선을 위한 중력 계산
+
+        rb.velocity = new Vector3(forwardForce, upwardVelocity, 0); // 초기 속도 설정
+        float elapsedTime = 0;
+
+        while (elapsedTime < timeToPeak)
+        {
+            rb.velocity = new Vector3(forwardForce, rb.velocity.y + gravity * Time.deltaTime, 0); // 중력에 따른 속도 감소
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
+    private IEnumerator IncreaseSpeedRoutine()
+    {
+        while (isOnHighSpeedPad && moveSpeed < maxSpeed)
+        {
+            moveSpeed += speedIncreaseRate * Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private IEnumerator DecreaseSpeedRoutine()
+    {
+        while (!isOnHighSpeedPad && moveSpeed > defaultPlayerSpeed)
+        {
+            moveSpeed -= speedDecreaseRate * Time.deltaTime;
+            yield return null;
+        }
+        moveSpeed = defaultPlayerSpeed; // 안전하게 defaultPlayerSpeed로 설정
+    }
+   
 }
