@@ -12,6 +12,7 @@ public class Test : MonoBehaviour
         {
             GetColorRatio();
         }
+
         //time += Time.deltaTime;
 
         //if (time > 1.0f)
@@ -19,6 +20,8 @@ public class Test : MonoBehaviour
         //    GetColorRatio();
         //    time = 0f;
         //}
+
+
         //if (Input.GetMouseButton(0))
         //{
         //    GetColorRatio();
