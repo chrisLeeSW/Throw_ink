@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
             moveSpeed -= speedDecreaseRate * Time.deltaTime;
             yield return null;
         }
-        moveSpeed = defaultPlayerSpeed; // 안전하게 defaultPlayerSpeed로 설정
+        moveSpeed = defaultPlayerSpeed; 
     }
    
 }

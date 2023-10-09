@@ -11,24 +11,13 @@ public class PlayerShootcontroller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (xRotation > 60f)
-            xRotation = 60f;
-        else if (xRotation < -60f)
-            xRotation = -60f;
-        if (yRotation > 60f)
-            yRotation = 60f;
-        else if (yRotation < -60f)
-            yRotation = -60f;
+        if (xRotation > 45f)
+            xRotation = 45f;
+        else if (xRotation < -45f)
+            xRotation = -45f;
         testPivoit.gameObject.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void AimHandle()
+    public void AimSetting()
     {
         if (Input.GetKey(KeyCode.Keypad8))
         {
@@ -39,13 +28,6 @@ public class PlayerShootcontroller : MonoBehaviour
             xRotation += rotationSpeed * Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.Keypad6))
-        {
-            yRotation += rotationSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.Keypad4))
-        {
-            yRotation -= rotationSpeed * Time.deltaTime;
-        }
     }
+   
 }

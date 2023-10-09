@@ -11,7 +11,6 @@ public class PlayerMoveMent : MonoBehaviour
     private float jumpForce = 5f;
     private uint jumpState = 0;
     private uint maxJumpState = 2;
-
     private Animator ani;
 
     private void Awake()
@@ -22,12 +21,12 @@ public class PlayerMoveMent : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         Vector3 position = rb.position;
         position += direction * moveSpeed * Time.deltaTime;
         rb.velocity = new Vector3(direction.x * moveSpeed, rb.velocity.y, direction.z * moveSpeed);
     }
-    public void PlayerMoveHandle()
+
+    public void PlayerMove()
     {
         var h = Input.GetAxis("Horizontal");
         var v = Input.GetAxis("Vertical");
@@ -48,13 +47,30 @@ public class PlayerMoveMent : MonoBehaviour
         ani.SetFloat("Speed", directionMag);
     }
 
+    public Vector3 GetDirection()
+    {
+        return direction;
+    }
+
+    public float GetPlayerSpeed()
+    {
+        return moveSpeed;
+    }
+
+    public void RotatePlayer(float yRotation, float rotationSpeed)
+    {
+        transform.rotation = Quaternion.Euler(0, yRotation, 0);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.CompareTag("Ground") && jumpState >0)
+        if (collision.collider.CompareTag("Ground") && jumpState > 0)
         {
             ani.SetTrigger("Ground");
 
             jumpState = 0;
         }
     }
+    
+    
 }
