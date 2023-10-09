@@ -13,6 +13,15 @@ public class PlayerMoveMent : MonoBehaviour
     private uint maxJumpState = 2;
     private Animator ani;
 
+
+    private float yRotation;
+    private float rotationSpeed = 100f;
+
+
+    public Transform playerHead;
+    public Transform playerBody;
+    //public Transform playerRoot;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -24,6 +33,14 @@ public class PlayerMoveMent : MonoBehaviour
         Vector3 position = rb.position;
         position += direction * moveSpeed * Time.deltaTime;
         rb.velocity = new Vector3(direction.x * moveSpeed, rb.velocity.y, direction.z * moveSpeed);
+
+        transform.rotation = Quaternion.Euler(0, yRotation, 0);
+        
+
+        playerHead.rotation = Quaternion.Euler(0, yRotation, 0);
+        playerBody.rotation = Quaternion.Euler(0, yRotation, 0);
+        //playerRoot.rotation = Quaternion.Euler(0, yRotation, 0);
+
     }
 
     public void PlayerMove()
@@ -44,6 +61,15 @@ public class PlayerMoveMent : MonoBehaviour
             direction.Normalize();
         }
 
+        if (Input.GetKey(KeyCode.Keypad6))
+        {
+            yRotation += rotationSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.Keypad4))
+        {
+            yRotation -= rotationSpeed * Time.deltaTime;
+        }
+
         ani.SetFloat("Speed", directionMag);
     }
 
@@ -55,6 +81,11 @@ public class PlayerMoveMent : MonoBehaviour
     public float GetPlayerSpeed()
     {
         return moveSpeed;
+    }
+
+    public Vector3 GetPlayerPosition()
+    {
+        return rb.position;
     }
 
     public void RotatePlayer(float yRotation, float rotationSpeed)

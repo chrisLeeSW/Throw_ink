@@ -31,6 +31,10 @@ public class PlayerManager : MonoBehaviour
         return playerMove.GetPlayerSpeed();
     }
 
+    public Vector3 GetPlayerPosition()
+    {
+        return playerMove.GetPlayerPosition();
+    }
 
     public void RotatePlayer(float yRotation,float rotationSpeed)
     {

@@ -6,7 +6,11 @@ public class GameManager : MonoBehaviour
 {
     public PlayerManager playerManager;
     public CameraMove caremaMove;
-
+    public float cameraoffset =1.5f;
+    private void Awake()
+    {
+      
+    }
 
     private void Start()
     {
@@ -16,7 +20,7 @@ public class GameManager : MonoBehaviour
     {
         var direction = playerManager.GetPlayerDirection();
         caremaMove.SyncWithPlayer(direction);
-
-        playerManager.RotatePlayer(caremaMove.CurrentYRotation,caremaMove.CameraMoveLRSpeed);
+        caremaMove.YCameraPosition = playerManager.GetPlayerPosition().y + cameraoffset;
+        //playerManager.RotatePlayer(caremaMove.CurrentYPlayerRotation,caremaMove.CameraMoveLRSpeed);
     }
 }

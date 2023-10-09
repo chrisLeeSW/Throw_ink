@@ -13,7 +13,7 @@ public class PlayerShootPainter : MonoBehaviour
 
     public ParticleSystem particle;
     public Transform gunPivot;
-    private GunType gunType =GunType.NormalGun;
+    //private GunType gunType =GunType.NormalGun;
     private bool isShooting;
 
     private void Update()
