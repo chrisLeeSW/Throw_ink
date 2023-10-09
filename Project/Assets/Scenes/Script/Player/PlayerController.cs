@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
     private float defaultPlayerSpeed = 5f;
 
     public GameObject testPivoit;
-    public float xRotation;
-    public float yRotation;
+    private float xRotation;
+    private float yRotation;
     private float rotationSpeed = 100f;
 
     private float jumpForce = 5f;
