@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public CameraMove caremaMove;
 
 
-    private void Awake()
+    private void Start()
     {
         caremaMove.CameraMoveSpeed = playerManager.GetPlayerMoveSpeed();
     }

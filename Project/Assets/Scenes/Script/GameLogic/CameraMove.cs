@@ -9,7 +9,7 @@ public class CameraMove : MonoBehaviour
     private float yRotation;
     private float rotationSpeed = 100f;
     private float cameraMoveFrontBackSpeed;
-    private float cameraMoveLeftRightSpeed = 100f;
+    private float cameraMoveLeftRightSpeed = 25f;
     public float CurrentYRotation
     {
         get { return yRotation; }

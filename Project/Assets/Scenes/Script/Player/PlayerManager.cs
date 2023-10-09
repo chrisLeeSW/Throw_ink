@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
     {
         playerMove = GetComponent<PlayerMoveMent>();
         playerShootController= GetComponent<PlayerShootcontroller>();
-
+        playerShootPainter = GetComponent<PlayerShootPainter>();
     }
 
     private void Update()

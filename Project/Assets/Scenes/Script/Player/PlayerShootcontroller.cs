@@ -19,6 +19,7 @@ public class PlayerShootcontroller : MonoBehaviour
     }
     public void AimSetting()
     {
+       
         if (Input.GetKey(KeyCode.Keypad8))
         {
             xRotation -= rotationSpeed * Time.deltaTime;
@@ -28,6 +29,14 @@ public class PlayerShootcontroller : MonoBehaviour
             xRotation += rotationSpeed * Time.deltaTime;
         }
 
+        if (Input.GetKey(KeyCode.Keypad6))
+        {
+            yRotation += rotationSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.Keypad4))
+        {
+            yRotation -= rotationSpeed * Time.deltaTime;
+        }
     }
    
 }
