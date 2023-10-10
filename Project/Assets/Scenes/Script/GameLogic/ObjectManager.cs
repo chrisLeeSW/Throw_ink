@@ -4,8 +4,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System;
 
+
+
+
+
 public class ObjectManager : MonoBehaviour
 {
+
+
     public List<GameObject> colorObjectPrefab;
     private int currentColorObject;
 
@@ -30,14 +36,21 @@ public class ObjectManager : MonoBehaviour
     private float journeyLength;
     public float rotateSpeed = 0.25f;
     private Vector3 startMovePosition;
+
+    public bool isRandomMode;
+    public bool isLoopMode;
+    public float holdTime;
+    public bool isMoving;
+
+    public bool isStartHold;
     private void Awake()
     {
-        makeColorObjectPrefab =new List<GameObject>();
+        makeColorObjectPrefab = new List<GameObject>();
 
     }
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Alpha1)) 
+        if (Input.GetKeyUp(KeyCode.Alpha1))
             ChangeColorObject();
 
         if (Input.GetKeyUp(KeyCode.Alpha2))
@@ -50,12 +63,26 @@ public class ObjectManager : MonoBehaviour
         {
             DirectionSettingColorObject();
         }
-    }
 
+        if (Input.GetKeyDown(KeyCode.Alpha3) && !isLoopMode)
+        {
+            isLoopMode = true;
+            if (isStartHold) StartCoroutine(StartHoldTime());
+            else DirectionSettingColorObject();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            isLoopMode = false;
+        }
+
+    }
+  
+   
     void ChangeColorObject()
     {
         currentColorObject++;
-        if(currentColorObject >= colorObjectPrefab.Count)
+        if (currentColorObject >= colorObjectPrefab.Count)
             currentColorObject = 0;
     }
 
@@ -76,37 +103,60 @@ public class ObjectManager : MonoBehaviour
     }
 
     void DirectionSettingColorObject()
-    {
-        objDirection = makeColorObjectPrefab[currentMakeColorObjectpreFab].transform.position - objectPosition[currentobjectPosition].transform.position ;
+    { 
+        int currentPosIndex = 0;
+        if (isRandomMode)
+            currentPosIndex = UnityEngine.Random.Range(0, objectPosition.Count);
+        else if (!isRandomMode)
+            currentPosIndex = currentobjectPosition;
+        isMoving = true;
+
+        objDirection = makeColorObjectPrefab[currentMakeColorObjectpreFab].transform.position - objectPosition[currentPosIndex].transform.position;
         objDirection.Normalize();
         startRot = makeColorObjectPrefab[currentMakeColorObjectpreFab].transform.rotation;
         endRot = Quaternion.LookRotation(objDirection);
         startMovePosition = makeColorObjectPrefab[currentMakeColorObjectpreFab].transform.position;
         startTime = Time.time;
+        journeyLength = Vector3.Distance(makeColorObjectPrefab[currentMakeColorObjectpreFab].transform.position, objectPosition[currentPosIndex].transform.position);
 
-        journeyLength = Vector3.Distance(makeColorObjectPrefab[currentMakeColorObjectpreFab].transform.position, objectPosition[currentobjectPosition].transform.position);
-
-        StartCoroutine(MoveColorObject());
+        StartCoroutine(MoveColorObject(currentPosIndex));
+    }
+    IEnumerator StartHoldTime()
+    {
+        yield return new WaitForSeconds(holdTime);
+        DirectionSettingColorObject();
+    }
+    IEnumerator HoldTime()
+    {
+        yield return new WaitForSeconds(holdTime);
     }
 
-    IEnumerator MoveColorObject()
+    IEnumerator MoveColorObject(int currentPosIndex)
     {
-        while(true)
+        while (true)
         {
             yield return null;
             newTimeSpeed = (Time.time - startTime) * moveSpeed;
             roate = newTimeSpeed / journeyLength;
             makeColorObjectPrefab[currentMakeColorObjectpreFab].transform.rotation = Quaternion.Slerp(startRot, endRot, roate * rotateSpeed);
-            makeColorObjectPrefab[currentMakeColorObjectpreFab].transform.position = Vector3.Lerp(startMovePosition, objectPosition[currentobjectPosition].transform.position, roate);
+            makeColorObjectPrefab[currentMakeColorObjectpreFab].transform.position = Vector3.Lerp(startMovePosition, objectPosition[currentPosIndex].transform.position, roate);
 
-            if (Vector3.Distance(makeColorObjectPrefab[currentMakeColorObjectpreFab].transform.position, objectPosition[currentobjectPosition].transform.position) < 0.1f)
+            if (Vector3.Distance(makeColorObjectPrefab[currentMakeColorObjectpreFab].transform.position, objectPosition[currentPosIndex].transform.position) < 0.1f)
             {
-                currentobjectPosition++;
-                if (currentobjectPosition >= objectPosition.Count)
-                    currentobjectPosition = 0;
+
+                isMoving = false;
                 break;
             }
         }
-        
+        yield return StartCoroutine(HoldTime());
+        currentobjectPosition++;
+        if (currentobjectPosition >= objectPosition.Count)
+        {
+            currentobjectPosition = 0;
+        }
+        if (isLoopMode)
+        {
+            DirectionSettingColorObject();
+        }
     }
 }

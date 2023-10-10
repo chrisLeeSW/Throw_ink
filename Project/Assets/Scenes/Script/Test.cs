@@ -36,13 +36,10 @@ public class Test : MonoBehaviour
         var renderTexture = GetComponent<Renderer>().material.mainTexture as RenderTexture;
 
         Texture2D texture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGBA32, false);
-        // Set the current RenderTexture as active
         RenderTexture currentActiveRT = RenderTexture.active;
         RenderTexture.active = renderTexture;
-        // Read the pixels from the RenderTexture into the Texture2D
         texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
         texture.Apply();
-        // Restore the previous active RenderTexture
         RenderTexture.active = currentActiveRT;
 
         int targetColorCount = 0;
@@ -54,9 +51,9 @@ public class Test : MonoBehaviour
             Vector2 uv1 = mesh.uv[triangles[i + 1]];
             Vector2 uv2 = mesh.uv[triangles[i + 2]];
 
-            for (float alpha = 0; alpha <= 1; alpha += 0.01f)
+            for (float alpha = 0; alpha <= 1; alpha += 0.05f)
             {
-                for (float beta = 0; beta <= 1 - alpha; beta += 0.01f)
+                for (float beta = 0; beta <= 1 - alpha; beta += 0.05f)
                 {
                     float gamma = 1 - alpha - beta;
                     Vector2 uv = alpha * uv0 + beta * uv1 + gamma * uv2;

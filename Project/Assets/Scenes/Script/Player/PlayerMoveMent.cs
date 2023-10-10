@@ -115,6 +115,7 @@ public class PlayerMoveMent : MonoBehaviour
 
     public void IsGroundAnimationSet()
     {
+        jumpState = 0;
         ani.SetTrigger("Ground");
     }
 
@@ -125,7 +126,6 @@ public class PlayerMoveMent : MonoBehaviour
         switch (collisionTag)
         {
             case "Ground":
-                jumpState = 0;
                 moveSpeed = defaultPlayerSpeed;
                 IsGroundAnimationSet();
                 break;
@@ -141,11 +141,11 @@ public class PlayerMoveMent : MonoBehaviour
                 float forwardForce = 15f;   
                 float upwardForce = 0.5f; 
                 float duration = 0.5f;  
-
                 StartCoroutine(UniqueJumpRoutine(duration, forwardForce, upwardForce));
                 break;
             case "LowSpeedPad":
                 moveSpeed = 2f;
+                IsGroundAnimationSet();
                 break;
             default:
                 IsGroundAnimationSet();
@@ -190,6 +190,7 @@ public class PlayerMoveMent : MonoBehaviour
             moveSpeed += speedIncreaseRate * Time.deltaTime;
             yield return null;
         }
+        
     }
 
     private IEnumerator DecreaseSpeedRoutine()
@@ -201,5 +202,4 @@ public class PlayerMoveMent : MonoBehaviour
         }
         moveSpeed = defaultPlayerSpeed;
     }
-
 }
