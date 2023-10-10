@@ -8,8 +8,6 @@ public class PlayerShootcontroller : MonoBehaviour
     private float xRotation;
     private float yRotation;
     private float rotationSpeed = 100f;
-
-    private float xRotationRef = 80f;
     private void FixedUpdate()
     {
         if (xRotation > 30f)

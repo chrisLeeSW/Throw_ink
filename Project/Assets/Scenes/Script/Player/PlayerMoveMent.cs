@@ -7,6 +7,7 @@ public class PlayerMoveMent : MonoBehaviour
     private Rigidbody rb;
 
     private Vector3 direction;
+    private float defaultPlayerSpeed = 5f;
     private float moveSpeed = 5f;
     private float jumpForce = 5f;
     private uint jumpState = 0;
@@ -18,9 +19,23 @@ public class PlayerMoveMent : MonoBehaviour
     private float rotationSpeed = 100f;
 
 
-    public Transform playerHead;
-    public Transform playerBody;
-    //public Transform playerRoot;
+    private bool isOnHighSpeedPad = false;
+    private float speedIncreaseRate = 1f;
+    private float speedDecreaseRate = 0.5f; 
+    private float maxSpeed = 10f;
+    public uint JumpState
+    {
+        set { jumpState = value; }
+    }
+    public float DefaultMoveSpeed
+    {
+        get { return defaultPlayerSpeed; }
+    }
+    public float MoveSpeed
+    { 
+        get { return moveSpeed; } 
+        set { moveSpeed = value; }
+    }
 
     private void Awake()
     {
@@ -37,10 +52,6 @@ public class PlayerMoveMent : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
         
 
-        playerHead.rotation = Quaternion.Euler(0, yRotation, 0);
-        playerBody.rotation = Quaternion.Euler(0, yRotation, 0);
-        //playerRoot.rotation = Quaternion.Euler(0, yRotation, 0);
-
     }
 
     public void PlayerMove()
@@ -54,7 +65,7 @@ public class PlayerMoveMent : MonoBehaviour
             ani.SetTrigger("Jumping");
         }
 
-        direction = new Vector3(h, 0, v);
+        direction = transform.TransformDirection(new Vector3(h, 0, v));
         var directionMag = direction.magnitude;
         if (directionMag > 1)
         {
@@ -93,15 +104,102 @@ public class PlayerMoveMent : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
+   
+
+    public void JumpCollisionByPad(float newJumpPad1Power, uint jumpCount)
+    {
+        rb.AddForce(Vector3.up * newJumpPad1Power, ForceMode.Impulse);
+        jumpState = jumpCount;
+        ani.SetTrigger("Jumping");
+    }
+
+    public void IsGroundAnimationSet()
+    {
+        ani.SetTrigger("Ground");
+    }
+
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Ground") && jumpState > 0)
+        string collisionTag = collision.collider.tag;
+        switch (collisionTag)
         {
-            ani.SetTrigger("Ground");
+            case "Ground":
+                jumpState = 0;
+                moveSpeed = defaultPlayerSpeed;
+                IsGroundAnimationSet();
+                break;
+            case "JumpPadV1":
+                float newJumpPad1Power = 10f;
+                JumpCollisionByPad(newJumpPad1Power, 1);
+                break;
+            case "JumpPadV2":
+                float newJumpPad2Power = 15f;
+                JumpCollisionByPad(newJumpPad2Power, 2);
+                break;
+            case "UniqueJumpPad":
+                float forwardForce = 15f;   
+                float upwardForce = 0.5f; 
+                float duration = 0.5f;  
 
-            jumpState = 0;
+                StartCoroutine(UniqueJumpRoutine(duration, forwardForce, upwardForce));
+                break;
+            case "LowSpeedPad":
+                moveSpeed = 2f;
+                break;
+            default:
+                IsGroundAnimationSet();
+                break;
         }
     }
-    
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("HighSpeedPad"))
+        {
+            isOnHighSpeedPad = true;
+            StartCoroutine(IncreaseSpeedRoutine());
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("HighSpeedPad"))
+        {
+            isOnHighSpeedPad = false;
+            StartCoroutine(DecreaseSpeedRoutine());
+        }
+    }
+    private IEnumerator UniqueJumpRoutine(float forwardForce, float peakHeight, float timeToPeak)
+    {
+        float upwardVelocity = 2 * peakHeight / timeToPeak;
+        float gravity = -2 * peakHeight / Mathf.Pow(timeToPeak, 2); 
+
+        rb.velocity = new Vector3(forwardForce, upwardVelocity, 0);
+        float elapsedTime = 0;
+
+        while (elapsedTime < timeToPeak)
+        {
+            rb.velocity = new Vector3(forwardForce, rb.velocity.y + gravity * Time.deltaTime, 0); 
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
+    private IEnumerator IncreaseSpeedRoutine()
+    {
+        while (isOnHighSpeedPad && moveSpeed < maxSpeed)
+        {
+            moveSpeed += speedIncreaseRate * Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private IEnumerator DecreaseSpeedRoutine()
+    {
+        while (!isOnHighSpeedPad && moveSpeed > defaultPlayerSpeed)
+        {
+            moveSpeed -= speedDecreaseRate * Time.deltaTime;
+            yield return null;
+        }
+        moveSpeed = defaultPlayerSpeed;
+    }
+
 }
