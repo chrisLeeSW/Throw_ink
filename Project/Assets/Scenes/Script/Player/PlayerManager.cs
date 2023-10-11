@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
         playerMove.PlayerMove();
-        playerShootController.AimSetting();
+        //.AimSetting();
     }
 
     public Vector3 GetPlayerDirection()
@@ -39,5 +39,15 @@ public class PlayerManager : MonoBehaviour
     public void RotatePlayer(float yRotation,float rotationSpeed)
     {
         playerMove.RotatePlayer(yRotation, rotationSpeed);
+    }
+
+    public PlayerMoveMent GetPlayerMoveMent()
+    {
+        return playerMove;
+    }
+
+    public PlayerShootcontroller GetPlayerShootController()
+    {
+        return playerShootController;
     }
 }

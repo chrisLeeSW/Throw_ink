@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMoveMent : MonoBehaviour
 {
+    public LayerMask layerMask;
     private Rigidbody rb;
 
     private Vector3 direction;
@@ -16,13 +17,15 @@ public class PlayerMoveMent : MonoBehaviour
 
 
     private float yRotation;
-    private float rotationSpeed = 100f;
+    private float rotationSpeed;
 
 
     private bool isOnHighSpeedPad = false;
     private float speedIncreaseRate = 1f;
     private float speedDecreaseRate = 0.5f; 
     private float maxSpeed = 10f;
+
+
     public uint JumpState
     {
         set { jumpState = value; }
@@ -36,7 +39,18 @@ public class PlayerMoveMent : MonoBehaviour
         get { return moveSpeed; } 
         set { moveSpeed = value; }
     }
-
+    public float YRotation
+    {
+        set { yRotation += value; }
+    }
+    public float RotationSpeed
+    {
+        set { rotationSpeed = value; }
+    }
+    public Quaternion PlayerRoation
+    {
+        get {return rb.rotation; }
+    }
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -50,8 +64,6 @@ public class PlayerMoveMent : MonoBehaviour
         rb.velocity = new Vector3(direction.x * moveSpeed, rb.velocity.y, direction.z * moveSpeed);
 
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
-        
-
     }
 
     public void PlayerMove()
@@ -71,16 +83,6 @@ public class PlayerMoveMent : MonoBehaviour
         {
             direction.Normalize();
         }
-
-        if (Input.GetKey(KeyCode.Keypad6))
-        {
-            yRotation += rotationSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.Keypad4))
-        {
-            yRotation -= rotationSpeed * Time.deltaTime;
-        }
-
         ani.SetFloat("Speed", directionMag);
     }
 

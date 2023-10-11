@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-
+    private float xDefaultRotation=5f;
     public float xRoation;
 
 
@@ -25,7 +25,10 @@ public class CameraMove : MonoBehaviour
     {
         set { yCameraPosition = value; }
     }
-
+    public float XRotation
+    {
+        set { xRoation += value; }
+    }
     private void Awake()
     {
     }
@@ -34,14 +37,14 @@ public class CameraMove : MonoBehaviour
         if (Input.GetKey(KeyCode.Keypad8))
         {
             xRoation -= rotationSpeed * Time.deltaTime;
-            if (xRoation < -20f)
-                xRoation = -20f;
+            if (xRoation < -10f)
+                xRoation = -10f;
         }
         if (Input.GetKey(KeyCode.Keypad5))
         {
             xRoation += rotationSpeed * Time.deltaTime;
-            if (xRoation > 20f)
-                xRoation = 20f;
+            if (xRoation > 10f)
+                xRoation = 10f;
         }
     }
     private void FixedUpdate()
@@ -56,7 +59,7 @@ public class CameraMove : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, desiredPosition, cameraMoveFrontBackSpeed * Time.deltaTime);
 
 
-        transform.rotation = Quaternion.Euler(xRoation, yRotation, 0);
+        transform.rotation = Quaternion.Euler(xDefaultRotation+xRoation, yRotation, 0);
 
         //transform.LookAt(playerTransform);
     }
