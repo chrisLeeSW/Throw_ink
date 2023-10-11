@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     public CameraMove caremaMove;
     public float cameraoffset =1.5f;
 
+    public List<GameObject> stages;
+    private int currentStages;
+    
     private void Start()
     {
         caremaMove.CameraMoveSpeed = playerManager.GetPlayerMoveSpeed();
