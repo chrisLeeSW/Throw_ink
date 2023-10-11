@@ -34,14 +34,14 @@ public class CameraMove : MonoBehaviour
         if (Input.GetKey(KeyCode.Keypad8))
         {
             xRoation -= rotationSpeed * Time.deltaTime;
-            if (xRoation < -10f)
-                xRoation = -10f;
+            if (xRoation < -20f)
+                xRoation = -20f;
         }
         if (Input.GetKey(KeyCode.Keypad5))
         {
             xRoation += rotationSpeed * Time.deltaTime;
-            if (xRoation > 10f)
-                xRoation = 10f;
+            if (xRoation > 20f)
+                xRoation = 20f;
         }
     }
     private void FixedUpdate()
