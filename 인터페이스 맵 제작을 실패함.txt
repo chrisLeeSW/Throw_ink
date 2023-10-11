@@ -1,0 +1,112 @@
+ [System.Serializable]
+    public class ObjectMode
+    {
+        public GameObject gameObject;
+        public bool isStart;
+        public bool isRandom;
+        public bool isStartHold;
+        public bool isCoroutineRunning ;
+    }
+    public List<ObjectMode> objectModes = new List<ObjectMode>();
+
+    public List<GameObject> colorObjectPrefab;
+    private int currentColorObject;
+
+    private List<GameObject> makeColorObjectPrefab;
+    private int currentMakeColorObjectpreFab;
+
+    public List<Transform> objectPosition;
+    private int currentobjectPosition;
+
+    public List<Transform> spwanPosition;
+    private int currentSpwanPosition;
+
+
+    private Vector3 objDirection;
+    private Quaternion startRot;
+    private Quaternion endRot;
+
+    private float startTime;
+    private float newTimeSpeed;
+    public float moveSpeed = 3f;
+    float roate;
+    private float journeyLength;
+    public float rotateSpeed = 0.25f;
+    private Vector3 startMovePosition;
+
+    public bool isLoopMode;
+    public float holdTime;
+
+    private void Awake()
+    {
+        makeColorObjectPrefab = new List<GameObject>();
+
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+            MakeColorObject();
+
+        for(int i=0; i<objectModes.Count; i++)
+        {
+            if(objectModes[i].isStart && !objectModes[i].isCoroutineRunning)
+            {
+                objectModes[i].isCoroutineRunning = true;
+                StartCoroutine(MoveObjectModeByObject(objectModes[i]));
+            }
+        }
+    }
+
+
+    void MakeColorObject()
+    {
+        var makingObj = Instantiate(colorObjectPrefab[currentColorObject]);
+        makingObj.transform.position = spwanPosition[currentSpwanPosition].transform.position;
+
+        ObjectMode newObj = new ObjectMode();
+        newObj.gameObject = makingObj;
+        objectModes.Add(newObj);
+    }
+
+    IEnumerator MoveObjectModeByObject(ObjectMode obj)
+    {
+        if (obj.isStart)
+            yield return StartCoroutine(StartHoldTime());
+
+        int currentPosIndex = 0;
+        do
+        {
+            if (obj.isRandom)
+                currentPosIndex = UnityEngine.Random.Range(0, objectPosition.Count);
+            else
+                currentPosIndex = currentobjectPosition;
+
+            while (true)
+            {
+                yield return null;
+                newTimeSpeed = (Time.time - startTime) * moveSpeed;
+                roate = newTimeSpeed / journeyLength;
+                obj.gameObject.transform.rotation = Quaternion.Slerp(startRot, endRot, roate * rotateSpeed);
+                obj.gameObject.transform.position = Vector3.Lerp(startMovePosition, objectPosition[currentPosIndex].transform.position, roate);
+
+                if (Vector3.Distance(obj.gameObject.transform.position, objectPosition[currentPosIndex].transform.position) < 0.1f)
+                {
+                    break;
+                }
+            }
+            yield return StartCoroutine(HoldTime());
+            currentobjectPosition++;
+            if (currentobjectPosition >= objectPosition.Count)
+            {
+                currentobjectPosition = 0;
+            }
+        } while (isLoopMode);
+    }
+    IEnumerator StartHoldTime()
+    {
+        yield return new WaitForSeconds(holdTime);
+    }
+    IEnumerator HoldTime()
+    {
+        yield return new WaitForSeconds(holdTime);
+    }

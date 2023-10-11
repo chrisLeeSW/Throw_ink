@@ -1,27 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerShootPainter : MonoBehaviour
 {
-    private enum GunType
+    protected enum GunType
     {
         NormalGun,
-    } // gunType으로 컴퍼먼트 가져 올 수 있게 해볼 예정
+    } 
 
-    private bool isChangeGun = false;
-    NormalGun gun;
+    public ParticleSystem particle;
+    public Transform gunPivot;
+    //private GunType gunType =GunType.NormalGun;
+    private bool isShooting;
 
-    private void Awake()
-    {
-        gun = GetComponent<NormalGun>();   
-    }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            gun.Fire();
+            isShooting = !isShooting;
+
+            if(isShooting)
+                particle.Play();
+            else if (!isShooting)
+                particle.Stop();
         }
     }
+
+    public bool GetIsShooting()
+    {
+        return isShooting;  
+    }    
 }

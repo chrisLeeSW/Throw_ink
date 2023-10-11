@@ -1,4 +1,5 @@
-﻿Shader "Es/Sample/TessellateHeightTransform" {
+﻿Shader "Es/Sample/TessellateHeightTransform" 
+{
 	Properties{
 		_TessFactor("Tess Factor",Vector) = (2,2,2,2)
 		_LODFactor("LOD Factor",range(1,10)) = 1
