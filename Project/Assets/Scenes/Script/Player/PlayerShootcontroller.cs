@@ -12,8 +12,8 @@ public class PlayerShootcontroller : MonoBehaviour
     {
         if (xRotation > 30f)
             xRotation = 30f;
-        else if (xRotation < -20f)
-            xRotation = -20f;
+        else if (xRotation < -35f)
+            xRotation = -35f;
         testPivoit.gameObject.transform.rotation = Quaternion.Euler(xRotation , yRotation, 0);
     }
     public void AimSetting()
