@@ -13,7 +13,7 @@ public class CameraMove : MonoBehaviour
     private float cameraMoveFrontBackSpeed;
 
     public Transform playerTransform;
-    private float distanceFromPlayer = 5f;
+    public float distanceFromPlayer = 10f;
     private float rotationSpeed = 100f;
 
     public float CameraMoveSpeed
