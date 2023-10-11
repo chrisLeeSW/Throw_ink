@@ -8,18 +8,25 @@ public class PlayerShootcontroller : MonoBehaviour
     private float xRotation;
     private float yRotation;
     private float rotationSpeed = 100f;
-
     private void FixedUpdate()
     {
-        if (xRotation > 45f)
-            xRotation = 45f;
-        else if (xRotation < -45f)
-            xRotation = -45f;
-        testPivoit.gameObject.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        if (xRotation > 30f)
+            xRotation = 30f;
+        else if (xRotation < -35f)
+            xRotation = -35f;
+        testPivoit.gameObject.transform.rotation = Quaternion.Euler(xRotation , yRotation, 0);
     }
     public void AimSetting()
     {
-       
+        if(Input.GetKey(KeyCode.Keypad6))
+        {
+            yRotation += rotationSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.Keypad4))
+        {
+            yRotation -= rotationSpeed * Time.deltaTime;
+        }
+
         if (Input.GetKey(KeyCode.Keypad8))
         {
             xRotation -= rotationSpeed * Time.deltaTime;
@@ -28,15 +35,5 @@ public class PlayerShootcontroller : MonoBehaviour
         {
             xRotation += rotationSpeed * Time.deltaTime;
         }
-
-        if (Input.GetKey(KeyCode.Keypad6))
-        {
-            yRotation += rotationSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.Keypad4))
-        {
-            yRotation -= rotationSpeed * Time.deltaTime;
-        }
     }
-   
 }
