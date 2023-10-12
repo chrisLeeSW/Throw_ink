@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-
+    private float xDefaultRotation=5f;
     public float xRoation;
 
 
@@ -13,8 +13,9 @@ public class CameraMove : MonoBehaviour
     private float cameraMoveFrontBackSpeed;
 
     public Transform playerTransform;
-    private float distanceFromPlayer = 5f;
-    private float rotationSpeed = 100f;
+    public float distanceFromPlayer = 10f;
+    public float xRotationDuration = 5f;
+    //private float rotationSpeed = 100f;
 
     public float CameraMoveSpeed
     {
@@ -23,30 +24,24 @@ public class CameraMove : MonoBehaviour
     }
     public float YCameraPosition
     {
-        set { yCameraPosition = value; }
+        set{ yCameraPosition = value; }
     }
-
+    public float XRotation
+    {
+        get;  set;
+    }
     private void Awake()
     {
-    }
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.Keypad8))
-        {
-            xRoation -= rotationSpeed * Time.deltaTime;
-            if (xRoation < -10f)
-                xRoation = -10f;
-        }
-        if (Input.GetKey(KeyCode.Keypad5))
-        {
-            xRoation += rotationSpeed * Time.deltaTime;
-            if (xRoation > 10f)
-                xRoation = 10f;
-        }
     }
     private void FixedUpdate()
     {
         yRotation = playerTransform.eulerAngles.y;
+        if (xRoation > xRotationDuration)
+            xRoation = xRotationDuration;
+        else if (xRoation < -xRotationDuration)
+            xRoation = -xRotationDuration;
+
+        transform.rotation = Quaternion.Euler(xDefaultRotation + xRoation, yRotation, 0);
     }
     public void SyncWithPlayer(Vector3 playerDirection)
     {
@@ -55,10 +50,6 @@ public class CameraMove : MonoBehaviour
         desiredPosition.y = yCameraPosition;
         transform.position = Vector3.Lerp(transform.position, desiredPosition, cameraMoveFrontBackSpeed * Time.deltaTime);
 
-
-        transform.rotation = Quaternion.Euler(xRoation, yRotation, 0);
-
-        //transform.LookAt(playerTransform);
     }
 }
 

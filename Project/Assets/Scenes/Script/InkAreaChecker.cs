@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Test : MonoBehaviour
+public class InkAreaChecker : MonoBehaviour
 {
     public Color targetColor = Color.red;  // Set the target color
     public float tolerance = 0.2f;  // Set a tolerance value for color comparison
@@ -12,23 +12,9 @@ public class Test : MonoBehaviour
         {
             GetColorRatio();
         }
-
-        //time += Time.deltaTime;
-
-        //if (time > 1.0f)
-        //{
-        //    GetColorRatio();
-        //    time = 0f;
-        //}
-
-
-        //if (Input.GetMouseButton(0))
-        //{
-        //    GetColorRatio();
-        //}
     }
 
-    float GetColorRatio()
+    public float GetColorRatio()
     {
         Mesh mesh = GetComponent<MeshFilter>().mesh;
         Vector3[] vertices = mesh.vertices;
