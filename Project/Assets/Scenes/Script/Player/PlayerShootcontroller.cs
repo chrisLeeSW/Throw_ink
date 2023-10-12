@@ -11,11 +11,13 @@ public class PlayerShootcontroller : MonoBehaviour
 
     public float YRotation
     {
-        set { yRotation += value; }
+        get { return yRotation; }
+        set { yRotation = value; }
     }
     public float XRotation
     {
-        set { xRotation += value; }
+        get { return xRotation; }
+        set { xRotation = value; }
     }
     public float RotationSpeed
     {
@@ -39,7 +41,6 @@ public class PlayerShootcontroller : MonoBehaviour
         //{
         //    yRotation -= rotationSpeed * Time.deltaTime;
         //}
-
         //if (Input.GetKey(KeyCode.Keypad8))
         //{
         //    xRotation -= rotationSpeed * Time.deltaTime;

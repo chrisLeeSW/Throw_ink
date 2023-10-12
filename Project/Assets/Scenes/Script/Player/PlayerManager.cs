@@ -17,10 +17,9 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        playerMove.PlayerMove();
-        //.AimSetting();
+        
     }
-
+    
     public Vector3 GetPlayerDirection()
     {
         return playerMove.GetDirection();
@@ -43,6 +42,7 @@ public class PlayerManager : MonoBehaviour
 
     public PlayerMoveMent GetPlayerMoveMent()
     {
+        //playerMove.PlayerMove();
         return playerMove;
     }
 

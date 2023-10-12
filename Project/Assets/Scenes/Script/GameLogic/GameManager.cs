@@ -5,14 +5,30 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance
+    {
+        get
+        {
+            if (gameManagerSingleTon == null)
+            {
+                gameManagerSingleTon = FindObjectOfType<GameManager>();
+            }
+            return gameManagerSingleTon;
+        }
+    }
+    private static GameManager gameManagerSingleTon;
+
+    [Header("플레이어 오브젝트 및 플레이어 매니저 관리")]
+    public GameObject playerCharacter;
     public PlayerManager playerManager;
+    [Header("카메라")]
     public CameraMove caremaMove;
     public float cameraoffset =1.5f;
-
+    [Header("스테이지")]
     public List<GameObject> stages;
     private int currentStages;
 
-    private float yRotation;
+
     private float rotationSpeed = 100f;
 
     private Vector3 prevMousePosition;
@@ -40,28 +56,23 @@ public class GameManager : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             endMousePosition = Input.mousePosition;
-            //yRotation += Input.mousePosition.x * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.Keypad6))
-        {
-            yRotation += rotationSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.Keypad4))
-        {
-            yRotation -= rotationSpeed * Time.deltaTime;
         }
         
         var newDirceiton = endMousePosition - prevMousePosition;
         newDirceiton.Normalize();
-        playerManager.GetPlayerMoveMent().YRotation = newDirceiton.x;
+        playerManager.GetPlayerMoveMent().YRotation += newDirceiton.x;
         playerManager.GetPlayerMoveMent().RotationSpeed = rotationSpeed;
-        playerManager.GetPlayerShootController().YRotation = newDirceiton.x;
+
+        playerManager.GetPlayerShootController().YRotation += newDirceiton.x;
         playerManager.GetPlayerShootController().RotationSpeed = rotationSpeed;
-        playerManager.GetPlayerShootController().XRotation = -newDirceiton.y;
-        caremaMove.xRoation = -newDirceiton.y;
+        playerManager.GetPlayerShootController().XRotation += -newDirceiton.y;
+        
+        caremaMove.xRoation += -newDirceiton.y;
 
         var direction = playerManager.GetPlayerDirection();
-        caremaMove.SyncWithPlayer(direction);
         caremaMove.YCameraPosition = playerManager.GetPlayerPosition().y + cameraoffset;
+        caremaMove.SyncWithPlayer(direction);
+
+        playerManager.GetPlayerMoveMent().PlayerMove();
     }
 }

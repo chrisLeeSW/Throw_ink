@@ -10,6 +10,7 @@ TagManager:
   - UniqueJumpPad
   - LowSpeedPad
   - HighSpeedPad
+  - Wall
   layers:
   - Default
   - TransparentFX
