@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -49,5 +50,18 @@ public class PlayerManager : MonoBehaviour
     public PlayerShootcontroller GetPlayerShootController()
     {
         return playerShootController;
+    }
+
+
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Finish"))
+        {
+            Debug.Log("³«»ç ¤µ¤¡");
+            SceneManager.LoadScene("ResultScene");
+        }
     }
 }

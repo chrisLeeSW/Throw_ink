@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,15 +19,11 @@ public class GameManager : MonoBehaviour
     }
     private static GameManager gameManagerSingleTon;
 
-    [Header("플레이어 오브젝트 및 플레이어 매니저 관리")]
-    public GameObject playerCharacter;
+
     public PlayerManager playerManager;
     [Header("카메라")]
     public CameraMove caremaMove;
     public float cameraoffset =1.5f;
-    [Header("스테이지")]
-    public List<GameObject> stages;
-    private int currentStages;
 
 
     private float rotationSpeed = 100f;
@@ -40,24 +37,6 @@ public class GameManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-    }
-    private void Update()
-    {
-        if(Input.GetMouseButtonDown(1)) 
-        {
-            Debug.Log($"시작 마우스 :{Input.mousePosition}");
-            prevMousePosition = Input.mousePosition;
-        }
-        if (Input.GetMouseButtonUp(1))
-        {
-            prevMousePosition = Vector3.zero;
-            endMousePosition = Vector3.zero;
-        }
-        if (Input.GetMouseButton(1))
-        {
-            endMousePosition = Input.mousePosition;
-        }
-        
         var newDirceiton = endMousePosition - prevMousePosition;
         newDirceiton.Normalize();
         playerManager.GetPlayerMoveMent().YRotation += newDirceiton.x;
@@ -66,7 +45,7 @@ public class GameManager : MonoBehaviour
         playerManager.GetPlayerShootController().YRotation += newDirceiton.x;
         playerManager.GetPlayerShootController().RotationSpeed = rotationSpeed;
         playerManager.GetPlayerShootController().XRotation += -newDirceiton.y;
-        
+
         caremaMove.xRoation += -newDirceiton.y;
 
         var direction = playerManager.GetPlayerDirection();
@@ -74,5 +53,31 @@ public class GameManager : MonoBehaviour
         caremaMove.SyncWithPlayer(direction);
 
         playerManager.GetPlayerMoveMent().PlayerMove();
+    }
+    private void Update()
+    {
+
+        if (!UiGameManager.instance.isClear && !UiGameManager.instance.isGameover)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                prevMousePosition = Input.mousePosition;
+            }
+            if (Input.GetMouseButtonUp(1))
+            {
+                prevMousePosition = Vector3.zero;
+                endMousePosition = Vector3.zero;
+            }
+            if (Input.GetMouseButton(1))
+            {
+                endMousePosition = Input.mousePosition;
+            }
+
+            
+        }
+        else 
+        {
+            SceneManager.LoadScene("ResultScene");
+        }
     }
 }

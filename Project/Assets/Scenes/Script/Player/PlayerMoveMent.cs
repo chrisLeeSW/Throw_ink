@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerMoveMent : MonoBehaviour
 {
-    public LayerMask layerMask;
     private Rigidbody rb;
 
     private Vector3 direction;
@@ -27,8 +26,8 @@ public class PlayerMoveMent : MonoBehaviour
     private float speedIncreaseRate = 1f;
     private float speedDecreaseRate = 0.5f;
     private float maxSpeed = 10f;
-    public float playerGravity = 9.8f;
 
+   
 
     public uint JumpState
     {
@@ -69,20 +68,26 @@ public class PlayerMoveMent : MonoBehaviour
         rb.MovePosition(position);
 
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
+  
     }
-
+    int test;
     public void PlayerMove()
     {
         var h = Input.GetAxis("Horizontal");
         var v = Input.GetAxis("Vertical");
-        if (Input.GetKeyDown(KeyCode.Space) && jumpState < maxJumpState)
+
+        if ( jumpState < maxJumpState&& (Input.GetKeyDown(KeyCode.Space)))
         {
+            Debug.Log($"Á¡Èå È½¼ö :0{test++}");
+                
+            jumpState++;
             rb.velocity = Vector2.zero;
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            jumpState++;
             ani.SetTrigger("Jumping");
         }
-
+        if (jumpState >= 2)
+            ani.SetTrigger("Ground");
+        
         direction = transform.TransformDirection(new Vector3(h, 0, v));
         var directionMag = direction.magnitude;
         if (directionMag > 1)
@@ -116,9 +121,12 @@ public class PlayerMoveMent : MonoBehaviour
 
     public void JumpCollisionByPad(float newJumpPad1Power, uint jumpCount)
     {
+       
         rb.velocity = new Vector3(rb.velocity.x, newJumpPad1Power, rb.velocity.z);
         //rb.AddForce(Vector3.up * newJumpPad1Power, ForceMode.Impulse);
         jumpState = jumpCount;
+
+        Debug.Log("Hello");
         ani.SetTrigger("Jumping");
     }
 
@@ -155,6 +163,10 @@ public class PlayerMoveMent : MonoBehaviour
             case "LowSpeedPad":
                 moveSpeed = 2f;
                 IsGroundAnimationSet();
+                break;
+            case "PunchTrap":
+                Debug.Log("Äí¾Æ¾Æ¾Ó");
+
                 break;
             default:
                 IsGroundAnimationSet();
