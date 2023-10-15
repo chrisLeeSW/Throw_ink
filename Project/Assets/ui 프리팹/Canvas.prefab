@@ -12224,6 +12224,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\uC7A0\uAE40\uC2A4\uD14C\uC774\uC9C0"
       objectReference: {fileID: 0}
+    - target: {fileID: 8466345617935443946, guid: 7db899b8e71df48bab8cc9c07a58c062, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8466345618240269441, guid: 7db899b8e71df48bab8cc9c07a58c062, type: 3}
       propertyPath: m_text
       value: '1-1
@@ -12747,6 +12751,7 @@ PrefabInstance:
     - {fileID: 8466345617720328216, guid: 7db899b8e71df48bab8cc9c07a58c062, type: 3}
     - {fileID: 8466345619287841900, guid: 7db899b8e71df48bab8cc9c07a58c062, type: 3}
     - {fileID: 3665640976722051016, guid: 7db899b8e71df48bab8cc9c07a58c062, type: 3}
+    - {fileID: 8466345617935443946, guid: 7db899b8e71df48bab8cc9c07a58c062, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8466345619168994502, guid: 7db899b8e71df48bab8cc9c07a58c062, type: 3}
       insertIndex: -1
