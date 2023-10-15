@@ -6,16 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/UI/UI Scenes/MainScene.unity
+    path: "Assets/Scenes/UI/UI Scenes/\uBA54\uC778\uB85C\uBE44.unity"
     guid: 830a0baeaac19f34587a5e63f00efae7
   - enabled: 0
-    path: Assets/Scenes/UI/UI Scenes/StageSelectScene.unity
+    path: "Assets/Scenes/UI/UI Scenes/\uC2A4\uD14C\uC774\uC9C0\uC120\uD0DD\uCC3D(\uC644\uC131).unity"
     guid: 3b87e572d6ebc8e48bedddf5c501e8df
   - enabled: 0
     path: Assets/Scenes/GameBuildScene.unity
     guid: afbde96773ca56844b43ff0f72e0a1aa
   - enabled: 0
-    path: Assets/Scenes/UI/UI Scenes/ResultScene.unity
+    path: "Assets/Scenes/UI/UI Scenes/\uACB0\uACFC\uCC3D(\uC644\uC131).unity"
     guid: e50a5db53d1bd5343a04764993685a9f
   - enabled: 0
     path: Assets/Stage - Test/proto_stage1.unity
