@@ -27,7 +27,10 @@ public class PlayerMoveMent : MonoBehaviour
     private float speedDecreaseRate = 0.5f;
     private float maxSpeed = 10f;
 
-   
+
+    private bool canJump=true;
+    private float jumpDelay=0.3f;
+    private bool isPlayerJumping;
 
     public uint JumpState
     {
@@ -49,6 +52,7 @@ public class PlayerMoveMent : MonoBehaviour
     }
     public float RotationSpeed
     {
+        get { return rotationSpeed; }
         set { rotationSpeed = value; }
     }
     public Quaternion PlayerRoation
@@ -63,30 +67,35 @@ public class PlayerMoveMent : MonoBehaviour
     private void FixedUpdate()
     {
 
-        var position = rb.position;
-        position += direction * moveSpeed * Time.deltaTime;
-        rb.MovePosition(position);
+        //var position = rb.position;
+        //position += direction * moveSpeed * Time.deltaTime;
+        //rb.MovePosition(position);
+
+        rb.velocity = new Vector3(direction.x * moveSpeed, rb.velocity.y, direction.z * moveSpeed);
 
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
-  
+        if(isPlayerJumping)
+        {
+
+            isPlayerJumping = false;
+            jumpState++;
+            rb.velocity = Vector3.zero;
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            ani.SetBool("Jumping", true);
+            ani.SetBool("isGround", false);
+            canJump = false;
+            StartCoroutine(JumpDelayRoutine());
+        }
     }
-    int test;
     public void PlayerMove()
     {
         var h = Input.GetAxis("Horizontal");
         var v = Input.GetAxis("Vertical");
 
-        if ( jumpState < maxJumpState&& (Input.GetKeyDown(KeyCode.Space)))
+        if ( jumpState < maxJumpState && (Input.GetKeyDown(KeyCode.Space))&& canJump)
         {
-            Debug.Log($"Á¡Èå È½¼ö :0{test++}");
-                
-            jumpState++;
-            rb.velocity = Vector2.zero;
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            ani.SetTrigger("Jumping");
+            isPlayerJumping = true;
         }
-        if (jumpState >= 2)
-            ani.SetTrigger("Ground");
         
         direction = transform.TransformDirection(new Vector3(h, 0, v));
         var directionMag = direction.magnitude;
@@ -96,7 +105,11 @@ public class PlayerMoveMent : MonoBehaviour
         }
         ani.SetFloat("Speed", directionMag);
     }
-
+    private IEnumerator JumpDelayRoutine()
+    {
+        yield return new WaitForSeconds(jumpDelay); 
+        canJump = true; 
+    }
     public Vector3 GetDirection()
     {
         return direction;
@@ -121,21 +134,26 @@ public class PlayerMoveMent : MonoBehaviour
 
     public void JumpCollisionByPad(float newJumpPad1Power, uint jumpCount)
     {
-       
+
         rb.velocity = new Vector3(rb.velocity.x, newJumpPad1Power, rb.velocity.z);
         //rb.AddForce(Vector3.up * newJumpPad1Power, ForceMode.Impulse);
         jumpState = jumpCount;
 
         Debug.Log("Hello");
-        ani.SetTrigger("Jumping");
+        ani.SetBool("Jumping", true);
+        ani.SetBool("isGround", false);
     }
 
     public void IsGroundAnimationSet()
     {
         jumpState = 0;
-        ani.SetTrigger("Ground");
+        ani.SetBool("isGround",true);
+        ani.SetBool("Jumping", false);
+        isPlayerJumping = false;
     }
 
+    public float punchTrapPlayingTime = 0.5f;
+    public float punchTrapForce = 200f;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -147,7 +165,7 @@ public class PlayerMoveMent : MonoBehaviour
                 IsGroundAnimationSet();
                 break;
             case "JumpPadV1":
-                float newJumpPad1Power = 15f;
+                float newJumpPad1Power = 10f;
                 JumpCollisionByPad(newJumpPad1Power, 1);
                 break;
             case "JumpPadV2":
@@ -166,13 +184,26 @@ public class PlayerMoveMent : MonoBehaviour
                 break;
             case "PunchTrap":
                 Debug.Log("Äí¾Æ¾Æ¾Ó");
-
+                StartCoroutine(PunchForceRoutine(punchTrapPlayingTime, punchTrapForce));
                 break;
             default:
                 IsGroundAnimationSet();
                 break;
         }
     }
+    private IEnumerator PunchForceRoutine(float duration, float maxForce)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            float force = Mathf.Lerp(0, maxForce, t);
+            rb.AddForce(Vector3.right * force);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("HighSpeedPad"))

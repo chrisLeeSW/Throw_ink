@@ -17,6 +17,13 @@ public class CameraMove : MonoBehaviour
     public float xRotationDuration = 5f;
     //private float rotationSpeed = 100f;
 
+
+    public float DistanceFromPlayer
+    {
+        get { return distanceFromPlayer; }
+        set { distanceFromPlayer = value; } 
+    }
+
     public float CameraMoveSpeed
     {
         get { return cameraMoveFrontBackSpeed; }

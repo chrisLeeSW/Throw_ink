@@ -22,35 +22,40 @@ public class GameManager : MonoBehaviour
 
     public PlayerManager playerManager;
     [Header("Ä«¸Þ¶ó")]
-    public CameraMove caremaMove;
+    public CameraMove cameraaMove;
     public float cameraoffset =1.5f;
 
 
-    private float rotationSpeed = 100f;
+    public float rotationSpeed = 100f;
 
     private Vector3 prevMousePosition;
     private Vector3 endMousePosition;
-    
+
+    [SerializeField, Range(0.1f, 100f)]
+    private float xRtoationSspeed = 1f;
+
     private void Start()
     {
-        caremaMove.CameraMoveSpeed = playerManager.GetPlayerMoveSpeed();
+        cameraaMove.CameraMoveSpeed = playerManager.GetPlayerMoveSpeed();
     }
     private void FixedUpdate()
     {
         var newDirceiton = endMousePosition - prevMousePosition;
         newDirceiton.Normalize();
-        playerManager.GetPlayerMoveMent().YRotation += newDirceiton.x;
-        playerManager.GetPlayerMoveMent().RotationSpeed = rotationSpeed;
 
-        playerManager.GetPlayerShootController().YRotation += newDirceiton.x;
-        playerManager.GetPlayerShootController().RotationSpeed = rotationSpeed;
+        var xRot = newDirceiton.x * xRtoationSspeed;
+        playerManager.GetPlayerMoveMent().YRotation += xRot;
+        playerManager.GetPlayerMoveMent().RotationSpeed += rotationSpeed;
+
+        playerManager.GetPlayerShootController().YRotation += xRot;
+        playerManager.GetPlayerShootController().RotationSpeed += rotationSpeed;
         playerManager.GetPlayerShootController().XRotation += -newDirceiton.y;
 
-        caremaMove.xRoation += -newDirceiton.y;
+        cameraaMove.xRoation += -newDirceiton.y /6;
 
         var direction = playerManager.GetPlayerDirection();
-        caremaMove.YCameraPosition = playerManager.GetPlayerPosition().y + cameraoffset;
-        caremaMove.SyncWithPlayer(direction);
+        cameraaMove.YCameraPosition = playerManager.GetPlayerPosition().y + cameraoffset;
+        cameraaMove.SyncWithPlayer(direction);
 
         playerManager.GetPlayerMoveMent().PlayerMove();
     }
@@ -72,7 +77,8 @@ public class GameManager : MonoBehaviour
             {
                 endMousePosition = Input.mousePosition;
             }
-
+            float mouseWheelInput = Input.GetAxis("Mouse ScrollWheel");
+            cameraaMove.DistanceFromPlayer -=mouseWheelInput;
             
         }
         else 
