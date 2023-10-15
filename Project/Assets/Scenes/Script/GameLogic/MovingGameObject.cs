@@ -103,4 +103,14 @@ public class MovingGameObject : MonoBehaviour
     {
         yield return new WaitForSeconds(holdTime);
     }
+
+    public void GameLogicMovingSetting()
+    {
+        isStarting = true;
+        isLoopMode = true;
+        if (UnityEngine.Random.Range(0, 2) == 1)
+            isRandomMode = true;
+        if (UnityEngine.Random.Range(0, 4) == 3)
+            isStartHold = true;
+    }
 }

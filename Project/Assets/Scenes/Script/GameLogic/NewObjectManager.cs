@@ -9,14 +9,30 @@ public class NewObjectManager : MonoBehaviour
     public List<Transform> spwanPositions;
     public List<Transform> movePositions;
 
+    private float makeTime;
+    public float makeTimeDuration = 10f;
     public bool isMakeGameObject;
+    private float donMakeTime;
+    private float donMakeTimeDuration = 70f;
 
     public void Awake()
     {
         makePrefabObjects = new List<GameObject>();
     }
+
+    public void Start()
+    {
+        MakeGameObject();
+    }
     public void Update()
     {
+        donMakeTime += Time.deltaTime;
+        makeTime += Time.deltaTime;
+        if(makeTime > makeTimeDuration && donMakeTime<=donMakeTimeDuration)
+        {
+            MakeGameObject();
+            makeTime = 0f;
+        }
         if(isMakeGameObject)
         {
             isMakeGameObject = false;
@@ -35,6 +51,7 @@ public class NewObjectManager : MonoBehaviour
 
         var makeObjectSetting = makeObject.GetComponent<MovingGameObject>();
         makeObjectSetting.MovePositionSetting(movePositions);
+        makeObjectSetting.GameLogicMovingSetting();
 
         makePrefabObjects.Add(makeObject);
 
