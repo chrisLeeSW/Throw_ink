@@ -22,50 +22,74 @@ public class UiGameManager : MonoBehaviour
         }
     }
     private static UiGameManager uiGameManagerSingleTon;
-
-
     [Header("게임 내 UI -> ClearBar")]
     public Image clearBar;
     private float prevClearBarAmount;
     private float clearBarAmount; //private 바꿔야함
-    private float increasClearBarAmount =0.5f;
+    private float inceraCllearBarDuration;
+    private float increasClearBarAmount;
     private bool inkAreaCheking;
 
     [Header("게임 내 UI -> Timer")]
     public Image timerUi;
-    public float gameTimeDurtation = 120f;
-    public float gameTime = 120f; 
+    public float gameTimeDurtation = 90f;
+    public float gameTime = 90f;
+    public bool isClear;
+    public bool isGameover;
 
+    public float IncreasBar
+    {
+        get { return increasClearBarAmount; }
+        set { increasClearBarAmount = value;  }
+    }
+    public bool IsClear
+    {
+        get { return isClear; }
+        set { isClear = value; }
+    }
+    public bool IsGameover
+    {
+        get { return isGameover; }
+        set { isGameover = value; }
+    }
     public bool InkAreaChecking
     {
+        get { return inkAreaCheking; }
         set { inkAreaCheking = value; }
     }
-    
 
+    private void Awake()
+    {
+
+    }
     private void Update()
     {
         gameTime-=Time.deltaTime; // 시간을 1에서 빼는중
         timerUi.fillAmount = gameTime / gameTimeDurtation;
 
+        if(gameTime <=0.0f)
+        {
+            isGameover = true;
+        }
 
         if (inkAreaCheking)
         {
             prevClearBarAmount += Time.deltaTime * increasClearBarAmount;
             clearBar.fillAmount = prevClearBarAmount;
-            if(prevClearBarAmount >increasClearBarAmount)
+            if(prevClearBarAmount > inceraCllearBarDuration)
             {
                 InkAreaChecking = false;
             }
         }
-        //clearBar.fillAmount = clearBarAmount;
-    }
-
-    public void SetFloatInkAreaCheckingClearBarAmount(float clearBarAmount)
-    {
-        this.clearBarAmount += clearBarAmount;
-        if(this.clearBarAmount >=0.95f)
+        if(inceraCllearBarDuration >=1.0f)
         {
-            clearBarAmount = 1.0f;
+            isClear = true;
         }
     }
+
+    public void FloatInkAreaCheckingClearBarAmountIncrease(float IncreaseBarAmount)
+    {
+        inceraCllearBarDuration += IncreaseBarAmount;
+    }
+
 }

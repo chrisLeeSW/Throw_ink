@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,61 +19,71 @@ public class GameManager : MonoBehaviour
     }
     private static GameManager gameManagerSingleTon;
 
-    [Header("플레이어 오브젝트 및 플레이어 매니저 관리")]
-    public GameObject playerCharacter;
+
     public PlayerManager playerManager;
     [Header("카메라")]
-    public CameraMove caremaMove;
+    public CameraMove cameraaMove;
     public float cameraoffset =1.5f;
-    [Header("스테이지")]
-    public List<GameObject> stages;
-    private int currentStages;
 
 
-    private float rotationSpeed = 100f;
+    public float rotationSpeed = 100f;
 
     private Vector3 prevMousePosition;
     private Vector3 endMousePosition;
-    
+
+    [SerializeField, Range(0.1f, 100f)]
+    private float xRtoationSspeed = 1f;
+
     private void Start()
     {
-        caremaMove.CameraMoveSpeed = playerManager.GetPlayerMoveSpeed();
+        cameraaMove.CameraMoveSpeed = playerManager.GetPlayerMoveSpeed();
     }
     private void FixedUpdate()
     {
+        var newDirceiton = endMousePosition - prevMousePosition;
+        newDirceiton.Normalize();
+
+        var xRot = newDirceiton.x * xRtoationSspeed;
+        playerManager.GetPlayerMoveMent().YRotation += xRot;
+        playerManager.GetPlayerMoveMent().RotationSpeed += rotationSpeed;
+
+        playerManager.GetPlayerShootController().YRotation += xRot;
+        playerManager.GetPlayerShootController().RotationSpeed += rotationSpeed;
+        playerManager.GetPlayerShootController().XRotation += -newDirceiton.y;
+
+        cameraaMove.xRoation += -newDirceiton.y /6;
+
+        var direction = playerManager.GetPlayerDirection();
+        cameraaMove.YCameraPosition = playerManager.GetPlayerPosition().y + cameraoffset;
+        cameraaMove.SyncWithPlayer(direction);
+
+        playerManager.GetPlayerMoveMent().PlayerMove();
     }
     private void Update()
     {
-        if(Input.GetMouseButtonDown(1)) 
-        {
-            Debug.Log($"시작 마우스 :{Input.mousePosition}");
-            prevMousePosition = Input.mousePosition;
-        }
-        if (Input.GetMouseButtonUp(1))
-        {
-            prevMousePosition = Vector3.zero;
-            endMousePosition = Vector3.zero;
-        }
-        if (Input.GetMouseButton(1))
-        {
-            endMousePosition = Input.mousePosition;
-        }
-        
-        var newDirceiton = endMousePosition - prevMousePosition;
-        newDirceiton.Normalize();
-        playerManager.GetPlayerMoveMent().YRotation += newDirceiton.x;
-        playerManager.GetPlayerMoveMent().RotationSpeed = rotationSpeed;
 
-        playerManager.GetPlayerShootController().YRotation += newDirceiton.x;
-        playerManager.GetPlayerShootController().RotationSpeed = rotationSpeed;
-        playerManager.GetPlayerShootController().XRotation += -newDirceiton.y;
-        
-        caremaMove.xRoation += -newDirceiton.y;
-
-        var direction = playerManager.GetPlayerDirection();
-        caremaMove.YCameraPosition = playerManager.GetPlayerPosition().y + cameraoffset;
-        caremaMove.SyncWithPlayer(direction);
-
-        playerManager.GetPlayerMoveMent().PlayerMove();
+        if (!UiGameManager.instance.isClear && !UiGameManager.instance.isGameover)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                prevMousePosition = Input.mousePosition;
+            }
+            if (Input.GetMouseButtonUp(1))
+            {
+                prevMousePosition = Vector3.zero;
+                endMousePosition = Vector3.zero;
+            }
+            if (Input.GetMouseButton(1))
+            {
+                endMousePosition = Input.mousePosition;
+            }
+            float mouseWheelInput = Input.GetAxis("Mouse ScrollWheel");
+            cameraaMove.DistanceFromPlayer -=mouseWheelInput;
+            
+        }
+        else 
+        {
+            SceneManager.LoadScene("ResultScene");
+        }
     }
 }

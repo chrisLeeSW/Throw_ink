@@ -21,6 +21,7 @@ public class PlayerShootcontroller : MonoBehaviour
     }
     public float RotationSpeed
     {
+        get { return rotationSpeed; }
         set { rotationSpeed = value; }
     }
     private void FixedUpdate()
