@@ -25,7 +25,7 @@ public class OnGameData : MonoBehaviour
     }
 
 
-
+    private Color playerColor;
     private int currentData; // 리스트로 작업을 해서 데이터 받아올거임....클래스 새롭게 만들어서 일단 어뜬내용일지 정하지 못해서 대기중
     private string prevSceneName;
 

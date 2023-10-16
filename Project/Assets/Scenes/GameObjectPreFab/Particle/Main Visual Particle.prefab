@@ -14717,7 +14717,6 @@ MonoBehaviour:
     colorBlendType: 0
     normalBlendType: 0
     heightBlendType: 0
-  wait: 3
 --- !u!1 &4968201411211239882
 GameObject:
   m_ObjectHideFlags: 0

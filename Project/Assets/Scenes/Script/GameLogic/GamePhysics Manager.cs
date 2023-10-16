@@ -13,7 +13,7 @@ public class GamePhysicsManager : MonoBehaviour
             case "Ground":
                 playerMoveMent.JumpState = 0;
                 playerMoveMent.MoveSpeed = playerMoveMent.DefaultMoveSpeed;
-                playerMoveMent.IsGroundAnimationSet();
+                playerMoveMent.IsGroundCollisionSet();
                 break;
             case "JumpPadV1":
                 float newJumpPad1Power = 10f;
@@ -35,7 +35,7 @@ public class GamePhysicsManager : MonoBehaviour
             //    moveSpeed = 2f;
             //    break;
             default:
-                playerMoveMent.IsGroundAnimationSet();
+                playerMoveMent.IsGroundCollisionSet();
                 break;
         }
     }

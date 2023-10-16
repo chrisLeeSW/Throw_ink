@@ -53,11 +53,10 @@ public class GameManager : MonoBehaviour
 
         cameraaMove.xRoation += -newDirceiton.y /6;
 
+
         var direction = playerManager.GetPlayerDirection();
         cameraaMove.YCameraPosition = playerManager.GetPlayerPosition().y + cameraoffset;
         cameraaMove.SyncWithPlayer(direction);
-
-        playerManager.GetPlayerMoveMent().PlayerMove();
     }
     private void Update()
     {
@@ -85,5 +84,8 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("ResultScene");
         }
+        
+
+        playerManager.GetPlayerMoveMent().PlayerMove();
     }
 }

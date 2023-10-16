@@ -92,7 +92,10 @@ public class PlayerMoveMent : MonoBehaviour
     {
         var h = Input.GetAxis("Horizontal");
         var v = Input.GetAxis("Vertical");
-
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Jump");
+        }
         if ( jumpState < maxJumpState && (Input.GetKeyDown(KeyCode.Space))&& canJump)
         {
             isPlayerJumping = true;
@@ -145,12 +148,13 @@ public class PlayerMoveMent : MonoBehaviour
         ani.SetBool("isGround", false);
     }
 
-    public void IsGroundAnimationSet()
+    public void IsGroundCollisionSet()
     {
         jumpState = 0;
         ani.SetBool("isGround",true);
         ani.SetBool("Jumping", false);
         isPlayerJumping = false;
+        canJump = true;
     }
 
     public float punchTrapPlayingTime = 0.5f;
@@ -163,7 +167,7 @@ public class PlayerMoveMent : MonoBehaviour
         {
             case "Ground":
                 moveSpeed = defaultPlayerSpeed;
-                IsGroundAnimationSet();
+                IsGroundCollisionSet();
                 break;
             case "JumpPadV1":
                 float newJumpPad1Power = 10f;
@@ -181,14 +185,14 @@ public class PlayerMoveMent : MonoBehaviour
                 break;
             case "LowSpeedPad":
                 moveSpeed = 2f;
-                IsGroundAnimationSet();
+                IsGroundCollisionSet();
                 break;
             case "PunchTrap":
                 Debug.Log("Äí¾Æ¾Æ¾Ó");
                 StartCoroutine(PunchForceRoutine(punchTrapPlayingTime, punchTrapForce));
                 break;
             default:
-                IsGroundAnimationSet();
+                IsGroundCollisionSet();
                 break;
         }
     }

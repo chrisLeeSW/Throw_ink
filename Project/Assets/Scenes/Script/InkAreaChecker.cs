@@ -6,6 +6,11 @@ public class InkAreaChecker : MonoBehaviour
     public float tolerance = 0.2f;  // Set a tolerance value for color comparison
 
     private float time;
+
+    private void Awake()
+    {
+        // targetColor 설정한 컬러값으로 변경예정
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad0))
