@@ -20,7 +20,11 @@ public class StageOneScene : MonoBehaviour
         OnGameData.instance.CurrentData = 0;
         SceneManager.LoadScene("Stage1_1Scene"); 
     }
-
+    public void LoadChapter1Stage1_2()
+    {
+        OnGameData.instance.CurrentData = 0;
+        SceneManager.LoadScene("Stage1_2Scene");
+    }
     public void LoadMainScene()
     {
         SceneManager.LoadScene("MainScene");

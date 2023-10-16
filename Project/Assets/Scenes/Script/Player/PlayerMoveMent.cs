@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMoveMent : MonoBehaviour
 {
@@ -73,7 +74,7 @@ public class PlayerMoveMent : MonoBehaviour
 
         rb.velocity = new Vector3(direction.x * moveSpeed, rb.velocity.y, direction.z * moveSpeed);
 
-        transform.rotation = Quaternion.Euler(0, yRotation, 0);
+        transform.rotation = Quaternion.Euler(0, yRotation , 0);
         if(isPlayerJumping)
         {
 
@@ -139,7 +140,7 @@ public class PlayerMoveMent : MonoBehaviour
         //rb.AddForce(Vector3.up * newJumpPad1Power, ForceMode.Impulse);
         jumpState = jumpCount;
 
-        Debug.Log("Hello");
+
         ani.SetBool("Jumping", true);
         ani.SetBool("isGround", false);
     }
@@ -219,6 +220,10 @@ public class PlayerMoveMent : MonoBehaviour
         {
             isOnHighSpeedPad = false;
             StartCoroutine(DecreaseSpeedRoutine());
+        }
+        else if(other.CompareTag("Failing"))
+        {
+            SceneManager.LoadScene("ResultScene");
         }
     }
     private IEnumerator UniqueJumpRoutine(float forwardForce, float peakHeight, float timeToPeak)
