@@ -17,7 +17,7 @@ public class MainLobbyUiManager : MonoBehaviour
 
     public void OnExitButton()
     {
-        Debug.Log("OnExitButton");
+        OnGameData.instance.Save();
         Application.Quit();
     }
 }

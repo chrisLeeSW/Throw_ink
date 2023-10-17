@@ -5,19 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class StageOneScene : MonoBehaviour
 {
-    public List<GameObject> lockStageObjects;
-    public List<GameObject> unlockStageObjects;
+    public string thisChapterName;
+    public List<GameObject> openWinodw;
+    public List<GameObject> lockWindow;
 
+    public List<GameObject> stars;
+    public List<GameObject> rankObjectes;
+    private int stageIndex;
+
+    private int stageClearStartIdnex;
+    private int stageClearCount;
 
     private void Awake()
     {
-        //for(int i=0;i<lockStageObjects.Count; i++)
-        //{
-        //    var data =
-        //}
-        // Save파일 해서 현재 스테이를 저장
-        // save 파일 가져오기 
+        Init();
         OnGameData.instance.NowSceneName = SceneManager.GetActiveScene().name;
+        ReadClearStage();
     }
     public void LoadBakcButton()
     {
@@ -48,5 +51,79 @@ public class StageOneScene : MonoBehaviour
     {
         OnGameData.instance.PrevSceneName = OnGameData.instance.NowSceneName;
         SceneManager.LoadScene(OnGameData.instance.SettingSceneName);
+    }
+
+    private void Init()
+    {
+        stageClearStartIdnex = OnGameData.instance.GetStageNameByStartIndex(thisChapterName);
+        stageClearCount = OnGameData.instance.GetStageNameByCount(thisChapterName);
+
+        for (int i=0;i<stars.Count;  ++i)
+        {
+            stars[i].SetActive(false);
+        }
+        for(int i=0;i< rankObjectes.Count;++i)
+        {
+            rankObjectes[i].SetActive(false);
+        }
+
+
+        for (int i = 0; i < openWinodw.Count; i++)
+        {
+            if (i == 0)
+            {
+                var temp = OnGameData.instance.GetStageResulStar(stageClearStartIdnex);
+                SettingRank(i, temp);
+                SettingStart(i, temp);
+
+                lockWindow[i].SetActive(false);
+                openWinodw[i].SetActive(true);
+
+            }
+            else
+            {
+                lockWindow[i].SetActive(true);
+                openWinodw[i].SetActive(false);
+            }
+        }
+    }
+
+    private void ReadClearStage()
+    {
+        for(int i= stageClearStartIdnex;i< stageClearStartIdnex+stageClearCount;i++)
+        {
+            if(OnGameData.instance.GetStageClear(i))
+            {
+                var num = i + 1;
+                if (num >= stageClearCount)
+                    break;
+
+                var temp = OnGameData.instance.GetStageResulStar(num);
+                SettingRank(num, temp);
+                SettingStart(num, temp);
+
+                lockWindow[num].SetActive(false);
+                openWinodw[num].SetActive(true);
+
+
+            }
+        }
+    }
+
+    private void SettingRank(int openWindowIndex,int result)
+    {
+        int start= openWindowIndex *4;
+        rankObjectes[start + result].SetActive(true);
+
+    }
+
+    private void SettingStart(int openWindowIndex, int result)
+    {
+        int start= openWindowIndex *3;
+
+        for(int i=start;i<start+result;i++)
+        {
+            stars[i].SetActive(true);   
+        }
     }
 }

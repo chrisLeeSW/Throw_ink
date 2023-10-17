@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -34,7 +36,7 @@ public class OnGameData : MonoBehaviour
     private string mainSceneName = "MainScene";
     private string settingSceneName = "SETTINGS-V1.0";
 
-    public Dictionary<string, StageData> data = new Dictionary<string, StageData>();
+    public Dictionary<string, StageData> datas = new Dictionary<string, StageData>();
     public int CurrentData
     {
         get { return currentData; }
@@ -69,13 +71,37 @@ public class OnGameData : MonoBehaviour
         stageTable = new StageTable();
         stageTable.GetStageName(stageNames);
         InitNowAndPrevSceneName();
+
+
+        Load();
+        //StageData data = new StageData();
+        //data.isClear = false;
+        //data.resultStar = 0;
+
+        //for(int i=0;i<stageNames.Count;i++)
+        //{
+        //    datas.Add(stageNames[i], data);
+        //}
     }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape)) 
         {
-            GameSave();
+            Save();
+        }
+        if(Input.GetKeyDown(KeyCode.F1))
+        {
+            foreach (var data in datas)
+                Debug.Log($"{data.Key}/{data.Value.isClear}/{data.Value.resultStar}");
+        }
+        if(Input.GetKeyDown(KeyCode.F2))
+        {
+            Load();
+        }
+        if(Input.GetKeyDown(KeyCode.F3))
+        {
+            GetStageResultAllStar("chapter 1");
         }
     }
 
@@ -126,30 +152,103 @@ public class OnGameData : MonoBehaviour
         return holdTime;
     }
 
-    public void StageDataSetting(string sceneName, bool clear, int result)
-    {
-        data.Add(sceneName, new StageData(clear,result));
-    }
-    
+ 
 
-    public void GameSave()
+    public void Save()
     {
         var savedata = new SaveDataVersionCurrent();
-        //var cubes = GameObject.FindGameObjectsWithTag("Cube");
-        //foreach (var c in cubes)
-        //{
-        //    var info = new CubeInfo();
-        //    savedata.CubeInfos.Add(new CubeInfo
-        //    {
-        //        name = c.name,
-        //        position = c.transform.position,
-        //        rotate = c.transform.rotation,
-        //        scale = c.transform.localScale
-        //    }
-        //    );
-        //}
-        SaveLoadSystem.Save(savedata, "test1.json");
+        savedata.data = datas;
+        SaveLoadSystem.Save(savedata, "GameData.json");
 
         Debug.Log("SaveComplete");
     }
+    public void Load()
+    {
+        var path = Path.Combine(Application.persistentDataPath, "GameData.json");
+        var json = File.ReadAllText(path);
+
+        JObject jsonObject = JObject.Parse(json);
+        string dataString = jsonObject["data"].ToString();
+        var readListData = JsonConvert.DeserializeObject<Dictionary<string,StageData>>(dataString);
+
+        foreach(var reader in readListData)
+        {
+            datas.Add(reader.Key, reader.Value);
+            //StageDataSetting(reader.Key, reader.Value.isClear,reader.Value.resultStar);
+        }
+    }
+
+    public int GetStageResultAllStar(string ChapterName)
+    {
+        int result = 0;
+        foreach (var getter in datas)
+        {
+            if (getter.Key.Contains(ChapterName))
+            {
+                result += getter.Value.resultStar;
+            }
+        }
+        return result;
+    }
+
+    public int GetStageResulStar(int index)
+    {
+        return datas[stageNames[index]].resultStar;
+    }
+
+    public bool GetStageResultClear(string ChapterName)
+    {
+        foreach(var getter in datas)
+        {
+            if(getter.Key.Contains(ChapterName) && !getter.Value.isClear)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public int GetStageNameByCount(string ChapterName)
+    {
+        int result = 0;
+        foreach (var getter in datas)
+        {
+            if (getter.Key.Contains(ChapterName))
+            {
+                result++;
+            }
+        }
+        return result;
+
+    }
+    public int GetStageNameByStartIndex(string ChapterName)
+    {
+        int result = 0;
+        foreach (var getter in datas)
+        {
+            if (getter.Key.Contains(ChapterName))
+            {
+                return result;
+            }
+            else result++;
+        }
+        return -1;
+    }
+
+    public bool GetStageClear(int index)
+    {
+        return datas[stageNames[index]].isClear;
+    }
+    public void StageDataSetting(string sceneName, bool clear, int result)
+    {
+        if (datas.ContainsKey(sceneName))
+        {
+            StageData currentData = datas[sceneName];
+            currentData.isClear = clear;
+            currentData.resultStar = result;
+            datas[sceneName] = currentData;
+        }
+    }
+
 }
