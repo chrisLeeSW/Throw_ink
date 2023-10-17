@@ -4,8 +4,11 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using SaveDataVersionCurrent = SaveDataV1;
+
 public class OnGameData : MonoBehaviour
 {
+    
     public static OnGameData instance
     {
         get
@@ -30,21 +33,22 @@ public class OnGameData : MonoBehaviour
     private string prevSceneName;
     private string mainSceneName = "MainScene";
     private string settingSceneName = "SETTINGS-V1.0";
-    
+
+    public Dictionary<string, StageData> data = new Dictionary<string, StageData>();
     public int CurrentData
     {
         get { return currentData; }
-        set { currentData = value; }    
+        set { currentData = value; }
     }
     public string NowSceneName
-    { 
+    {
         get { return nowSceneName; }
         set { nowSceneName = value; }
     }
     public string PrevSceneName
     {
         get { return prevSceneName; }
-        set { prevSceneName = value; }  
+        set { prevSceneName = value; }
     }
     public string MainSceneName
     {
@@ -62,12 +66,19 @@ public class OnGameData : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        stageTable =new StageTable();
+        stageTable = new StageTable();
         stageTable.GetStageName(stageNames);
         InitNowAndPrevSceneName();
     }
 
-    
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            GameSave();
+        }
+    }
+
     private void InitNowAndPrevSceneName()
     {
         PrevSceneName = SceneManager.GetActiveScene().name;
@@ -114,5 +125,31 @@ public class OnGameData : MonoBehaviour
 
         return holdTime;
     }
+
+    public void StageDataSetting(string sceneName, bool clear, int result)
+    {
+        data.Add(sceneName, new StageData(clear,result));
+    }
     
+
+    public void GameSave()
+    {
+        var savedata = new SaveDataVersionCurrent();
+        //var cubes = GameObject.FindGameObjectsWithTag("Cube");
+        //foreach (var c in cubes)
+        //{
+        //    var info = new CubeInfo();
+        //    savedata.CubeInfos.Add(new CubeInfo
+        //    {
+        //        name = c.name,
+        //        position = c.transform.position,
+        //        rotate = c.transform.rotation,
+        //        scale = c.transform.localScale
+        //    }
+        //    );
+        //}
+        SaveLoadSystem.Save(savedata, "test1.json");
+
+        Debug.Log("SaveComplete");
+    }
 }

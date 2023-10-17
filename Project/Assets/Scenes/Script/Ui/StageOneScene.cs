@@ -6,14 +6,17 @@ using UnityEngine.SceneManagement;
 public class StageOneScene : MonoBehaviour
 {
     public List<GameObject> lockStageObjects;
-    private int currentLockStageObject ;
     public List<GameObject> unlockStageObjects;
-    private int currentUnLockStageObjects=1;
 
 
     private void Awake()
     {
-        currentLockStageObject = 0; // Save파일 해서 현재 스테이를 저장
+        //for(int i=0;i<lockStageObjects.Count; i++)
+        //{
+        //    var data =
+        //}
+        // Save파일 해서 현재 스테이를 저장
+        // save 파일 가져오기 
         OnGameData.instance.NowSceneName = SceneManager.GetActiveScene().name;
     }
     public void LoadBakcButton()
