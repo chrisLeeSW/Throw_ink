@@ -108,7 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6915482929622609112}
   m_Layer: 0
-  m_Name: dsad
+  m_Name: tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

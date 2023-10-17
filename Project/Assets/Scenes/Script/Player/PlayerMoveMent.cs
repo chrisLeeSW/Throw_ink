@@ -184,7 +184,7 @@ public class PlayerMoveMent : MonoBehaviour
                 StartCoroutine(UniqueJumpRoutine(duration, forwardForce, upwardForce));
                 break;
             case "LowSpeedPad":
-                moveSpeed = 2f;
+                moveSpeed = 1.5f;
                 IsGroundCollisionSet();
                 break;
             case "PunchTrap":
@@ -196,6 +196,17 @@ public class PlayerMoveMent : MonoBehaviour
                 break;
         }
     }
+    private void OnCollisionExit(Collision collision)
+    {
+        string collisionTag = collision.collider.tag;
+        switch (collisionTag)
+        {
+            case "LowSpeedPad":
+                moveSpeed = defaultPlayerSpeed;
+                break;
+        }
+    }
+
     private IEnumerator PunchForceRoutine(float duration, float maxForce)
     {
         float elapsedTime = 0f;

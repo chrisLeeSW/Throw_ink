@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 135645090568065325}
   - component: {fileID: 5601819785089344419}
   m_Layer: 0
-  m_Name: Pipe 1
+  m_Name: chapter2 pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
