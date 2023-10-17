@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -377,6 +377,7 @@ MonoBehaviour:
   - {fileID: 799212307}
   - {fileID: 505327163}
   - {fileID: 228289956}
+  makeTimeDuration: 10
   isMakeGameObject: 0
 --- !u!4 &74808856
 Transform:
@@ -594,11 +595,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1846183353}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &196651995 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6390148200560269377, guid: 0bd40dbf3176bcb40a6e63bebf40094b, type: 3}
-  m_PrefabInstance: {fileID: 809622451}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &198306482 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1444013238925198685, guid: d1eee6b84696edf4e9914b1d76af9ff3, type: 3}
@@ -1561,7 +1557,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3406661651575636773, guid: 0bd40dbf3176bcb40a6e63bebf40094b, type: 3}
   m_PrefabInstance: {fileID: 809622451}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196651995}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 253cfa898df95d84ba89ebd2cedc4782, type: 3}
@@ -2515,6 +2511,8 @@ MonoBehaviour:
   timerUi: {fileID: 0}
   gameTimeDurtation: 120
   gameTime: 120
+  isClear: 0
+  isGameover: 0
 --- !u!114 &824015926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3620,6 +3618,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4313690083262950482, guid: 9b1a79472750c7744b8ce189ef8016de, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7229109596532068890, guid: 9b1a79472750c7744b8ce189ef8016de, type: 3}
       propertyPath: m_Name
       value: Chapter1
@@ -4274,11 +4276,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502e6f16acf2a884fa8535a05aec299a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCharacter: {fileID: 196651995}
   playerManager: {fileID: 526124303}
-  caremaMove: {fileID: 281134012}
+  cameraaMove: {fileID: 0}
   cameraoffset: 1.5
-  stages: []
+  rotationSpeed: 100
+  xRtoationSspeed: 1
 --- !u!4 &1248378070
 Transform:
   m_ObjectHideFlags: 0
@@ -5837,6 +5839,7 @@ MonoBehaviour:
   - {fileID: 968757073}
   - {fileID: 538892765}
   - {fileID: 1594464837}
+  makeTimeDuration: 10
   isMakeGameObject: 0
 --- !u!1 &1856370230
 GameObject:
