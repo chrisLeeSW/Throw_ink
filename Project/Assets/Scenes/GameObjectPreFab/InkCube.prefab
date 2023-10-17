@@ -52,7 +52,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4856540285671323533}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 3774942864193512907}
   m_Layer: 0
   m_Name: InkCube
-  m_TagString: Untagged
+  m_TagString: InkCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,16 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd9aeeebce38a4479ce77e10a624841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isStartHold: 0
-  isStarting: 0
-  isLoopMode: 0
-  isRandomMode: 0
-  isMoving: 0
   movingTargets: []
   currentMovingTargetsIndex: 0
-  holdTime: 0
-  moveSpeed: 3
-  rotateSpeed: 0.5
 --- !u!114 &3774942864193512907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,8 +248,6 @@ MonoBehaviour:
   cubeImage: {fileID: 960643583528298084}
   time: 0
   offDuration: 1
-  destoryTimeDurtation: 30
-  getStarDurationColorArea: 1
 --- !u!1 &8264422818889128785
 GameObject:
   m_ObjectHideFlags: 0

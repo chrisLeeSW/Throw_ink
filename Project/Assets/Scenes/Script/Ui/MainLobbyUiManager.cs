@@ -7,12 +7,12 @@ public class MainLobbyUiManager : MonoBehaviour
 {
     public void LoadStageSelectScene()
     {
-        SceneManager.LoadScene("ChpaterSelectScene");
+        SceneManager.LoadScene("CHAPTER_V1.0");
     }
 
     public void LoadSettingScene()
     {
-        SceneManager.LoadScene("SettingScene");
+        SceneManager.LoadScene(OnGameData.instance.SettingSceneName);
     }
 
     public void OnExitButton()

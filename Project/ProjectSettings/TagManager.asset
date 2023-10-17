@@ -13,6 +13,7 @@ TagManager:
   - Wall
   - PunchTrap
   - Failing
+  - InkCube
   layers:
   - Default
   - TransparentFX

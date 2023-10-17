@@ -283,7 +283,7 @@ namespace Es.InkPainter
 
 		private void OnDestroy()
 		{
-			Debug.Log("InkCanvas has been destroyed.");
+			//Debug.Log("InkCanvas has been destroyed.");
 			ReleaseRenderTexture();
 		}
 
@@ -821,14 +821,14 @@ namespace Es.InkPainter
 			Matrix4x4 mvp = renderCamera.projectionMatrix * renderCamera.worldToCameraMatrix * transform.localToWorldMatrix;
 			if (MeshOperator.LocalPointToUV(p, mvp, out uv))
 			{
-				return PaintUVDirect(brush, uv, materialSelector);
+                return PaintUVDirect(brush, uv, materialSelector);
 			}
 			else
 			{
-				//Debug.LogWarning("Could not get the point on the surface.");
-				return PaintNearestTriangleSurface(brush, worldPos, materialSelector, renderCamera);
+                //Debug.LogWarning("Could not get the point on the surface.");
+                return PaintNearestTriangleSurface(brush, worldPos, materialSelector, renderCamera);
 			}
-            
+			
         }
 
 		/// <summary>

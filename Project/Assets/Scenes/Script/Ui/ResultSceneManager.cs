@@ -16,6 +16,7 @@ public class ResultSceneManager : MonoBehaviour
 
     private void Awake()
     {
+        result = OnGameData.instance.ResultStagePlay;
         // result는 GameData에서 받아오기
         switch (result)
         {
@@ -51,6 +52,6 @@ public class ResultSceneManager : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene("Stage1SelectScene"); // 추후에서 씬을 데이터를 받게 저장해야함
+        SceneManager.LoadScene(OnGameData.instance.NowSceneName); // 추후에서 씬을 데이터를 받게 저장해야함
     }
 }

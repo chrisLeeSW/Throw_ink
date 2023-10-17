@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class MovingGameObject : MonoBehaviour
 {
-    public bool isStartHold;
-    public bool isStarting;
-    public bool isLoopMode;
-    public bool isRandomMode;
-    public bool isMoving;
+    private bool isStartHold;
+    private bool isStarting;
+    private bool isLoopMode ;
+    private bool isRandomMode;
+
 
     public List<Transform> movingTargets;
     public int currentMovingTargetsIndex;
@@ -23,12 +23,19 @@ public class MovingGameObject : MonoBehaviour
     private Quaternion startRoate;
     private Quaternion endRoate;
 
-    public float holdTime;
-    public float moveSpeed=3f;
-    public float rotateSpeed=0.5f;   
+    private float holdTime;
+    private float moveSpeed=3f;
+    private float rotateSpeed=0.5f;   
     private void Awake()
     {
         movingTargets = new List<Transform>();
+
+        isStarting = true;
+        isLoopMode = true;
+        isRandomMode = true;
+
+        moveSpeed = OnGameData.instance.GetStageObjectMoveSpeed(OnGameData.instance.CurrentData);
+        holdTime = OnGameData.instance.GetStageObjectHoldTime(OnGameData.instance.CurrentData);
     }
     private void Update()
     {
@@ -78,8 +85,6 @@ public class MovingGameObject : MonoBehaviour
 
             if (Vector3.Distance(transform.position, movingTargets[currentPosIndex].transform.position) < 0.1f)
             {
-
-                isMoving = false;
                 break;
             }
         }
@@ -96,12 +101,29 @@ public class MovingGameObject : MonoBehaviour
     }
     IEnumerator StartHoldTime()
     {
+
         yield return new WaitForSeconds(holdTime);
         DirectionSettingColorObject();
     }
     IEnumerator HoldTime()
     {
-        yield return new WaitForSeconds(holdTime);
+        Vector3 randomRotation = new Vector3(UnityEngine.Random.Range(0f, 360f),
+                                     UnityEngine.Random.Range(0f, 360f),
+                                     UnityEngine.Random.Range(0f, 360f));
+        Quaternion startRotation = transform.rotation;
+        Quaternion endRotation = startRotation * Quaternion.Euler(randomRotation);
+        float rotationTime = 0.0f;
+
+        while (rotationTime <= holdTime)
+        {
+            transform.rotation = Quaternion.Slerp(startRotation, endRotation, rotationTime / holdTime);
+            rotationTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.rotation = endRotation;
+
+        // yield return new WaitForSeconds(holdTime);
     }
 
     public void GameLogicMovingSetting()

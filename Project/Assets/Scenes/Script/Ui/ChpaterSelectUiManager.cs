@@ -5,27 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class ChpaterSelectUiManager : MonoBehaviour
 {
-    private string sceneName;
 
     private void Awake()
     {
-        sceneName = SceneManager.GetActiveScene().name;
+        OnGameData.instance.NowSceneName = SceneManager.GetActiveScene().name;
+        if(OnGameData.instance.PrevSceneName == OnGameData.instance.NowSceneName )
+        {
+            OnGameData.instance.PrevSceneName = OnGameData.instance.MainSceneName;
+        }
     }
     public void LoadMainScene()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene(OnGameData.instance.MainSceneName);
     }
 
     public void LoadSettingScene()
     {
-        OnGameData.instance.PrevSceneName =sceneName;
-        SceneManager.LoadScene("SettingScene");
+        OnGameData.instance.PrevSceneName = OnGameData.instance.NowSceneName;
+        SceneManager.LoadScene(OnGameData.instance.SettingSceneName);
     }
 
     public void LoadStage1SelectScene()
     {
-        OnGameData.instance.PrevSceneName = sceneName;
-        SceneManager.LoadScene("Stage1SelectScene");
+        OnGameData.instance.PrevSceneName = OnGameData.instance.NowSceneName;
+        SceneManager.LoadScene("STAGE1_V1.0");
+    }
+
+    public void BackButton()
+    {
+       SceneManager.LoadScene(OnGameData.instance.PrevSceneName);
     }
 
 }
