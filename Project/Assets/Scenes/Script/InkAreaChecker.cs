@@ -62,7 +62,7 @@ public class InkAreaChecker : MonoBehaviour
         }
 
         float colorRatio = (float)targetColorCount / totalColorCount;
-        Debug.Log("Target Color Ratio: " + colorRatio);
+        //Debug.Log("Target Color Ratio: " + colorRatio);
         return colorRatio;
     }
 

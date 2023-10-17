@@ -11,16 +11,19 @@ public class ObjectSubController : MonoBehaviour
     public float time;
     public float offDuration = 1.0f;
     private float destoryTime;
-    public float destoryTimeDurtation =30f; //30f
-    public float getStarDurationColorArea = 70f; // 70f
+    private float destoryTimeDurtation=30f ; //30f
+    private float getStarDurationColorArea=60f; // 70f
     private bool isDraw;
     private float maxPercentage =100f;
-    private float amount = 0.25f;
+    private float amount = 0.25f; 
 
     private void Awake()
     {
         inkAreaChecker = GetComponent<InkAreaChecker>();
         UiGameManager.instance.IncreasBar = amount;
+
+        destoryTimeDurtation = OnGameData.instance.GetStageObjectLife(OnGameData.instance.CurrentData);
+        getStarDurationColorArea= OnGameData.instance.GetStageObjectAreaCondition(OnGameData.instance.CurrentData);
     }
 
     private void Update()
@@ -35,15 +38,12 @@ public class ObjectSubController : MonoBehaviour
         }
         if(destoryTime >=destoryTimeDurtation)
         {
-            Debug.Log("Destory");
             var result = inkAreaChecker.GetColorRatio()* maxPercentage;
             if(result >= getStarDurationColorArea)
             {
-                Debug.Log("Ω∫≈∏ ≈âµÊ §∫§∫");
                 UiGameManager.instance.InkAreaChecking =true;
-                UiGameManager.instance.FloatInkAreaCheckingClearBarAmountIncrease(amount);
-                
-            } // ≈◊Ω∫∆Æ∑Œ ¿œ¥‹ ±‚¡ÿ¡° ≥∑√„
+                UiGameManager.instance.FloatInkAreaCheckingClearBarAmountIncrease();
+            } 
            // Debug.Log(result);
             Destroy(gameObject);
         }

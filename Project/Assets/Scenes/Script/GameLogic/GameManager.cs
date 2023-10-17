@@ -34,6 +34,19 @@ public class GameManager : MonoBehaviour
     [SerializeField, Range(0.1f, 100f)]
     private float xRtoationSspeed = 1f;
 
+    public bool IsGameOver
+    {
+        get; set;
+    }
+    public bool IsPlayerDie
+    {
+        get; set;
+    }
+    public bool IsClear
+    {
+        get; set;
+    }
+
     private void Start()
     {
         cameraaMove.CameraMoveSpeed = playerManager.GetPlayerMoveSpeed();
@@ -61,7 +74,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
 
-        if (!UiGameManager.instance.isClear && !UiGameManager.instance.isGameover)
+        if (!IsClear && !IsPlayerDie && !IsGameOver)
         {
             if (Input.GetMouseButtonDown(1))
             {
@@ -82,10 +95,26 @@ public class GameManager : MonoBehaviour
         }
         else 
         {
-            SceneManager.LoadScene("ResultScene");
+            if (IsPlayerDie)
+                OnGameData.instance.ResultStagePlay = 0;
+            else
+                GameResult();
+            SceneManager.LoadScene("Result-V1.0");
         }
-        
-
         playerManager.GetPlayerMoveMent().PlayerMove();
+    }
+
+    private void GameResult()
+    {
+        var result = UiGameManager.instance.GetGameResult();
+        if (result < UiGameManager.instance.IncreasBar)
+            OnGameData.instance.ResultStagePlay = 0;
+        else if (result > UiGameManager.instance.IncreasBar && result < UiGameManager.instance.IncreasBar * 2)
+            OnGameData.instance.ResultStagePlay = 1;
+        else if (result > UiGameManager.instance.IncreasBar * 2 && result < UiGameManager.instance.IncreasBar * 3)
+            OnGameData.instance.ResultStagePlay = 2;
+        else if (result > UiGameManager.instance.IncreasBar * 3)
+            OnGameData.instance.ResultStagePlay = 3;
+
     }
 }

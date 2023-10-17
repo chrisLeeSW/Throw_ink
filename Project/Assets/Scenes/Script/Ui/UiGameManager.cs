@@ -27,7 +27,7 @@ public class UiGameManager : MonoBehaviour
     private float prevClearBarAmount;
     private float clearBarAmount; //private 바꿔야함
     private float inceraCllearBarDuration;
-    private float increasClearBarAmount;
+    private float increasClearBarAmount=0.25f;
     private bool inkAreaCheking;
 
     [Header("게임 내 UI -> Timer")]
@@ -36,7 +36,9 @@ public class UiGameManager : MonoBehaviour
     public float gameTime = 90f;
     public bool isClear;
     public bool isGameover;
-
+    [Header("플레이어 목숨")]
+    public List<GameObject> playerLife;
+    private int currentPlayerLife;
     public float IncreasBar
     {
         get { return increasClearBarAmount; }
@@ -60,7 +62,7 @@ public class UiGameManager : MonoBehaviour
 
     private void Awake()
     {
-
+        currentPlayerLife = playerLife.Count - 1;
     }
     private void Update()
     {
@@ -70,6 +72,7 @@ public class UiGameManager : MonoBehaviour
         if(gameTime <=0.0f)
         {
             isGameover = true;
+            GameManager.instance.IsGameOver = true;
         }
 
         if (inkAreaCheking)
@@ -80,16 +83,28 @@ public class UiGameManager : MonoBehaviour
             {
                 InkAreaChecking = false;
             }
+            if (inceraCllearBarDuration >= 1.0f)
+            {
+                isClear = true;
+                GameManager.instance.IsClear = true;
+            }
         }
-        if(inceraCllearBarDuration >=1.0f)
-        {
-            isClear = true;
-        }
+       
     }
 
-    public void FloatInkAreaCheckingClearBarAmountIncrease(float IncreaseBarAmount)
+    public void FloatInkAreaCheckingClearBarAmountIncrease()
     {
-        inceraCllearBarDuration += IncreaseBarAmount;
+        inceraCllearBarDuration += increasClearBarAmount;
     }
-
+    public void PlayerLifeDecrease()
+    {
+        playerLife[currentPlayerLife].SetActive(false);
+        currentPlayerLife--;
+        if (currentPlayerLife < 0)
+            GameManager.instance.IsPlayerDie = true;
+    }
+    public float GetGameResult()
+    {
+        return clearBar.fillAmount;
+    }
 }

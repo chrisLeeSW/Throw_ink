@@ -5,11 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class StageOneScene : MonoBehaviour
 {
-    private string sceneName;
+    public List<GameObject> lockStageObjects;
+    private int currentLockStageObject ;
+    public List<GameObject> unlockStageObjects;
+    private int currentUnLockStageObjects=1;
+
 
     private void Awake()
     {
-        sceneName = SceneManager.GetActiveScene().name;
+        currentLockStageObject = 0; // Save파일 해서 현재 스테이를 저장
+        OnGameData.instance.NowSceneName = SceneManager.GetActiveScene().name;
     }
     public void LoadBakcButton()
     {
@@ -18,20 +23,27 @@ public class StageOneScene : MonoBehaviour
     public void LoadChapter1Stage1_1()
     {
         OnGameData.instance.CurrentData = 0;
-        SceneManager.LoadScene("Stage1_1Scene"); 
+        OnGameData.instance.PrevSceneName = SceneManager.GetActiveScene().name;
+        OnGameData.instance.NowSceneName = OnGameData.instance.GetStageName(OnGameData.instance.CurrentData);
+        SceneManager.LoadScene(OnGameData.instance.stageNames[OnGameData.instance.CurrentData]); 
     }
     public void LoadChapter1Stage1_2()
     {
-        OnGameData.instance.CurrentData = 0;
-        SceneManager.LoadScene("Stage1_2Scene");
+        OnGameData.instance.CurrentData = 1;
+        OnGameData.instance.PrevSceneName = SceneManager.GetActiveScene().name;
+        OnGameData.instance.NowSceneName = OnGameData.instance.GetStageName(OnGameData.instance.CurrentData);
+        SceneManager.LoadScene(OnGameData.instance.stageNames[OnGameData.instance.CurrentData]);
     }
+
+
     public void LoadMainScene()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene(OnGameData.instance.MainSceneName);
     }
 
     public void LoadSettingScene()
     {
-        SceneManager.LoadScene("SettingScene");
+        OnGameData.instance.PrevSceneName = OnGameData.instance.NowSceneName;
+        SceneManager.LoadScene(OnGameData.instance.SettingSceneName);
     }
 }

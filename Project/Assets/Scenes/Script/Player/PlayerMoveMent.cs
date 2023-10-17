@@ -33,6 +33,10 @@ public class PlayerMoveMent : MonoBehaviour
     private float jumpDelay=0.3f;
     private bool isPlayerJumping;
 
+    private float punchTrapPlayingTime = 0.5f;
+    private float punchTrapForce = 200f;
+
+    public Transform playerSpwanPosition;
     public uint JumpState
     {
         set { jumpState = value; }
@@ -92,10 +96,6 @@ public class PlayerMoveMent : MonoBehaviour
     {
         var h = Input.GetAxis("Horizontal");
         var v = Input.GetAxis("Vertical");
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("Jump");
-        }
         if ( jumpState < maxJumpState && (Input.GetKeyDown(KeyCode.Space))&& canJump)
         {
             isPlayerJumping = true;
@@ -157,9 +157,6 @@ public class PlayerMoveMent : MonoBehaviour
         canJump = true;
     }
 
-    public float punchTrapPlayingTime = 0.5f;
-    public float punchTrapForce = 200f;
-
     private void OnCollisionEnter(Collision collision)
     {
         string collisionTag = collision.collider.tag;
@@ -188,7 +185,6 @@ public class PlayerMoveMent : MonoBehaviour
                 IsGroundCollisionSet();
                 break;
             case "PunchTrap":
-                Debug.Log("Äí¾Æ¾Æ¾Ó");
                 StartCoroutine(PunchForceRoutine(punchTrapPlayingTime, punchTrapForce));
                 break;
             default:
@@ -216,6 +212,11 @@ public class PlayerMoveMent : MonoBehaviour
             isOnHighSpeedPad = true;
             StartCoroutine(IncreaseSpeedRoutine());
         }
+        else if (other.CompareTag("Failing"))
+        {
+            UiGameManager.instance.PlayerLifeDecrease();
+            transform.position = playerSpwanPosition.position;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -225,10 +226,7 @@ public class PlayerMoveMent : MonoBehaviour
             isOnHighSpeedPad = false;
             StartCoroutine(DecreaseSpeedRoutine());
         }
-        else if(other.CompareTag("Failing"))
-        {
-            SceneManager.LoadScene("ResultScene");
-        }
+       
     }
     private IEnumerator UniqueJumpRoutine(float forwardForce, float peakHeight, float timeToPeak)
     {

@@ -10,7 +10,7 @@ public class NewObjectManager : MonoBehaviour
     public List<Transform> movePositions;
 
     private float makeTime;
-    public float makeTimeDuration = 10f;
+    private float makeTimeDuration = 10f;
     public bool isMakeGameObject;
     private float donMakeTime;
     private float donMakeTimeDuration = 70f;
@@ -18,6 +18,8 @@ public class NewObjectManager : MonoBehaviour
     public void Awake()
     {
         makePrefabObjects = new List<GameObject>();
+
+       makeTimeDuration = OnGameData.instance.GetStageOBjectSpwanTime(OnGameData.instance.CurrentData);
     }
 
     public void Start()
@@ -51,7 +53,7 @@ public class NewObjectManager : MonoBehaviour
 
         var makeObjectSetting = makeObject.GetComponent<MovingGameObject>();
         makeObjectSetting.MovePositionSetting(movePositions);
-        makeObjectSetting.GameLogicMovingSetting();
+        //makeObjectSetting.GameLogicMovingSetting();
 
         makePrefabObjects.Add(makeObject);
 
