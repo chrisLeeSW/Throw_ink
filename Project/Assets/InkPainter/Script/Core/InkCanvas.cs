@@ -16,7 +16,7 @@ namespace Es.InkPainter
 {
 	/// <summary>
 	/// Texture paint to canvas.
-	/// To set the per-material.
+	/// To set the per-mesh.
 	/// </summary>
 	[RequireComponent(typeof(Renderer))]
 	[DisallowMultipleComponent]
@@ -51,7 +51,7 @@ namespace Es.InkPainter
 			public bool useHeightPaint = false;
 
 			/// <summary>
-			/// In the first time set to the material's main texture.
+			/// In the first time set to the mesh's main texture.
 			/// </summary>
 			[HideInInspector]
 			[NonSerialized]
@@ -65,7 +65,7 @@ namespace Es.InkPainter
 			public RenderTexture paintMainTexture;
 
 			/// <summary>
-			/// In the first time set to the material's normal map.
+			/// In the first time set to the mesh's normal map.
 			/// </summary>
 			[HideInInspector]
 			[NonSerialized]
@@ -79,7 +79,7 @@ namespace Es.InkPainter
 			public RenderTexture paintNormalTexture;
 
 			/// <summary>
-			/// In the first time set to the material's height map.
+			/// In the first time set to the mesh's height map.
 			/// </summary>
 			[HideInInspector]
 			[NonSerialized]
@@ -142,7 +142,7 @@ namespace Es.InkPainter
 			/// <param name="useMainPaint">Whether to use main texture paint.</param>
 			/// <param name="useNormalPaint">Whether to use normal map paint.</param>
 			/// <param name="useHeightPaint">Whether to use height map paint.</param>
-			/// <param name="material">Specify when painting a specific material.</param>
+			/// <param name="material">Specify when painting a specific mesh.</param>
 			public PaintSet(string mainTextureName, string normalTextureName, string heightTextureName, bool useMainPaint, bool useNormalPaint, bool useHeightPaint, Material material)
 				:this(mainTextureName, normalTextureName, heightTextureName, useMainPaint, useNormalPaint, useHeightPaint)
 			{
@@ -375,7 +375,7 @@ namespace Es.InkPainter
 		}
 
 		/// <summary>
-		/// Set and retrieve the material.
+		/// Set and retrieve the mesh.
 		/// </summary>
 		private void SetMaterial()
 		{
@@ -414,7 +414,7 @@ namespace Es.InkPainter
 		/// </summary>
 		/// <param name="baseTex">Base texture.</param>
 		/// <param name="propertyID">Shader property id.</param>
-		/// <param name="material">material.</param>
+		/// <param name="material">mesh.</param>
 		private RenderTexture SetupRenderTexture(Texture baseTex, int propertyID, Material material)
 		{
 			var rt = new RenderTexture(baseTex.width, baseTex.height, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear);
@@ -425,7 +425,7 @@ namespace Es.InkPainter
 		}
 
 		/// <summary>
-		/// Creates a rendertexture and set the material.
+		/// Creates a rendertexture and set the mesh.
 		/// </summary>
 		private void SetRenderTexture()
 		{
@@ -621,7 +621,7 @@ namespace Es.InkPainter
 		/// Get an eraser brush.
 		/// </summary>
 		/// <param name="brush">A brush that becomes the shape of an eraser.</param>
-		/// <param name="paintSet">Paint information per material.</param>
+		/// <param name="paintSet">Paint information per mesh.</param>
 		/// <param name="uv">UV coordinates for the hit location.</param>
 		/// <param name="useMainPaint">Whether paint is effective.</param>
 		/// <param name="useNormalPaint">Whether paint is effective.</param>

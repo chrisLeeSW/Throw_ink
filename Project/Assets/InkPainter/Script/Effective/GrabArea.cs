@@ -66,7 +66,7 @@ namespace Es.InkPainter.Effective
 		#region PrivateMethod
 
 		/// <summary>
-		/// Initialize the material.
+		/// Initialize the mesh.
 		/// </summary>
 		private static void InitGrabAreaMaterial()
 		{
@@ -74,7 +74,7 @@ namespace Es.InkPainter.Effective
 		}
 
 		/// <summary>
-		/// Set the value in the material.
+		/// Set the value in the mesh.
 		/// </summary>
 		/// <param name="clip">Texture used for clipping.</param>
 		/// <param name="clipScale">The ratio of the size of the clip texture to the target texture.</param>

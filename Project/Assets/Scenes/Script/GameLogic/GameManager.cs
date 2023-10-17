@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
     public CameraMove cameraaMove;
     public float cameraoffset =1.5f;
 
-
-    public float rotationSpeed = 100f;
+    [SerializeField,Range(1,5)]
+    private float rotationSpeed = 5f;
 
     private Vector3 prevMousePosition;
     private Vector3 endMousePosition;
@@ -44,20 +44,19 @@ public class GameManager : MonoBehaviour
         newDirceiton.Normalize();
 
         var xRot = newDirceiton.x * xRtoationSspeed;
-        playerManager.GetPlayerMoveMent().YRotation += xRot;
+        playerManager.GetPlayerMoveMent().YRotation += xRot * rotationSpeed;
         playerManager.GetPlayerMoveMent().RotationSpeed += rotationSpeed;
 
-        playerManager.GetPlayerShootController().YRotation += xRot;
-        playerManager.GetPlayerShootController().RotationSpeed += rotationSpeed;
+        playerManager.GetPlayerShootController().YRotation += xRot * rotationSpeed  ;
+        playerManager.GetPlayerShootController().RotationSpeed += rotationSpeed ;
         playerManager.GetPlayerShootController().XRotation += -newDirceiton.y;
 
         cameraaMove.xRoation += -newDirceiton.y /6;
 
+
         var direction = playerManager.GetPlayerDirection();
         cameraaMove.YCameraPosition = playerManager.GetPlayerPosition().y + cameraoffset;
         cameraaMove.SyncWithPlayer(direction);
-
-        playerManager.GetPlayerMoveMent().PlayerMove();
     }
     private void Update()
     {
@@ -85,5 +84,8 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("ResultScene");
         }
+        
+
+        playerManager.GetPlayerMoveMent().PlayerMove();
     }
 }

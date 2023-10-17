@@ -5,22 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainLobbyUiManager : MonoBehaviour
 {
-    public static MainLobbyUiManager instance
-    {
-        get
-        {
-            if (uiMainLobbyManagerSingleTon == null)
-            {
-                uiMainLobbyManagerSingleTon = FindObjectOfType<MainLobbyUiManager>();
-            }
-
-            return uiMainLobbyManagerSingleTon;
-        }
-    }
-    private static MainLobbyUiManager uiMainLobbyManagerSingleTon;
     public void LoadStageSelectScene()
     {
-        SceneManager.LoadScene("StageSelectScene");
+        SceneManager.LoadScene("ChpaterSelectScene");
+    }
+
+    public void LoadSettingScene()
+    {
+        SceneManager.LoadScene("SettingScene");
     }
 
     public void OnExitButton()

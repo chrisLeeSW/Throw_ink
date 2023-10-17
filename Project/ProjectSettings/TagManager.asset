@@ -12,6 +12,7 @@ TagManager:
   - HighSpeedPad
   - Wall
   - PunchTrap
+  - Failing
   layers:
   - Default
   - TransparentFX

@@ -66,7 +66,7 @@ namespace Es.InkPainter.Effective
 		#region PrivateField
 
 		/// <summary>
-		/// Initialize the material.
+		/// Initialize the mesh.
 		/// </summary>
 		private static void InitReverseUVMaterial()
 		{

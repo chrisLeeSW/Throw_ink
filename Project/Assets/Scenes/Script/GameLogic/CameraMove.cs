@@ -14,7 +14,7 @@ public class CameraMove : MonoBehaviour
 
     public Transform playerTransform;
     public float distanceFromPlayer = 10f;
-    public float xRotationDuration = 5f;
+    public float xRotationDuration = 10f;
     //private float rotationSpeed = 100f;
 
 
