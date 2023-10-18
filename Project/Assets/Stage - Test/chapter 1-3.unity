@@ -552,7 +552,7 @@ MonoBehaviour:
   - {fileID: 1287450710}
   - {fileID: 1840149908}
   - {fileID: 1954881197}
-  isMakeGameObject: 0
+  isMakeGameObject: 1
 --- !u!4 &684693580
 Transform:
   m_ObjectHideFlags: 0
@@ -771,8 +771,6 @@ MonoBehaviour:
   xRoation: 0
   yCameraPosition: 15
   playerTransform: {fileID: 474126097}
-  distanceFromPlayer: 10
-  xRotationDuration: 5
 --- !u!81 &1138397345
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1011,8 +1009,6 @@ MonoBehaviour:
   playerManager: {fileID: 474126100}
   cameraaMove: {fileID: 1138397344}
   cameraoffset: 1.5
-  rotationSpeed: 1
-  xRtoationSspeed: 1
 --- !u!4 &1324219338
 Transform:
   m_ObjectHideFlags: 0

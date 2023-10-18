@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6036927536095283246}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 1840592173007019445}
   m_Layer: 0
   m_Name: Pipe (6)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3058,7 +3058,7 @@ GameObject:
   - component: {fileID: 787975284995837515}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3165,7 +3165,7 @@ GameObject:
   - component: {fileID: 5281328308950678393}
   m_Layer: 0
   m_Name: Pipe (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6166,7 +6166,7 @@ GameObject:
   - component: {fileID: 784228130503856906}
   m_Layer: 0
   m_Name: Pipe (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9012,7 +9012,7 @@ GameObject:
   - component: {fileID: 545610315416264247}
   m_Layer: 0
   m_Name: Pipe (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11825,7 +11825,7 @@ GameObject:
   - component: {fileID: 4945381555195673951}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11932,7 +11932,7 @@ GameObject:
   - component: {fileID: 7980710748164311611}
   m_Layer: 0
   m_Name: Pipe (5)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

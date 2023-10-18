@@ -340,6 +340,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1507801240
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15.728
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -40.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_Name
+      value: Spinning Sticks With Spikes (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 13745974b504c724a9556faab95cbd40, type: 3}
 --- !u!43 &1576302416
 Mesh:
   m_ObjectHideFlags: 0
@@ -670,6 +739,144 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &1642641754
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.500003
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -40.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_Name
+      value: Spinning Sticks With Spikes (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+--- !u!1001 &1697053037
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_Name
+      value: Spinning Sticks With Spikes
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 13745974b504c724a9556faab95cbd40, type: 3}
 --- !u!1 &1743278372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,3 +1552,6 @@ SceneRoots:
   - {fileID: 5811443976929672246}
   - {fileID: 842256556}
   - {fileID: 1743278374}
+  - {fileID: 1697053037}
+  - {fileID: 1642641754}
+  - {fileID: 1507801240}
