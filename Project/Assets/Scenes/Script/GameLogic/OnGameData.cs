@@ -11,7 +11,7 @@ using SaveDataVersionCurrent = SaveDataV3;
 
 public class OnGameData : MonoBehaviour
 {
-    
+
     public static OnGameData instance
     {
         get
@@ -51,6 +51,8 @@ public class OnGameData : MonoBehaviour
     private AudioSource mainAudio;
     public AudioClip gameBgm;
     public AudioMixer audioMixer;
+
+    private bool isSoundPlay;
     public int CurrentData
     {
         get { return currentData; }
@@ -78,6 +80,11 @@ public class OnGameData : MonoBehaviour
     {
         get; set;
     }
+    public bool IsTutorialClear
+    {
+        get { return isTutorialClear; }
+        set { isTutorialClear = value; }
+    }
     public float SoundVolum
     {
         get { return soundVolum; }
@@ -97,7 +104,7 @@ public class OnGameData : MonoBehaviour
     StageTable stageTable;
     private void Awake()
     {
-        mainAudio =GetComponent<AudioSource>();
+        mainAudio = GetComponent<AudioSource>();
         //mainAudio.clip = gameBgm;
         //mainAudio.Play();
 
@@ -120,28 +127,38 @@ public class OnGameData : MonoBehaviour
 
         Load();
 
-        SceneManager.LoadScene(MainSceneName);
+
+        
+
+
+        if (!isTutorialClear) SceneManager.LoadScene("chapter 0-0 tutorial");
+        else SceneManager.LoadScene(MainSceneName);
     }
     private void FixedUpdate()
     {
-       
+        if (isSoundPlay)
+        {
+            if (soundVolum == -40f) audioMixer.SetFloat("Bgm", -80f);
+            else audioMixer.SetFloat("Bgm", soundVolum);
+            isSoundPlay = false;
+        }
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)) 
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Save();
         }
-        if(Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             foreach (var data in datas)
                 Debug.Log($"{data.Key}/{data.Value.isClear}/{data.Value.resultStar}");
         }
-        if(Input.GetKeyDown(KeyCode.F2))
+        if (Input.GetKeyDown(KeyCode.F2))
         {
             Load();
         }
-        if(Input.GetKeyDown(KeyCode.F3))
+        if (Input.GetKeyDown(KeyCode.F3))
         {
             GetStageResultAllStar("chapter 1");
         }
@@ -149,6 +166,7 @@ public class OnGameData : MonoBehaviour
 
     private void InitNowAndPrevSceneName()
     {
+        
         PrevSceneName = SceneManager.GetActiveScene().name;
         NowSceneName = SceneManager.GetActiveScene().name;
     }
@@ -201,7 +219,7 @@ public class OnGameData : MonoBehaviour
         var savedata = new SaveDataVersionCurrent();
         savedata.data = datas;
         savedata.isTutorialClear = isTutorialClear;
-        savedata.soundVolum =soundVolum;
+        savedata.soundVolum = soundVolum;
         savedata.cameraDistance = cameraDistance;
         savedata.sensitivity = sensitivity;
         savedata.redValue = gameColor.r;
@@ -211,7 +229,7 @@ public class OnGameData : MonoBehaviour
     }
     public void Load()
     {
-      
+
         var path = Path.Combine(Application.persistentDataPath, "GameData.json");
         if (File.Exists(path))
         {
@@ -240,6 +258,7 @@ public class OnGameData : MonoBehaviour
         }
 
         isOnePlaying = true;
+        isSoundPlay = true;
     }
 
     public int GetStageResultAllStar(string ChapterName)
@@ -265,9 +284,9 @@ public class OnGameData : MonoBehaviour
     }
     public bool GetStageResultClear(string ChapterName)
     {
-        foreach(var getter in datas)
+        foreach (var getter in datas)
         {
-            if(getter.Key.Contains(ChapterName) && !getter.Value.isClear)
+            if (getter.Key.Contains(ChapterName) && !getter.Value.isClear)
             {
                 return false;
             }
@@ -309,14 +328,14 @@ public class OnGameData : MonoBehaviour
     }
     public bool GetStageClear(string name)
     {
-       foreach(var getter in datas)
+        foreach (var getter in datas)
         {
-            if(getter.Key ==name)
+            if (getter.Key == name)
             {
                 return getter.Value.isClear;
             }
         }
-       return false;    
+        return false;
     }
     public void StageDataSetting(string sceneName, bool clear, int result)
     {

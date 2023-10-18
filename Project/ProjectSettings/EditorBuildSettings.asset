@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/UI/UI Scenes/InitScene.unity
     guid: bdbc9d09e182b854b90ddd1bd0c96fc5
   - enabled: 1
+    path: Assets/Stage - Test/chapter 0-0 tutorial.unity
+    guid: 1efef3a1c910e9944b426fcddc5c10fb
+  - enabled: 1
     path: Assets/Scenes/UI/UI Scenes/MainScene.unity
     guid: 22a4c03db17cab346bbf366d3c911962
   - enabled: 1

@@ -68,6 +68,9 @@ public class PlayerMoveMent : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         ani = GetComponent<Animator>();
+        rb.position = playerSpwanPosition.position;
+
+       
     }
     private void FixedUpdate()
     {
@@ -226,6 +229,11 @@ public class PlayerMoveMent : MonoBehaviour
         else if (other.CompareTag("Failing"))
         {
             UiGameManager.instance.PlayerLifeDecrease();
+            transform.position = playerSpwanPosition.position;
+        }
+        else if (other.CompareTag("Tutorial"))
+        {
+
             transform.position = playerSpwanPosition.position;
         }
     }

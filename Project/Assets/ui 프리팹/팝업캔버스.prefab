@@ -3125,6 +3125,8 @@ MonoBehaviour:
   - {fileID: 2949686374343960999}
   - {fileID: 8577318905170546365}
   result: 0
+  clearClip: {fileID: 0}
+  failClip: {fileID: 0}
 --- !u!1 &4060210492255513928
 GameObject:
   m_ObjectHideFlags: 0

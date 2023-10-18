@@ -53,7 +53,10 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-
+    public PlayerShootPainter GetPlayerShootPainter()
+    {
+        return playerShootPainter;
+    }
 
 
     private void OnTriggerEnter(Collider other)

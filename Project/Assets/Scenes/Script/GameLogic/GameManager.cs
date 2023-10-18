@@ -45,7 +45,23 @@ public class GameManager : MonoBehaviour
     {
         get; set;
     }
-
+    public float XRoationSpeed
+    {
+        get { return xRtoationSspeed; }
+        set { xRtoationSspeed = value;}
+    }
+    public bool IsPause
+    {
+        get; set;
+    }
+    private void Awake()
+    {
+        if (SceneManager.GetActiveScene().name == "chapter 0-0 tutorial")
+        {
+            playerManager.GetPlayerMoveMent().YRotation += 180f;
+            playerManager.GetPlayerShootController().YRotation += 180f;
+        }
+    }
     private void Start()
     {
         rotationSpeed = OnGameData.instance.Sensitivity;
@@ -90,7 +106,10 @@ public class GameManager : MonoBehaviour
                 endMousePosition = Input.mousePosition;
             }
             float mouseWheelInput = Input.GetAxis("Mouse ScrollWheel");
-            cameraaMove.DistanceFromPlayer -=mouseWheelInput;
+            float distance = cameraaMove.DistanceFromPlayer;
+            distance -= mouseWheelInput;
+            if(distance >5 && distance <15)
+                cameraaMove.DistanceFromPlayer =distance;
             
         }
         else 

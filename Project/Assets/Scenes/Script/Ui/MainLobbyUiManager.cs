@@ -24,7 +24,10 @@ public class MainLobbyUiManager : MonoBehaviour
     {
         SceneManager.LoadScene(OnGameData.instance.SettingSceneName);
     }
-
+    public void LoadTutorialScene()
+    {
+        SceneManager.LoadScene("chapter 0-0 tutorial");
+    }
     public void OnExitButton()
     {
         OnGameData.instance.Save();

@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5616248986486234831, guid: c358936827878ee49868fe62c12a94b8, type: 3}
+      propertyPath: playerSpwanPosition
+      value: 
+      objectReference: {fileID: 1972213753}
     - target: {fileID: 7012055914779703750, guid: c358936827878ee49868fe62c12a94b8, type: 3}
       propertyPath: m_Name
       value: Player10-15Version
@@ -714,8 +718,6 @@ MonoBehaviour:
   xRoation: 0
   yCameraPosition: 15
   playerTransform: {fileID: 474126097}
-  distanceFromPlayer: 10
-  xRotationDuration: 5
 --- !u!81 &1138397345
 AudioListener:
   m_ObjectHideFlags: 0
@@ -897,8 +899,6 @@ MonoBehaviour:
   playerManager: {fileID: 474126100}
   cameraaMove: {fileID: 1138397344}
   cameraoffset: 1.5
-  rotationSpeed: 1
-  xRtoationSspeed: 1
 --- !u!4 &1324219338
 Transform:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ TagManager:
   - PunchTrap
   - Failing
   - InkCube
+  - Tutorial
   layers:
   - Default
   - TransparentFX

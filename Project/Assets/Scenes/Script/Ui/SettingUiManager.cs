@@ -35,8 +35,8 @@ public class SettingUiManager : MonoBehaviour
     public void AudioController()
     {
         OnGameData.instance.SoundVolum = scrollbars[(int)SettingData.Sound].value;
-        if (scrollbars[(int)SettingData.Sound].value == -40f) OnGameData.instance.audioMixer.SetFloat("Master", -80f);
-        else OnGameData.instance.audioMixer.SetFloat("Master", scrollbars[(int)SettingData.Sound].value);
+        if (scrollbars[(int)SettingData.Sound].value == -40f) OnGameData.instance.audioMixer.SetFloat("Bgm", -80f);
+        else OnGameData.instance.audioMixer.SetFloat("Bgm", scrollbars[(int)SettingData.Sound].value);
     }
 
     public void CamerDistanceController()

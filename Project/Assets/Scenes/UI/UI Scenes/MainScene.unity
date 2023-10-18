@@ -156,6 +156,7 @@ MonoBehaviour:
   stageNames: []
   gameColor: {r: 1, g: 1, b: 1, a: 1}
   gameBgm: {fileID: 8300000, guid: 93d2b07ceabae9a45bbe626158838901, type: 3}
+  audioMixer: {fileID: 0}
 --- !u!4 &400253069
 Transform:
   m_ObjectHideFlags: 0
@@ -529,6 +530,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2519406531871540835, guid: 6bd6503386e30d64b8333f20fe0d3486, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2519406531871540835, guid: 6bd6503386e30d64b8333f20fe0d3486, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2519406531871540835, guid: 6bd6503386e30d64b8333f20fe0d3486, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1571597775709928612}
+    - target: {fileID: 2519406531871540835, guid: 6bd6503386e30d64b8333f20fe0d3486, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2519406531871540835, guid: 6bd6503386e30d64b8333f20fe0d3486, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadTutorialScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 2519406531871540835, guid: 6bd6503386e30d64b8333f20fe0d3486, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainLobbyUiManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2519406531871540835, guid: 6bd6503386e30d64b8333f20fe0d3486, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3721520456551482576, guid: 6bd6503386e30d64b8333f20fe0d3486, type: 3}
+      propertyPath: m_text
+      value: Tutorial
+      objectReference: {fileID: 0}
     - target: {fileID: 6048371410804392441, guid: 6bd6503386e30d64b8333f20fe0d3486, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -618,6 +651,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bd6503386e30d64b8333f20fe0d3486, type: 3}
+--- !u!114 &1571597775709928612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2499625325813800767, guid: 6bd6503386e30d64b8333f20fe0d3486, type: 3}
+  m_PrefabInstance: {fileID: 1571597775709928611}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd302597db1a2344c99ef7ac1db75ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
