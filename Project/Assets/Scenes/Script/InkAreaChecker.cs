@@ -2,21 +2,29 @@ using UnityEngine;
 
 public class InkAreaChecker : MonoBehaviour
 {
-    public Color targetColor = Color.red;  // Set the target color
-    public float tolerance = 0.2f;  // Set a tolerance value for color comparison
+    private Color targetColor = Color.red; 
+    private float tolerance = 0.2f; 
 
     private float time;
 
     private void Awake()
     {
+        targetColor = OnGameData.instance.gameColor;
         // targetColor 설정한 컬러값으로 변경예정
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad0))
+        if (Input.GetKeyDown(KeyCode.Slash))
         {
             GetColorRatio();
         }
+
+        //time += Time.deltaTime;
+        //if (time > 3f)
+        //{
+        //    Debug.Log(GetColorRatio());
+        //    time = 0;
+        //}
     }
 
     public float GetColorRatio()

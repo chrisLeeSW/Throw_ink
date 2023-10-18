@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerShootPainter : MonoBehaviour
 {
@@ -16,16 +17,36 @@ public class PlayerShootPainter : MonoBehaviour
     //private GunType gunType =GunType.NormalGun;
     private bool isShooting;
 
+    private AudioSource playerAudio;
+    public AudioMixer audioMixer;
+    public AudioClip playerShoot;
+
+    private void Awake()
+    {
+        playerAudio = GetComponent<AudioSource>();
+        if (OnGameData.instance.SoundVolum == -40f) audioMixer.SetFloat("PlayerShoot", -80f);
+        else audioMixer.SetFloat("PlayerShoot", OnGameData.instance.SoundVolum);
+    }
+    private void FixedUpdate()
+    {
+
+    }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             isShooting = !isShooting;
-
-            if(isShooting)
-                particle.Play();
-            else if (!isShooting)
-                particle.Stop();
+        }
+        if (isShooting)
+        {
+            particle.Play();
+            if (!playerAudio.isPlaying)
+                playerAudio.PlayOneShot(playerShoot);
+        }
+        else if (!isShooting)
+        {
+            particle.Stop();
+            playerAudio.Stop();
         }
     }
 

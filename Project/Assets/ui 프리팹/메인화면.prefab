@@ -454,6 +454,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7707940346651662183, guid: 63b3b064838e2d74f8f7cdd3e3e62d92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7707940346651662183, guid: 63b3b064838e2d74f8f7cdd3e3e62d92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7707940346651662183, guid: 63b3b064838e2d74f8f7cdd3e3e62d92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2499625325813800767}
+    - target: {fileID: 7707940346651662183, guid: 63b3b064838e2d74f8f7cdd3e3e62d92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7707940346651662183, guid: 63b3b064838e2d74f8f7cdd3e3e62d92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadCustomerScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 7707940346651662183, guid: 63b3b064838e2d74f8f7cdd3e3e62d92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainLobbyUiManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7707940346651662183, guid: 63b3b064838e2d74f8f7cdd3e3e62d92, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 9062307188324043596, guid: 63b3b064838e2d74f8f7cdd3e3e62d92, type: 3}
       propertyPath: m_fontAsset
       value: 

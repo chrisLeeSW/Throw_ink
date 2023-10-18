@@ -15,6 +15,15 @@ public class ParticlesController : MonoBehaviour
     private int wait =3;
     private int waitCount;
 
+    public Material material;
+
+    private void Awake()
+    {
+        material.color = OnGameData.instance.gameColor;
+        //ParticleSystem[] particles = GetComponentsInChildren<ParticleSystem>();
+        //var color = particle.GetComponent<ParticleSystemRenderer>();
+        //color.material.color = OnGameData.instance.gameColor;
+    }
     private void FixedUpdate()
     {
         ++waitCount;

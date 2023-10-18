@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +15,9 @@ public class ResultSceneManager : MonoBehaviour
     [SerializeField, Range(0, 3)]
     private int result;
 
+    private AudioSource audioSource;
+    public AudioClip clearClip;
+    public AudioClip failClip;  
     private void Awake()
     {
         result = OnGameData.instance.ResultStagePlay;
@@ -21,6 +25,7 @@ public class ResultSceneManager : MonoBehaviour
         switch (result)
         {
             case 0:
+                audioSource.PlayOneShot(failClip);
                 failGameObject.SetActive(true);
                 AddData(false);
                 break;
@@ -41,7 +46,18 @@ public class ResultSceneManager : MonoBehaviour
 
     private void AddData(bool b)
     {
-        OnGameData.instance.StageDataSetting(OnGameData.instance.stageNames[OnGameData.instance.CurrentData], b, result);
+        audioSource.PlayOneShot(clearClip);
+        if (OnGameData.instance.GetStageClear(OnGameData.instance.stageNames[OnGameData.instance.CurrentData]))
+        {
+            if (OnGameData.instance.GetStageResulStar(OnGameData.instance.stageNames[OnGameData.instance.CurrentData]) < result)
+            {
+                OnGameData.instance.StageDataSetting(OnGameData.instance.stageNames[OnGameData.instance.CurrentData], b, result);
+            }
+            else
+                return;
+        }
+        else
+            OnGameData.instance.StageDataSetting(OnGameData.instance.stageNames[OnGameData.instance.CurrentData], b, result);
     }
     private void ClearTypeResult(int starCount)
     {

@@ -13,8 +13,8 @@ public class CameraMove : MonoBehaviour
     private float cameraMoveFrontBackSpeed;
 
     public Transform playerTransform;
-    public float distanceFromPlayer = 10f;
-    public float xRotationDuration = 10f;
+    private float distanceFromPlayer = 10f;
+    private float xRotationDuration = 10f;
     //private float rotationSpeed = 100f;
 
 
@@ -39,6 +39,7 @@ public class CameraMove : MonoBehaviour
     }
     private void Awake()
     {
+        distanceFromPlayer = OnGameData.instance.CameraDistance;
     }
     private void FixedUpdate()
     {

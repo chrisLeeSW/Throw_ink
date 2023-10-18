@@ -5,7 +5,7 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-using SaveDataVersionCurrent = SaveDataV1;
+using SaveDataVersionCurrent = SaveDataV3;
 public static class SaveLoadSystem
 {
     public static int SaveDataVersion { get; private set; } = 1;
@@ -56,13 +56,12 @@ public static class SaveLoadSystem
                 case 1:
                     data = serializer.Deserialize<SaveDataV1>(reader);
                     break;
-                //case 2:
-                //    data = serializer.Deserialize<SaveDataV2>(reader);
-                //    break;
-                //case 3:
-
-                //    data = serializer.Deserialize<SaveDataV3>(reader);
-                //    break;
+                case 2:
+                    data = serializer.Deserialize<SaveDataV2>(reader);
+                    break;
+                case 3:
+                    data = serializer.Deserialize<SaveDataV2>(reader);
+                    break;
             }
 
             while (data.Version < SaveDataVersion)

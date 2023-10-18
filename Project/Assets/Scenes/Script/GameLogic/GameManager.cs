@@ -25,13 +25,12 @@ public class GameManager : MonoBehaviour
     public CameraMove cameraaMove;
     public float cameraoffset =1.5f;
 
-    [SerializeField,Range(1,5)]
-    private float rotationSpeed = 5f;
+    private float rotationSpeed = 1f;//
 
     private Vector3 prevMousePosition;
     private Vector3 endMousePosition;
 
-    [SerializeField, Range(0.1f, 100f)]
+   
     private float xRtoationSspeed = 1f;
 
     public bool IsGameOver
@@ -49,6 +48,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        rotationSpeed = OnGameData.instance.Sensitivity;
         cameraaMove.CameraMoveSpeed = playerManager.GetPlayerMoveSpeed();
     }
     private void FixedUpdate()

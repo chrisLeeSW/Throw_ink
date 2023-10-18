@@ -4,9 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
-using SaveDataVersionCurrent = SaveDataV1;
+using SaveDataVersionCurrent = SaveDataV3;
 
 public class OnGameData : MonoBehaviour
 {
@@ -37,6 +38,19 @@ public class OnGameData : MonoBehaviour
     private string settingSceneName = "SETTINGS-V1.0";
 
     public Dictionary<string, StageData> datas = new Dictionary<string, StageData>();
+
+    private bool isTutorialClear;
+    private float soundVolum = 80f;
+    private float cameraDistance = 5f;
+    private float sensitivity = 1f;
+
+    public Color gameColor = Color.black;
+
+    private bool isOnePlaying = false;
+
+    private AudioSource mainAudio;
+    public AudioClip gameBgm;
+    public AudioMixer audioMixer;
     public int CurrentData
     {
         get { return currentData; }
@@ -64,26 +78,54 @@ public class OnGameData : MonoBehaviour
     {
         get; set;
     }
+    public float SoundVolum
+    {
+        get { return soundVolum; }
+        set { soundVolum = value; }
+    }
+    public float CameraDistance
+    {
+        get { return cameraDistance; }
+        set { cameraDistance = value; }
+    }
+    public float Sensitivity
+    {
+        get { return sensitivity; }
+        set { sensitivity = value; }
+    }
+
     StageTable stageTable;
     private void Awake()
     {
+        mainAudio =GetComponent<AudioSource>();
+        //mainAudio.clip = gameBgm;
+        //mainAudio.Play();
+
+
         DontDestroyOnLoad(gameObject);
         stageTable = new StageTable();
         stageTable.GetStageName(stageNames);
         InitNowAndPrevSceneName();
 
 
+
+        StageData data = new StageData();
+        data.isClear = false;
+        data.resultStar = 0;
+
+        for (int i = 0; i < stageNames.Count; i++)
+        {
+            datas.Add(stageNames[i], data);
+        }
+
         Load();
-        //StageData data = new StageData();
-        //data.isClear = false;
-        //data.resultStar = 0;
 
-        //for(int i=0;i<stageNames.Count;i++)
-        //{
-        //    datas.Add(stageNames[i], data);
-        //}
+        SceneManager.LoadScene(MainSceneName);
     }
-
+    private void FixedUpdate()
+    {
+       
+    }
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape)) 
@@ -152,30 +194,52 @@ public class OnGameData : MonoBehaviour
         return holdTime;
     }
 
- 
+
 
     public void Save()
     {
         var savedata = new SaveDataVersionCurrent();
         savedata.data = datas;
+        savedata.isTutorialClear = isTutorialClear;
+        savedata.soundVolum =soundVolum;
+        savedata.cameraDistance = cameraDistance;
+        savedata.sensitivity = sensitivity;
+        savedata.redValue = gameColor.r;
+        savedata.greenValue = gameColor.g;
+        savedata.blueValue = gameColor.b;
         SaveLoadSystem.Save(savedata, "GameData.json");
-
-        Debug.Log("SaveComplete");
     }
     public void Load()
     {
+      
         var path = Path.Combine(Application.persistentDataPath, "GameData.json");
-        var json = File.ReadAllText(path);
-
-        JObject jsonObject = JObject.Parse(json);
-        string dataString = jsonObject["data"].ToString();
-        var readListData = JsonConvert.DeserializeObject<Dictionary<string,StageData>>(dataString);
-
-        foreach(var reader in readListData)
+        if (File.Exists(path))
         {
-            datas.Add(reader.Key, reader.Value);
-            //StageDataSetting(reader.Key, reader.Value.isClear,reader.Value.resultStar);
+            var json = File.ReadAllText(path);
+
+            JObject jsonObject = JObject.Parse(json);
+            string dataString = jsonObject["data"].ToString();
+            var readListData = JsonConvert.DeserializeObject<Dictionary<string, StageData>>(dataString);
+
+            foreach (var reader in readListData)
+            {
+                StageDataSetting(reader.Key, reader.Value.isClear, reader.Value.resultStar);
+                //datas.Add(reader.Key, reader.Value);
+                //StageDataSetting(reader.Key, reader.Value.isClear,reader.Value.resultStar);
+            }
+            isTutorialClear = jsonObject["isTutorialClear"].Value<bool>();
+            soundVolum = jsonObject["soundVolum"].Value<float>();
+            cameraDistance = jsonObject["cameraDistance"].Value<float>();
+            sensitivity = jsonObject["sensitivity"].Value<float>();
+            if (!isOnePlaying)
+            {
+                gameColor.r = jsonObject["redValue"].Value<float>();
+                gameColor.g = jsonObject["greenValue"].Value<float>();
+                gameColor.b = jsonObject["blueValue"].Value<float>();
+            }
         }
+
+        isOnePlaying = true;
     }
 
     public int GetStageResultAllStar(string ChapterName)
@@ -195,7 +259,10 @@ public class OnGameData : MonoBehaviour
     {
         return datas[stageNames[index]].resultStar;
     }
-
+    public int GetStageResulStar(string name)
+    {
+        return datas[name].resultStar;
+    }
     public bool GetStageResultClear(string ChapterName)
     {
         foreach(var getter in datas)
@@ -239,6 +306,17 @@ public class OnGameData : MonoBehaviour
     public bool GetStageClear(int index)
     {
         return datas[stageNames[index]].isClear;
+    }
+    public bool GetStageClear(string name)
+    {
+       foreach(var getter in datas)
+        {
+            if(getter.Key ==name)
+            {
+                return getter.Value.isClear;
+            }
+        }
+       return false;    
     }
     public void StageDataSetting(string sceneName, bool clear, int result)
     {

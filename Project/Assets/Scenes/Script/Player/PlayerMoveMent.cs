@@ -187,9 +187,9 @@ public class PlayerMoveMent : MonoBehaviour
             case "PunchTrap":
                 StartCoroutine(PunchForceRoutine(punchTrapPlayingTime, punchTrapForce));
                 break;
-            default:
-                IsGroundCollisionSet();
-                break;
+            //default:
+            //    IsGroundCollisionSet();
+            //    break;
         }
     }
     private IEnumerator PunchForceRoutine(float duration, float maxForce)
