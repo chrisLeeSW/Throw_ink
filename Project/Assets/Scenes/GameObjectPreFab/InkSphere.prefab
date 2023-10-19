@@ -141,8 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a965b31bce9714cb0ce3aee794b9b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetColor: {r: 1, g: 0, b: 0, a: 1}
-  tolerance: 0.01
 --- !u!114 &2986728782884149955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,3 +170,4 @@ MonoBehaviour:
   cubeImage: {fileID: 960643583528298084, guid: 56329a343a5153d4a85f30781780f6c5, type: 3}
   time: 0
   offDuration: 1
+  particle: {fileID: 74078499623404260, guid: d28c6f9aa233fcf4797056bee4016c36, type: 3}

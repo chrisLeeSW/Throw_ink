@@ -31,7 +31,9 @@ public class StageOneScene : MonoBehaviour
         OnGameData.instance.CurrentData = 0;
         OnGameData.instance.PrevSceneName = SceneManager.GetActiveScene().name;
         OnGameData.instance.NowSceneName = OnGameData.instance.GetStageName(OnGameData.instance.CurrentData);
-        SceneManager.LoadScene(OnGameData.instance.stageNames[OnGameData.instance.CurrentData]); 
+        //SceneManager.LoadScene(OnGameData.instance.stageNames[OnGameData.instance.CurrentData]);
+       
+       //SceneManager.LoadScene("chapter 2-1");
     }
     public void LoadChapter1Stage1_2()
     {
@@ -39,6 +41,7 @@ public class StageOneScene : MonoBehaviour
         OnGameData.instance.PrevSceneName = SceneManager.GetActiveScene().name;
         OnGameData.instance.NowSceneName = OnGameData.instance.GetStageName(OnGameData.instance.CurrentData);
         SceneManager.LoadScene(OnGameData.instance.stageNames[OnGameData.instance.CurrentData]);
+        //SceneManager.LoadScene("chapter 1-1");
     }
 
 

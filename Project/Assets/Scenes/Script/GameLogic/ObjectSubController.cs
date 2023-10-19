@@ -15,8 +15,9 @@ public class ObjectSubController : MonoBehaviour
     private float getStarDurationColorArea=60f; // 70f
     private bool isDraw;
     private float maxPercentage =100f;
-    private float amount = 0.25f; 
+    private float amount = 0.25f;
 
+    public ParticleSystem particle;
     private void Awake()
     {
         inkAreaChecker = GetComponent<InkAreaChecker>();
@@ -38,6 +39,7 @@ public class ObjectSubController : MonoBehaviour
         }
         if(destoryTime >=destoryTimeDurtation)
         {
+            particle.Play();
             var result = inkAreaChecker.GetColorRatio()* maxPercentage;
             if(result >= getStarDurationColorArea)
             {

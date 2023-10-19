@@ -2778,6 +2778,7 @@ GameObject:
   - component: {fileID: 4279559185105900912}
   - component: {fileID: 5423988071942532148}
   - component: {fileID: 7857375785353092513}
+  - component: {fileID: 23158232192865962}
   m_Layer: 5
   m_Name: InGameUi
   m_TagString: Untagged
@@ -2885,11 +2886,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraDistance: {fileID: 5836949444650945355}
   sens: {fileID: 5176121091538005618}
-  settingBackGround: {fileID: 0}
+  settingBackGround: {fileID: 7676545796722508827}
   clearBar: {fileID: 2719501193433333930}
   timerUi: {fileID: 578763186153049766}
-  gameTimeDurtation: 120
-  gameTime: 120
+  gameTimeDurtation: 90
+  gameTime: 90
   isClear: 0
   isGameover: 0
   playerLife:
@@ -2898,6 +2899,19 @@ MonoBehaviour:
   - {fileID: 3984600315911112071}
   - {fileID: 4560998900867999520}
   - {fileID: 761681871932825622}
+  pauseButton: {fileID: 5020418785112169530}
+--- !u!114 &23158232192865962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6095765583548509665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 062bfe9b871e478409f8a57c9127fd80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6185862381979986681
 GameObject:
   m_ObjectHideFlags: 0

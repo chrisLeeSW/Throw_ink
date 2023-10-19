@@ -46,6 +46,8 @@ public class UiGameManager : MonoBehaviour
     [Header("플레이어 목숨")]
     public List<GameObject> playerLife;
     private int currentPlayerLife;
+
+    public Button pauseButton;
     public float IncreasBar
     {
         get { return increasClearBarAmount; }
@@ -70,6 +72,7 @@ public class UiGameManager : MonoBehaviour
     private void Awake()
     {
         currentPlayerLife = playerLife.Count - 1;
+        pauseButton.onClick.AddListener(Pause);
     }
     private void Update()
     {
@@ -114,6 +117,7 @@ public class UiGameManager : MonoBehaviour
     {
         return clearBar.fillAmount;
     }
+    
 
     public void Pause()
     {
