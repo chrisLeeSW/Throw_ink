@@ -33,9 +33,45 @@ EditorBuildSettings:
     path: Assets/Stage - Test/chapter 1-2.unity
     guid: 0f3999552078f744b8ce986e01e67091
   - enabled: 1
+    path: Assets/Stage - Test/chapter 1-3.unity
+    guid: 8ebcce166e89bb9468ca8d30bede0cd1
+  - enabled: 1
+    path: Assets/Scenes/UI/UI Scenes/STAGE2_V1.0.unity
+    guid: 3960e7ce9099cb842906669e28281fd2
+  - enabled: 1
     path: Assets/Stage - Test/chapter 2-1.unity
     guid: a05074a0bed0d994f8dcdcf55cb30445
   - enabled: 1
+    path: Assets/Stage - Test/chapter 2-2.unity
+    guid: 724a579a5b4cc3a4a9d75f47b9e164dd
+  - enabled: 1
+    path: Assets/Stage - Test/chapter 2-3.unity
+    guid: 6dfeca1c96d4ce24d8eb0d7729b4c03e
+  - enabled: 1
+    path: Assets/Scenes/UI/UI Scenes/STAGE3_V1.0.unity
+    guid: bf8da0f2af13ee446b243f7e71928e3c
+  - enabled: 1
+    path: Assets/Stage - Test/chapter 3-1.unity
+    guid: 3563fb48c26713e44a873aed3096614e
+  - enabled: 1
+    path: Assets/Stage - Test/chapter 3-2.unity
+    guid: 4fd6ba795aba53045bf3c28d36c7923f
+  - enabled: 1
+    path: Assets/Stage - Test/chapter 3-3.unity
+    guid: 03cfaf30d3109044e874d56d290496bd
+  - enabled: 1
+    path: Assets/Scenes/UI/UI Scenes/STAGE4_V1.0.unity
+    guid: 54c4a7504e64ddd4f9da98ea1be51ed0
+  - enabled: 1
     path: Assets/Scenes/UI/UI Scenes/Result-V1.0.unity
     guid: 6dcdd65ae8a3ff048969ce81a9f6cc9c
+  - enabled: 1
+    path: Assets/Stage - Test/chapter 4-1.unity
+    guid: 579861cdaeea496498494924e204192e
+  - enabled: 1
+    path: Assets/Stage - Test/chapter 4-2.unity
+    guid: 3a1377a6fe1291a47af692907a77980e
+  - enabled: 1
+    path: Assets/Stage - Test/chapter 4-3.unity
+    guid: ebd3a2a0ab43b81489f3e07dcf450840
   m_configObjects: {}

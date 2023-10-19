@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40710428206ecc458a176fb11743d2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabObjects: []
+  prefabObjects:
+  - {fileID: 9135707937267978825, guid: 7e1376bca24656e42b491c3695be2a03, type: 3}
   spwanPositions: []
   movePositions: []
-  makeTimeDuration: 30
   isMakeGameObject: 0

@@ -50,6 +50,11 @@ public class GameManager : MonoBehaviour
         get { return xRtoationSspeed; }
         set { xRtoationSspeed = value;}
     }
+    public float RotationSpeed
+    {
+        get { return rotationSpeed; }
+        set { rotationSpeed = value; }
+    }
     public bool IsPause
     {
         get; set;

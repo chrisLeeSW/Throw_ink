@@ -107,15 +107,7 @@ public class ResultSceneManager : MonoBehaviour
     public void NextGameButton()
     {
        var check = ++OnGameData.instance.CurrentData;
-        if(check>=2 && check <=3)
-        {
-            check = 4;
-        } // stage 1-3 / 1-4가 없어서
-        else if(check>=6 && check <=7) 
-        {
-            check = 4;
-        }
-
+        OnGameData.instance.NowSceneName = OnGameData.instance.stageNames[check];
         SceneManager.LoadScene(OnGameData.instance.stageNames[check]);
     }
 }

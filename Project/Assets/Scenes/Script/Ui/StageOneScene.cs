@@ -21,6 +21,11 @@ public class StageOneScene : MonoBehaviour
         Init();
         OnGameData.instance.NowSceneName = SceneManager.GetActiveScene().name;
         ReadClearStage();
+
+        if(OnGameData.instance.NowSceneName == OnGameData.instance.PrevSceneName)
+        {
+            OnGameData.instance.PrevSceneName = "CHAPTER_V1.0";
+        }
     }
     public void LoadBakcButton()
     {
@@ -31,7 +36,7 @@ public class StageOneScene : MonoBehaviour
         OnGameData.instance.CurrentData = 0;
         OnGameData.instance.PrevSceneName = SceneManager.GetActiveScene().name;
         OnGameData.instance.NowSceneName = OnGameData.instance.GetStageName(OnGameData.instance.CurrentData);
-        //SceneManager.LoadScene(OnGameData.instance.stageNames[OnGameData.instance.CurrentData]);
+        SceneManager.LoadScene(OnGameData.instance.stageNames[OnGameData.instance.CurrentData]);
        
        //SceneManager.LoadScene("chapter 2-1");
     }
@@ -43,7 +48,14 @@ public class StageOneScene : MonoBehaviour
         SceneManager.LoadScene(OnGameData.instance.stageNames[OnGameData.instance.CurrentData]);
         //SceneManager.LoadScene("chapter 1-1");
     }
-
+    public void LoadChapter1Stage1_3()
+    {
+        OnGameData.instance.CurrentData = 2;
+        OnGameData.instance.PrevSceneName = SceneManager.GetActiveScene().name;
+        OnGameData.instance.NowSceneName = OnGameData.instance.GetStageName(OnGameData.instance.CurrentData);
+        SceneManager.LoadScene(OnGameData.instance.stageNames[OnGameData.instance.CurrentData]);
+        //SceneManager.LoadScene("chapter 1-1");
+    }
 
     public void LoadMainScene()
     {
@@ -107,8 +119,6 @@ public class StageOneScene : MonoBehaviour
 
                 lockWindow[num].SetActive(false);
                 openWinodw[num].SetActive(true);
-
-
             }
         }
     }

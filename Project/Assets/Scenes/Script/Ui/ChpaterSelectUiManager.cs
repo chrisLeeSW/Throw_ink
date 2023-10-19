@@ -21,7 +21,8 @@ public class ChpaterSelectUiManager : MonoBehaviour
 
     private void Awake()
     {
-        for(int i = 0;i<openWinodw.Count;++i)
+        CurrentOpenWinodw = 1;
+        for (int i = 0;i<openWinodw.Count;++i)
         {
             if (i == 0)
             {
@@ -64,8 +65,18 @@ public class ChpaterSelectUiManager : MonoBehaviour
     }
     public void LoadStage2SelectScene()
     {
-        //OnGameData.instance.PrevSceneName = OnGameData.instance.NowSceneName;
-        //SceneManager.LoadScene("STAGE2_V1.0");
+        OnGameData.instance.PrevSceneName = OnGameData.instance.NowSceneName;
+        SceneManager.LoadScene("STAGE2_V1.0");
+    }
+    public void LoadStage3SelectScene()
+    {
+        OnGameData.instance.PrevSceneName = OnGameData.instance.NowSceneName;
+        SceneManager.LoadScene("STAGE3_V1.0");
+    }
+    public void LoadStage4SelectScene()
+    {
+        OnGameData.instance.PrevSceneName = OnGameData.instance.NowSceneName;
+        SceneManager.LoadScene("STAGE4_V1.0");
     }
     public void BackButton()
     {
@@ -74,7 +85,7 @@ public class ChpaterSelectUiManager : MonoBehaviour
 
     private void SettingChapterOpen()
     {
-        for (int i = 0; i < chpatersName.Count; ++i)
+        for (int i = 0; i < chpatersName.Count-1; ++i)
         {
             if (OnGameData.instance.GetStageResultClear(chpatersName[i]))
             {

@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &21417719047178275
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8999724672740564129}
-  m_Layer: 0
-  m_Name: Cube (10)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8999724672740564129
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 21417719047178275}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.75, y: -0.5600004, z: -40.76}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7676553695744928856}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &363815287502940288
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 363815287502940288}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.25, y: 18.189999, z: -11.299999}
+  m_LocalPosition: {x: 3.37, y: -3.67, z: -39.6}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 1360893033847585033}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.75, y: 15.899999, z: -2.31}
+  m_LocalPosition: {x: -16.05, y: -3.42, z: 22.5}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -153,7 +122,7 @@ GameObject:
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &615742657339078507
 Transform:
@@ -266,7 +235,7 @@ Transform:
   m_GameObject: {fileID: 2527537484130135138}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.75, y: -0.5600004, z: -2.31}
+  m_LocalPosition: {x: 26.76, y: -5.73, z: 6.26}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -297,7 +266,7 @@ Transform:
   m_GameObject: {fileID: 2982901749974004946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.25, y: 18.189999, z: -30.259998}
+  m_LocalPosition: {x: -2.6, y: 0.874, z: 4.8}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -328,7 +297,7 @@ Transform:
   m_GameObject: {fileID: 3131313539895761948}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.22, y: 11.77, z: -50.989998}
+  m_LocalPosition: {x: 3.22, y: -2.9, z: 11.6}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -396,7 +365,7 @@ Transform:
   m_GameObject: {fileID: 4199794809578833394}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.75, y: 15.899999, z: -21.8}
+  m_LocalPosition: {x: -21.63, y: -7.75, z: -21.8}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -427,7 +396,7 @@ Transform:
   m_GameObject: {fileID: 4546826336245916973}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.22, y: 11.77, z: 20.26}
+  m_LocalPosition: {x: 27.77, y: 2.2, z: 21.5}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -521,7 +490,7 @@ GameObject:
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7383533664909158419
 Transform:
@@ -1230,7 +1199,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1792
+  m_VersionIndex: 1804
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1365,7 +1334,7 @@ Transform:
   m_GameObject: {fileID: 6355108320156842489}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.75, y: 15.9, z: -40.76}
+  m_LocalPosition: {x: 31.3, y: -4.2, z: 14.4}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1396,7 +1365,7 @@ Transform:
   m_GameObject: {fileID: 6380648353695514691}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9009228, y: 22.640879, z: 28.728703}
+  m_LocalPosition: {x: -2.9009228, y: 7.1, z: 28.728703}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1407,12 +1376,10 @@ Transform:
   - {fileID: 7227227760996897758}
   - {fileID: 3877583341184959941}
   - {fileID: 6510482549888185473}
-  - {fileID: 7393750810731529118}
   - {fileID: 4242964938933885648}
   - {fileID: 6434969200494451271}
   - {fileID: 5544115833420075778}
   - {fileID: 2176833940931018088}
-  - {fileID: 8999724672740564129}
   - {fileID: 2104024327622560233}
   m_Father: {fileID: 1206475915177230779}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1441,38 +1408,7 @@ Transform:
   m_GameObject: {fileID: 6581307531158636816}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.25, y: -1.5600004, z: -30.259998}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7676553695744928856}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7049981951228005592
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7393750810731529118}
-  m_Layer: 0
-  m_Name: Cube (5)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7393750810731529118
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7049981951228005592}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.25, y: -1.5600004, z: 8.190001}
+  m_LocalPosition: {x: 12.25, y: -1.5600004, z: -44.1}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1503,7 +1439,7 @@ Transform:
   m_GameObject: {fileID: 8017046138801560610}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.25, y: 18.189999, z: 8.190001}
+  m_LocalPosition: {x: 12.25, y: 1.88, z: 8.190001}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1534,7 +1470,7 @@ Transform:
   m_GameObject: {fileID: 8135415349698440956}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.25, y: -1.5600004, z: -11.299999}
+  m_LocalPosition: {x: 31.7, y: 0.7, z: -22.7}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1565,7 +1501,7 @@ Transform:
   m_GameObject: {fileID: 8227313158951469215}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.75, y: -0.5600004, z: -21.8}
+  m_LocalPosition: {x: -17, y: -0.5600004, z: -21.8}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1588,7 +1524,7 @@ GameObject:
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &525202741889380436
 Transform:
@@ -1852,7 +1788,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_TagString
-      value: PunchTrap
+      value: JumpPadV3
       objectReference: {fileID: 0}
     - target: {fileID: 9049292473399904796, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_TagString
@@ -1943,6 +1879,10 @@ PrefabInstance:
     - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_Name
       value: Spinning Sticks With Spikes (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_TagString
+      value: JumpPadV3
       objectReference: {fileID: 0}
     - target: {fileID: 9049292473399904796, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_TagString
@@ -2086,11 +2026,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -43.19
+      value: -43.81
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -33.3
+      value: -34.15
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2134,7 +2074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_TagString
-      value: PunchTrap
+      value: JumpPadV3
       objectReference: {fileID: 0}
     - target: {fileID: 9049292473399904796, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_TagString
@@ -2180,11 +2120,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.633766
+      value: -6.8437653
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -34.84762
+      value: -36.02762
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2225,6 +2165,10 @@ PrefabInstance:
     - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_Name
       value: Spinning Sticks With Spikes (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_TagString
+      value: JumpPadV3
       objectReference: {fileID: 0}
     - target: {fileID: 9049292473399904796, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_TagString
@@ -2360,11 +2304,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.633766
+      value: -6.8437653
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -34.84762
+      value: -36.02762
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2454,11 +2398,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.66
+      value: -7.87
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -32.03
+      value: -33.21
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2499,6 +2443,10 @@ PrefabInstance:
     - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_Name
       value: Spinning Sticks With Spikes (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_TagString
+      value: JumpPadV3
       objectReference: {fileID: 0}
     - target: {fileID: 9049292473399904796, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_TagString
@@ -2544,11 +2492,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -40.68
+      value: -41.300003
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -30.66
+      value: -31.510002
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2589,6 +2537,10 @@ PrefabInstance:
     - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_Name
       value: Spinning Sticks With Spikes (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_TagString
+      value: JumpPadV3
       objectReference: {fileID: 0}
     - target: {fileID: 9049292473399904796, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_TagString
@@ -2634,11 +2586,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -42.293766
+      value: -42.91377
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -33.31762
+      value: -34.16762
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2724,11 +2676,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -40.24
+      value: -40.860004
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -31.01
+      value: -31.860003
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2769,6 +2721,10 @@ PrefabInstance:
     - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_Name
       value: Spinning Sticks With Spikes (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_TagString
+      value: JumpPadV3
       objectReference: {fileID: 0}
     - target: {fileID: 9049292473399904796, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_TagString
@@ -2958,6 +2914,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spinning Sticks With Spikes (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_TagString
+      value: JumpPadV3
+      objectReference: {fileID: 0}
     - target: {fileID: 9049292473399904796, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_TagString
       value: PunchTrap
@@ -3100,11 +3060,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.71
+      value: -9.919999
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -32.75
+      value: -33.93
       objectReference: {fileID: 0}
     - target: {fileID: 8172354391026789821, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3145,6 +3105,10 @@ PrefabInstance:
     - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_Name
       value: Spinning Sticks With Spikes (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_TagString
+      value: JumpPadV3
       objectReference: {fileID: 0}
     - target: {fileID: 9049292473399904796, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_TagString
@@ -3235,6 +3199,10 @@ PrefabInstance:
     - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_Name
       value: Spinning Sticks With Spikes (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800554469372802823, guid: 13745974b504c724a9556faab95cbd40, type: 3}
+      propertyPath: m_TagString
+      value: JumpPadV3
       objectReference: {fileID: 0}
     - target: {fileID: 9049292473399904796, guid: 13745974b504c724a9556faab95cbd40, type: 3}
       propertyPath: m_TagString

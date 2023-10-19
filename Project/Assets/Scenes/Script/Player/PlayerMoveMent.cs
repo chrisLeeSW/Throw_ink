@@ -192,8 +192,12 @@ public class PlayerMoveMent : MonoBehaviour
             isPlayerJumping = false;
             canJump = true;
         }
-        
-        
+
+        jumpState = 0;
+        ani.SetBool("isGround", true);
+        ani.SetBool("Jumping", false);
+        isPlayerJumping = false;
+        canJump = true;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -222,14 +226,24 @@ public class PlayerMoveMent : MonoBehaviour
                 break;
             case "LowSpeedPad":
                 moveSpeed = 1.5f;
+                jumpState = 0;
+                ani.SetBool("isGround", true);
+                ani.SetBool("Jumping", false);
+                isPlayerJumping = false;
+                canJump = true;
                 IsGroundCollisionSet();
                 break;
             case "PunchTrap":
                 StartCoroutine(PunchForceRoutine(punchTrapPlayingTime, punchTrapForce));
                 break;
-            //default:
-            //    IsGroundCollisionSet();
-            //    break;
+            case "JumpPadV3":
+                float newJumpPad3Power = 15f;
+                rb.AddForce(Vector3.up * newJumpPad3Power);
+                //JumpCollisionByPad(newJumpPad3Power,0);
+                break;
+            default:
+                IsGroundCollisionSet();
+                break;
         }
     }
     private void OnCollisionExit(Collision collision)

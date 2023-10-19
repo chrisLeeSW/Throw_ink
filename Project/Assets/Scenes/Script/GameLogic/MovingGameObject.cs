@@ -65,7 +65,15 @@ public class MovingGameObject : MonoBehaviour
             currentPosIndex = currentMovingTargetsIndex;
 
         Objectdirection = transform.position - movingTargets[currentPosIndex].transform.position;
-        Objectdirection.Normalize();
+        if (Objectdirection == Vector3.zero)
+        {
+            Objectdirection = Vector3.forward; 
+        }
+        else
+        {
+            Objectdirection.Normalize();
+        }
+       // Objectdirection.Normalize();
         startRoate = transform.rotation;
         endRoate = Quaternion.LookRotation(Objectdirection);
         startMovePosition = transform.position;
@@ -81,8 +89,18 @@ public class MovingGameObject : MonoBehaviour
             newTimeSpeed = (Time.time - startTime) * moveSpeed;
             rotate = newTimeSpeed / journeyLength;
             transform.rotation = Quaternion.Slerp(startRoate, endRoate, rotate * rotateSpeed);
-            transform.position = Vector3.Lerp(startMovePosition, movingTargets[currentPosIndex].transform.position, rotate);
+            //transform.position = Vector3.Lerp(startMovePosition, movingTargets[currentPosIndex].transform.position, rotate);    
 
+            Vector3 newPosition = Vector3.Lerp(startMovePosition, movingTargets[currentPosIndex].transform.position, rotate);
+            if (!float.IsNaN(newPosition.x) && !float.IsNaN(newPosition.y) && !float.IsNaN(newPosition.z))
+            {
+                transform.position = newPosition;
+            }
+
+            if (Vector3.Distance(transform.position, movingTargets[currentPosIndex].transform.position) < 0.1f)
+            {
+                break;
+            }
             if (Vector3.Distance(transform.position, movingTargets[currentPosIndex].transform.position) < 0.1f)
             {
                 break;

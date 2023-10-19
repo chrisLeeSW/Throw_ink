@@ -1627,6 +1627,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 178977734}
+  - component: {fileID: 178977735}
   m_Layer: 5
   m_Name: OPEN
   m_TagString: Untagged
@@ -1658,6 +1659,62 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &178977735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178977733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 625957281}
+        m_TargetAssemblyTypeName: StageTwoScene, Assembly-CSharp
+        m_MethodName: LoadChapter1Stage2_3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &185536378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1740,8 +1797,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: StageOneScene, Assembly-CSharp
+      - m_Target: {fileID: 625957281}
+        m_TargetAssemblyTypeName: StageTwoScene, Assembly-CSharp
         m_MethodName: LoadSettingScene
         m_Mode: 1
         m_Arguments:
@@ -3039,6 +3096,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 386944034}
+  - component: {fileID: 386944035}
   m_Layer: 5
   m_Name: OPEN
   m_TagString: Untagged
@@ -3070,6 +3128,62 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 18}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &386944035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386944033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 625957281}
+        m_TargetAssemblyTypeName: StageTwoScene, Assembly-CSharp
+        m_MethodName: LoadChapter1Stage2_2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &390515966
 GameObject:
   m_ObjectHideFlags: 0
@@ -4453,6 +4567,7 @@ GameObject:
   - component: {fileID: 625957279}
   - component: {fileID: 625957278}
   - component: {fileID: 625957277}
+  - component: {fileID: 625957281}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4546,6 +4661,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &625957281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625957276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ecb6e59c4347824cb630452d3f4983f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisChapterName: chapter 2
+  openWinodw:
+  - {fileID: 999004457}
+  - {fileID: 386944033}
+  - {fileID: 178977733}
+  lockWindow:
+  - {fileID: 904856605}
+  - {fileID: 236729758}
+  - {fileID: 1180874068}
+  stars:
+  - {fileID: 122154629}
+  - {fileID: 187111523}
+  - {fileID: 974712251}
+  - {fileID: 178536439}
+  - {fileID: 1134199044}
+  - {fileID: 1692631272}
+  - {fileID: 584307196}
+  - {fileID: 10907479}
+  - {fileID: 1506499785}
+  rankObjectes:
+  - {fileID: 332359347}
+  - {fileID: 1384773160}
+  - {fileID: 16508360}
+  - {fileID: 1119402119}
+  - {fileID: 669661082}
+  - {fileID: 802204531}
+  - {fileID: 199479226}
+  - {fileID: 390515966}
+  - {fileID: 29699398}
+  - {fileID: 1291032158}
+  - {fileID: 446403623}
+  - {fileID: 1283036492}
 --- !u!1 &641105408
 GameObject:
   m_ObjectHideFlags: 0
@@ -5480,8 +5639,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: StageOneScene, Assembly-CSharp
+      - m_Target: {fileID: 625957281}
+        m_TargetAssemblyTypeName: StageTwoScene, Assembly-CSharp
         m_MethodName: LoadBakcButton
         m_Mode: 1
         m_Arguments:
@@ -7017,9 +7176,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: StageOneScene, Assembly-CSharp
-        m_MethodName: LoadChapter1Stage1_1
+      - m_Target: {fileID: 625957281}
+        m_TargetAssemblyTypeName: StageTwoScene, Assembly-CSharp
+        m_MethodName: LoadChapter1Stage2_1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8697,8 +8856,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: StageOneScene, Assembly-CSharp
+      - m_Target: {fileID: 625957281}
+        m_TargetAssemblyTypeName: StageTwoScene, Assembly-CSharp
         m_MethodName: LoadMainScene
         m_Mode: 1
         m_Arguments:

@@ -15,6 +15,7 @@ TagManager:
   - Failing
   - InkCube
   - Tutorial
+  - JumpPadV3
   layers:
   - Default
   - TransparentFX

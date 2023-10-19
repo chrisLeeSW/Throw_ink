@@ -121,6 +121,8 @@ public class UiGameManager : MonoBehaviour
 
     public void Pause()
     {
+        sens.value = GameManager.instance.RotationSpeed;
+        cameraDistance.value = GameManager.instance.cameraaMove.DistanceFromPlayer;
         Time.timeScale = 0f;
         GamePause(true);
         settingBackGround.SetActive(true);
@@ -160,6 +162,7 @@ public class UiGameManager : MonoBehaviour
     public void SenstiveController()
     {
         OnGameData.instance.Sensitivity = sens.value;
-        GameManager.instance.XRoationSpeed = sens.value;
+        GameManager.instance.RotationSpeed = sens.value;
+        
     }
 }
