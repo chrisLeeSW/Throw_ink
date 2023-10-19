@@ -633,6 +633,59 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f901a9a2016d9d046bcc457e94a83f8b, type: 3}
+--- !u!1 &817694342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 817694344}
+  - component: {fileID: 817694343}
+  m_Layer: 0
+  m_Name: PlayerFall
+  m_TagString: Failing
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!65 &817694343
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817694342}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 100, y: 1, z: 100}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &817694344
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817694342}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.79, y: -38.3, z: -9.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1049927983 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4997119506145018303, guid: 9b1a79472750c7744b8ce189ef8016de, type: 3}
@@ -771,8 +824,6 @@ MonoBehaviour:
   xRoation: 0
   yCameraPosition: 15
   playerTransform: {fileID: 474126097}
-  distanceFromPlayer: 10
-  xRotationDuration: 5
 --- !u!81 &1138397345
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1011,8 +1062,6 @@ MonoBehaviour:
   playerManager: {fileID: 474126100}
   cameraaMove: {fileID: 1138397344}
   cameraoffset: 1.5
-  rotationSpeed: 1
-  xRtoationSspeed: 1
 --- !u!4 &1324219338
 Transform:
   m_ObjectHideFlags: 0
@@ -1460,3 +1509,4 @@ SceneRoots:
   - {fileID: 1245911352}
   - {fileID: 1342493205}
   - {fileID: 2049023215}
+  - {fileID: 817694344}

@@ -56,6 +56,9 @@ public class GameManager : MonoBehaviour
     }
     private void Awake()
     {
+
+
+
         if (SceneManager.GetActiveScene().name == "chapter 0-0 tutorial")
         {
             playerManager.GetPlayerMoveMent().YRotation += 180f;
@@ -90,7 +93,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
 
-        if (!IsClear && !IsPlayerDie && !IsGameOver)
+        if (!IsClear && !IsPlayerDie && !IsGameOver &&!IsPause)
         {
             if (Input.GetMouseButtonDown(1))
             {
@@ -110,17 +113,25 @@ public class GameManager : MonoBehaviour
             distance -= mouseWheelInput;
             if(distance >5 && distance <15)
                 cameraaMove.DistanceFromPlayer =distance;
-            
+
+            playerManager.GetPlayerMoveMent().PlayerMove();
+
         }
-        else 
+        else if(!IsPause)
         {
             if (IsPlayerDie)
+            {
                 OnGameData.instance.ResultStagePlay = 0;
+
+            }
             else
+            {
                 GameResult();
+            }
             SceneManager.LoadScene("Result-V1.0");
+ 
         }
-        playerManager.GetPlayerMoveMent().PlayerMove();
+       
     }
 
     private void GameResult()

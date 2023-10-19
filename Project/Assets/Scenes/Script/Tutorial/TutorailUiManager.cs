@@ -37,20 +37,16 @@ public class TutorailUiManager : MonoBehaviour
     {
         get; set;
     }
-    public bool IsPause
-    {
-        get;set;
-    }
+
     public void SetAreaResult(float result)
     {
-        areaResult.text = $"Result : {result}%";
+        areaResult.text = $"Result : {result:D2}%";
     }
 
     private void Awake()
     {
         cameraDistance.value = OnGameData.instance.CameraDistance;
         sens.value = OnGameData.instance.Sensitivity;
-
     }
     private void Update()
     {
@@ -64,7 +60,7 @@ public class TutorailUiManager : MonoBehaviour
 
         if (errActive)
         {
-            if(Input.GetMouseButtonDown(0)) 
+            if(Input.anyKeyDown) 
             {
                 err.SetActive(false);
             }
@@ -74,7 +70,9 @@ public class TutorailUiManager : MonoBehaviour
 
     public void MainLoadScene()
     {
-        if(OnGameData.instance.IsTutorialClear)
+        if (Time.timeScale < 1.0f)
+            Time.timeScale = 1f;
+        if (OnGameData.instance.IsTutorialClear)
             SceneManager.LoadScene(OnGameData.instance.MainSceneName);
         else
         {
@@ -84,29 +82,33 @@ public class TutorailUiManager : MonoBehaviour
 
     public void Restart()
     {
+        if (Time.timeScale <1.0f)
+            Time.timeScale = 1f;
+
+        GmaePasue(false);
+
         SceneManager.LoadScene("chapter 0-0 tutorial");
     }
 
     public void Pasue()
     {
+       
         if (!IsClear)
         {
             pasueButton.SetActive(false);
             Time.timeScale = 0f;
             settingUi.SetActive(true);
-            IsPause=true;
-            GameManager.instance.playerManager.GetPlayerShootPainter().IsPause = IsPause;
+            GmaePasue(true);
         }
     }
 
     public void PasueExist()
     {
+
         Time.timeScale = 1f;
         pasueButton.SetActive(true);
         settingUi.SetActive(false);
-
-        IsPause=false;
-        GameManager.instance.playerManager.GetPlayerShootPainter().IsPause = IsPause;
+        GmaePasue(false);
     }
 
     public void CamerDistanceController()
@@ -119,5 +121,10 @@ public class TutorailUiManager : MonoBehaviour
     {
         OnGameData.instance.Sensitivity = sens.value;
         GameManager.instance.XRoationSpeed = sens.value;
+    }
+
+    private void GmaePasue(bool p)
+    {
+        GameManager.instance.IsPause = p;
     }
 }

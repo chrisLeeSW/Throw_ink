@@ -15,17 +15,28 @@ public class ResultSceneManager : MonoBehaviour
     [SerializeField, Range(0, 3)]
     private int result;
 
+
     private AudioSource audioSource;
     public AudioClip clearClip;
-    public AudioClip failClip;  
+    public AudioClip failClip;
+
+
+    public bool IsClear
+    {
+        get; set;
+    }
+    public bool isPlay
+    { get; set; }
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+    
         result = OnGameData.instance.ResultStagePlay;
         // result는 GameData에서 받아오기
         switch (result)
         {
             case 0:
-                audioSource.PlayOneShot(failClip);
+                IsClear = false;
                 failGameObject.SetActive(true);
                 AddData(false);
                 break;
@@ -43,10 +54,23 @@ public class ResultSceneManager : MonoBehaviour
                 break;
         }
     }
+    private void Update()
+    {
+        if (IsClear && !isPlay)
+        {
+            isPlay= true;   
+            audioSource.PlayOneShot(clearClip);
+        }
+        else if(!IsClear && !isPlay)
+        {
+            isPlay = true;
+            audioSource.PlayOneShot(failClip);
+        }
+    }
 
     private void AddData(bool b)
     {
-        audioSource.PlayOneShot(clearClip);
+        IsClear = true;
         if (OnGameData.instance.GetStageClear(OnGameData.instance.stageNames[OnGameData.instance.CurrentData]))
         {
             if (OnGameData.instance.GetStageResulStar(OnGameData.instance.stageNames[OnGameData.instance.CurrentData]) < result)

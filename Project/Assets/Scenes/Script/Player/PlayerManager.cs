@@ -61,10 +61,9 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Finish"))
+        if(other.CompareTag("Failing"))
         {
-            Debug.Log("³«»ç ¤µ¤¡");
-            SceneManager.LoadScene("ResultScene");
+            playerShootPainter.PlayerIsShootingReset();
         }
     }
 }

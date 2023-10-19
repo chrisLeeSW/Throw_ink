@@ -34,7 +34,7 @@ public class PlayerShootPainter : MonoBehaviour
     }
     private void Update()
     {
-        if (!IsPause)
+        if (!GameManager.instance.IsPause)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -63,4 +63,9 @@ public class PlayerShootPainter : MonoBehaviour
     {
         return isShooting;  
     }    
+
+    public void PlayerIsShootingReset()
+    {
+        isShooting = false;
+    }
 }

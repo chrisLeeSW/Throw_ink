@@ -37,6 +37,9 @@ public class PlayerMoveMent : MonoBehaviour
     private float punchTrapForce = 200f;
 
     public Transform playerSpwanPosition;
+
+    private bool isOnFlatGround = false;
+    private float raycastDistance = 10f;
     public uint JumpState
     {
         set { jumpState = value; }
@@ -64,6 +67,9 @@ public class PlayerMoveMent : MonoBehaviour
     {
         get { return rb.rotation; }
     }
+    public bool IsPasue
+    { get; set; }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -97,20 +103,24 @@ public class PlayerMoveMent : MonoBehaviour
     }
     public void PlayerMove()
     {
-        var h = Input.GetAxis("Horizontal");
-        var v = Input.GetAxis("Vertical");
-        if ( jumpState < maxJumpState && (Input.GetKeyDown(KeyCode.Space))&& canJump)
+        if (!IsPasue)
         {
-            isPlayerJumping = true;
+            var h = Input.GetAxis("Horizontal");
+            var v = Input.GetAxis("Vertical");
+            
+            if (jumpState < maxJumpState && (Input.GetKeyDown(KeyCode.Space)) && canJump)
+            {
+                isPlayerJumping = true;
+            }
+
+            direction = transform.TransformDirection(new Vector3(h, 0, v));
+            var directionMag = direction.magnitude;
+            if (directionMag > 1)
+            {
+                direction.Normalize();
+            }
+            ani.SetFloat("Speed", directionMag);
         }
-        
-        direction = transform.TransformDirection(new Vector3(h, 0, v));
-        var directionMag = direction.magnitude;
-        if (directionMag > 1)
-        {
-            direction.Normalize();
-        }
-        ani.SetFloat("Speed", directionMag);
     }
     private IEnumerator JumpDelayRoutine()
     {
@@ -153,11 +163,37 @@ public class PlayerMoveMent : MonoBehaviour
 
     public void IsGroundCollisionSet()
     {
-        jumpState = 0;
-        ani.SetBool("isGround",true);
-        ani.SetBool("Jumping", false);
-        isPlayerJumping = false;
-        canJump = true;
+        Ray ray = new Ray(transform.position, Vector3.down);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, raycastDistance))
+        {
+            Vector3 playerToHit = hit.point - transform.position;
+            float angle = Vector3.Angle(Vector3.up, hit.normal);
+
+            if (angle < 30f && playerToHit.y < 0.1f) // 예시로 각도가 30도 미만이고 Y 값 차이가 0.1보다 작은 경우를 평평한 바닥으로 판단합니다.
+            {
+                isOnFlatGround = true;
+            }
+            else
+            {
+                isOnFlatGround = false;
+            }
+        }
+        else
+        {
+            isOnFlatGround = false;
+        }
+        if (isOnFlatGround)
+        {
+            jumpState = 0;
+            ani.SetBool("isGround", true);
+            ani.SetBool("Jumping", false);
+            isPlayerJumping = false;
+            canJump = true;
+        }
+        
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -168,6 +204,7 @@ public class PlayerMoveMent : MonoBehaviour
             case "Ground":
                 moveSpeed = defaultPlayerSpeed;
                 IsGroundCollisionSet();
+
                 break;
             case "JumpPadV1":
                 float newJumpPad1Power = 10f;
