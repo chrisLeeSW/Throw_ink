@@ -40,7 +40,7 @@ public class TutorailUiManager : MonoBehaviour
 
     public void SetAreaResult(float result)
     {
-        areaResult.text = $"Result : {result:D2}%";
+        areaResult.text = $"Result : {result:F2}%";
     }
 
     private void Awake()
@@ -63,6 +63,7 @@ public class TutorailUiManager : MonoBehaviour
             if(Input.anyKeyDown) 
             {
                 err.SetActive(false);
+                errActive=false;
             }
         }
 
@@ -77,6 +78,7 @@ public class TutorailUiManager : MonoBehaviour
         else
         {
             err.SetActive(true);
+            errActive = true;
         }
     }
 

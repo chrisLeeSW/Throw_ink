@@ -40,11 +40,11 @@ public class OnGameData : MonoBehaviour
     public Dictionary<string, StageData> datas = new Dictionary<string, StageData>();
 
     private bool isTutorialClear;
-    private float soundVolum = 80f;
+    private float soundVolum = 0f;
     private float cameraDistance = 5f;
     private float sensitivity = 1f;
 
-    public Color gameColor = Color.black;
+    public Color gameColor = Color.red;
 
     private bool isOnePlaying = false;
 
@@ -251,6 +251,8 @@ public class OnGameData : MonoBehaviour
                 gameColor.r = jsonObject["redValue"].Value<float>();
                 gameColor.g = jsonObject["greenValue"].Value<float>();
                 gameColor.b = jsonObject["blueValue"].Value<float>();
+                if (gameColor == Color.white)
+                    gameColor = Color.red;
             }
         }
 
