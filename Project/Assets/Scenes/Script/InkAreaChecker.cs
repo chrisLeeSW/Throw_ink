@@ -10,7 +10,6 @@ public class InkAreaChecker : MonoBehaviour
     private void Awake()
     {
         targetColor = OnGameData.instance.gameColor;
-        // targetColor 설정한 컬러값으로 변경예정
     }
     private void Update()
     {
