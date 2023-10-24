@@ -127,9 +127,9 @@ public class OnGameData : MonoBehaviour
 
         Load();
 
-
-        if (!isTutorialClear) SceneManager.LoadScene("chapter 0-0 tutorial");
-        else SceneManager.LoadScene(MainSceneName);
+        SceneManager.LoadScene(MainSceneName);
+        //if (!isTutorialClear) SceneManager.LoadScene("chapter 0-0 tutorial");
+        //else SceneManager.LoadScene(MainSceneName);
     }
     private void FixedUpdate()
     {
