@@ -441,6 +441,7 @@ GameObject:
   - component: {fileID: 1149602703}
   - component: {fileID: 1149602702}
   - component: {fileID: 1149602701}
+  - component: {fileID: 1149602704}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -522,6 +523,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1149602704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149602700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cc2c8284c5f6f948a5766139e6cf7ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1571597775709928611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -533,6 +546,14 @@ PrefabInstance:
     - target: {fileID: 1809117671038992216, guid: 6bd6503386e30d64b8333f20fe0d3486, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240126740105661812, guid: 6bd6503386e30d64b8333f20fe0d3486, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240126740105661812, guid: 6bd6503386e30d64b8333f20fe0d3486, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 2519406531871540835, guid: 6bd6503386e30d64b8333f20fe0d3486, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

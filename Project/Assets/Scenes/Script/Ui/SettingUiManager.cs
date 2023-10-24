@@ -20,6 +20,8 @@ public class SettingUiManager : MonoBehaviour
         OnGameData.instance.NowSceneName = SceneManager.GetActiveScene().name;
 
         scrollbars[(int)SettingData.Sound].value = OnGameData.instance.SoundVolum;
+        scrollbars[(int)SettingData.Fov].value = OnGameData.instance.CameraDistance;
+        scrollbars[(int)SettingData.Sens].value = OnGameData.instance.Sensitivity;
     }
 
   
