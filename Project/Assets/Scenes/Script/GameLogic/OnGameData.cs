@@ -144,6 +144,7 @@ public class OnGameData : MonoBehaviour
     }
     private void Update()
     {
+#if UNITY_STANDALONE
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Save();
@@ -162,6 +163,7 @@ public class OnGameData : MonoBehaviour
             GetStageResultAllStar("chapter 1");
         }
     }
+#endif
 
     private void InitNowAndPrevSceneName()
     {
