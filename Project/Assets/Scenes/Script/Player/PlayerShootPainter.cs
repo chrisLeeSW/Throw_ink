@@ -36,10 +36,17 @@ public class PlayerShootPainter : MonoBehaviour
     {
         if (!GameManager.instance.IsPause)
         {
+
+#if UNITY_STANDALONE
             if (Input.GetMouseButtonDown(0))
             {
                 isShooting = !isShooting;
             }
+#elif UNITY_ANDROID || UNITY_IOS
+            
+
+
+#endif
             if (isShooting)
             {
                 particle.Play();
@@ -57,6 +64,7 @@ public class PlayerShootPainter : MonoBehaviour
             particle.Stop();
             playerAudio.Stop();
         }
+
     }
 
     public bool GetIsShooting()
@@ -67,5 +75,10 @@ public class PlayerShootPainter : MonoBehaviour
     public void PlayerIsShootingReset()
     {
         isShooting = false;
+    }
+
+    public void SetBoolIsShooting(bool value)
+    {
+        isShooting=value;
     }
 }

@@ -126,8 +126,10 @@ public class OnGameData : MonoBehaviour
         }
 
         Load();
-
-        SceneManager.LoadScene(MainSceneName);
+        if(SceneManager.GetActiveScene().name == "GameDemoScene")
+        { }
+        else
+            SceneManager.LoadScene(MainSceneName);
         //if (!isTutorialClear) SceneManager.LoadScene("chapter 0-0 tutorial");
         //else SceneManager.LoadScene(MainSceneName);
     }

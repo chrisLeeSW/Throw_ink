@@ -17,7 +17,7 @@ public class MutilTouchManager : MonoBehaviour
 
     private List<int> fingerIdList=new List<int>();
     //위는 줌인아웃 아래는 하나만 터치 가능하게함
-    private int primaryFingerId = int.MinValue;
+   // private int primaryFingerId = int.MinValue;
     private void Awake()
     {
         //Debug.Log(Screen.width);

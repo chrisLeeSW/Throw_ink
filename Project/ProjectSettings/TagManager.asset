@@ -16,6 +16,7 @@ TagManager:
   - InkCube
   - Tutorial
   - JumpPadV3
+  - AirVent
   layers:
   - Default
   - TransparentFX

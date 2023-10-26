@@ -534,6 +534,50 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 354523858817200538, guid: 2af891700f82e49499fd0e70533fe96f, type: 3}
   m_PrefabInstance: {fileID: 548021508}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &548021510 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8928537668038012917, guid: 2af891700f82e49499fd0e70533fe96f, type: 3}
+  m_PrefabInstance: {fileID: 548021508}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &548021511 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3446855933504057688, guid: 2af891700f82e49499fd0e70533fe96f, type: 3}
+  m_PrefabInstance: {fileID: 548021508}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &548021512 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1727922983264690478, guid: 2af891700f82e49499fd0e70533fe96f, type: 3}
+  m_PrefabInstance: {fileID: 548021508}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16841331fc38b3d41a62812b9f170643, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &548021513 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5113988851369871114, guid: 2af891700f82e49499fd0e70533fe96f, type: 3}
+  m_PrefabInstance: {fileID: 548021508}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16841331fc38b3d41a62812b9f170643, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &616444278 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2402507185564289796, guid: 9b1a79472750c7744b8ce189ef8016de, type: 3}
@@ -1188,7 +1232,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerManager: {fileID: 474126100}
   cameraaMove: {fileID: 1138397344}
-  cameraoffset: 1.5
+  cameraoffset: 3
+  moveJoystick: {fileID: 548021513}
+  shootControllerStick: {fileID: 548021512}
+  shootingButton: {fileID: 548021511}
+  playerJumping: {fileID: 548021510}
 --- !u!4 &1324219338
 Transform:
   m_ObjectHideFlags: 0

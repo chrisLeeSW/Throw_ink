@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,6 +34,12 @@ public class GameManager : MonoBehaviour
    
     private float xRtoationSspeed = 1f;
 
+    public VirtualJoystick moveJoystick;
+    public VirtualJoystick shootControllerStick;
+
+    public Button shootingButton;
+    public Button playerJumping;
+
     public bool IsGameOver
     {
         get; set;
@@ -59,11 +66,16 @@ public class GameManager : MonoBehaviour
     {
         get; set;
     }
+    public bool IsShooting
+    {
+        get;set;
+    }
+    public bool PlayerJumping
+    {
+        get;set;
+    }
     private void Awake()
     {
-
-
-
         if (SceneManager.GetActiveScene().name == "chapter 0-0 tutorial")
         {
             playerManager.GetPlayerMoveMent().YRotation += 180f;
@@ -77,6 +89,8 @@ public class GameManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
+
+#if UNITY_STANDALONE
         var newDirceiton = endMousePosition - prevMousePosition;
         newDirceiton.Normalize();
 
@@ -89,6 +103,19 @@ public class GameManager : MonoBehaviour
         playerManager.GetPlayerShootController().XRotation += -newDirceiton.y;
 
         cameraaMove.xRoation += -newDirceiton.y /6;
+        shootingButton.gameObject.SetActive(false);
+        playerJumping.gameObject.SetActive(false);
+        moveJoystick.gameObject.SetActive(false);
+        shootControllerStick.gameObject.SetActive(false);   
+#elif UNITY_ANDROID || UNITY_IOS
+        playerManager.GetPlayerMoveMent().YRotation += shootControllerStick.GetAxis(VirtualJoystick.Axis.Horizontal) * rotationSpeed;
+        playerManager.GetPlayerMoveMent().RotationSpeed += rotationSpeed;
+
+        playerManager.GetPlayerShootController().YRotation += shootControllerStick.GetAxis(VirtualJoystick.Axis.Horizontal) * rotationSpeed;
+        playerManager.GetPlayerShootController().RotationSpeed += rotationSpeed;
+        playerManager.GetPlayerShootController().XRotation += -shootControllerStick.GetAxis(VirtualJoystick.Axis.Vertical);
+        cameraaMove.xRoation += -shootControllerStick.GetAxis(VirtualJoystick.Axis.Vertical);
+#endif
 
 
         var direction = playerManager.GetPlayerDirection();
@@ -100,6 +127,11 @@ public class GameManager : MonoBehaviour
 
         if (!IsClear && !IsPlayerDie && !IsGameOver &&!IsPause)
         {
+#if UNITY_ANDROID || UNITY_IOS
+            
+
+            playerManager.SetPlayerDirection(moveJoystick.GetAxis(VirtualJoystick.Axis.Horizontal), moveJoystick.GetAxis(VirtualJoystick.Axis.Vertical));
+#elif UNITY_STANDALONE
             if (Input.GetMouseButtonDown(1))
             {
                 prevMousePosition = Input.mousePosition;
@@ -120,7 +152,7 @@ public class GameManager : MonoBehaviour
                 cameraaMove.DistanceFromPlayer =distance;
 
             playerManager.GetPlayerMoveMent().PlayerMove();
-
+#endif
         }
         else if(!IsPause)
         {
@@ -151,5 +183,15 @@ public class GameManager : MonoBehaviour
         else if (result > UiGameManager.instance.IncreasBar * 3)
             OnGameData.instance.ResultStagePlay = 3;
 
+    }
+
+    public void SetButton()
+    {
+        IsShooting = !IsShooting;
+        playerManager.GetPlayerShootPainter().SetBoolIsShooting(IsShooting);
+    }
+    public void SetButtonJump()
+    {
+        playerManager.GetPlayerMoveMent().PlayerJump();
     }
 }

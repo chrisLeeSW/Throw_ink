@@ -59,6 +59,13 @@ public class PlayerManager : MonoBehaviour
     }
 
 
+    public void SetPlayerDirection(float x, float z)
+    {
+        
+        Vector3 newDir = new Vector3(x,0,z);
+        playerMove.SetPlayerDirection(newDir);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Failing"))
@@ -66,4 +73,6 @@ public class PlayerManager : MonoBehaviour
             playerShootPainter.PlayerIsShootingReset();
         }
     }
+
+
 }

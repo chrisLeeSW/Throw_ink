@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Bson;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -127,6 +128,13 @@ public class PlayerMoveMent : MonoBehaviour
         yield return new WaitForSeconds(jumpDelay); 
         canJump = true; 
     }
+    public void SetPlayerDirection(Vector3 newDir)
+    {
+        var newDirAniMove = newDir.magnitude;
+        ani.SetFloat("Speed", newDirAniMove);
+
+        direction = transform.TransformDirection(newDir);
+    }
     public Vector3 GetDirection()
     {
         return direction;
@@ -146,8 +154,18 @@ public class PlayerMoveMent : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
     }
+    public void PlayerJump(float force)
+    {
+        rb.velocity =Vector3.up * force;
+        jumpState = 2;
+        ani.SetBool("Jumping", true);
+        ani.SetBool("isGround", false);
+    }
 
-
+    public void PlayerNuckBackForward(Vector3 direction,float force)
+    {
+        rb.AddForce(-direction.normalized * force, ForceMode.Impulse);
+    }
 
     public void JumpCollisionByPad(float newJumpPad1Power, uint jumpCount)
     {
@@ -333,4 +351,11 @@ public class PlayerMoveMent : MonoBehaviour
         moveSpeed = defaultPlayerSpeed;
     }
 
+    public void PlayerJump()
+    {
+        if (jumpState < maxJumpState && canJump)
+        {
+            isPlayerJumping = true;
+        }
+    }
 }

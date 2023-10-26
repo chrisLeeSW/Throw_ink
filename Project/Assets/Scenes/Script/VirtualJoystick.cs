@@ -59,9 +59,6 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
         //value = delta.normalized;
         value = delta / radius; 
         stick.rectTransform.position = originalPoint + delta;
-
-      
-
     }
 
     public void OnPointerDown(PointerEventData eventData)
