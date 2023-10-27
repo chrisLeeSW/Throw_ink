@@ -162,8 +162,9 @@ public class OnGameData : MonoBehaviour
         {
             GetStageResultAllStar("chapter 1");
         }
-    }
 #endif
+    }
+
 
     private void InitNowAndPrevSceneName()
     {

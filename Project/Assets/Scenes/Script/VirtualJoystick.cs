@@ -20,18 +20,18 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
     private float radius;//정규화 반경 등등 사용
     private Vector3 originalPoint = Vector3.zero;
     private RectTransform rectTr;
-
     private Vector2 value;
 
     private int pointerId;
     private bool isDragging;
 
+    public CanvasScaler tr;
     private void Awake()
     {
         rectTr = GetComponent<RectTransform>();
         originalPoint = stick.rectTransform.position; // 앵커에 따른 포지션들이 나옴
-        radius = rectTr.sizeDelta.x / 2 - radOffset;
-
+        radius = (rectTr.rect.width *0.5f * Screen.width) / tr.referenceResolution.x ;
+        Debug.Log(radius);
 
     }
 
