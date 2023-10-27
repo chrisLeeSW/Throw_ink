@@ -17,7 +17,6 @@ public class AirVent : MonoBehaviour
         RaycastHit hit;
         if(Physics.BoxCast(transform.position, boxSize,Vector3.up , out hit , Quaternion.identity, upHitDistance))
         {
-            Debug.Log(hit.collider.tag);
             if(hit.collider.tag == "Player")
             {
                 var t = hit.collider.GetComponent<PlayerMoveMent>();

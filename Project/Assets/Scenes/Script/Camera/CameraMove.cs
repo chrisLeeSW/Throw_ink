@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    private float xDefaultRotation=5f;
+    private float xDefaultRotation = 5f;
     public float xRoation;
 
 
-    public float yCameraPosition ;
+    public float yCameraPosition;
     private float yRotation;
     private float cameraMoveFrontBackSpeed;
 
@@ -17,11 +18,13 @@ public class CameraMove : MonoBehaviour
     private float xRotationDuration = 10f;
     //private float rotationSpeed = 100f;
 
+    private float maxAlpha = 1f;
+    private float alphavalue = 0.3f;
 
     public float DistanceFromPlayer
     {
         get { return distanceFromPlayer; }
-        set { distanceFromPlayer = value; } 
+        set { distanceFromPlayer = value; }
     }
 
     public float CameraMoveSpeed
@@ -31,11 +34,11 @@ public class CameraMove : MonoBehaviour
     }
     public float YCameraPosition
     {
-        set{ yCameraPosition = value; }
+        set { yCameraPosition = value; }
     }
     public float XRotation
     {
-        get;  set;
+        get; set;
     }
     private void Awake()
     {
@@ -50,6 +53,8 @@ public class CameraMove : MonoBehaviour
             xRoation = -xRotationDuration;
 
         transform.rotation = Quaternion.Euler(xDefaultRotation + xRoation, yRotation, 0);
+
+        BlurringObjects();
     }
     public void SyncWithPlayer(Vector3 playerDirection)
     {
@@ -59,34 +64,64 @@ public class CameraMove : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, desiredPosition, cameraMoveFrontBackSpeed * Time.deltaTime);
 
     }
+    private Dictionary<Renderer, float> originalAlphas = new Dictionary<Renderer, float>();
+    private void BlurringObjects()
+    {
+        var test = playerTransform.position;
+        test.y += 0.25f;
+        Vector3 toPlayer = test - transform.position;
+        RaycastHit[] hits;
+        
+        hits = Physics.RaycastAll(transform.position, toPlayer.normalized, toPlayer.magnitude);
+        HashSet<Renderer> hitThisFrame = new HashSet<Renderer>();
+
+        foreach (RaycastHit hit in hits)
+        {
+            Renderer rend = hit.collider.GetComponent<Renderer>();
+            hitThisFrame.Add(rend);
+
+            if (rend)
+            {
+                if (!originalAlphas.ContainsKey(rend))
+                {
+                    originalAlphas[rend] = rend.material.color.a;
+                }
+
+                Material mat = rend.material;
+                Color color = mat.color;
+                color.a = alphavalue;
+                mat.color = color;
+            }
+        }
+
+        foreach (var rend in originalAlphas.Keys.ToList())
+        {
+            if (!hitThisFrame.Contains(rend))
+            {
+                Material mat = rend.material;
+                Color color = mat.color;
+                color.a = originalAlphas[rend];
+                mat.color = color;
+                originalAlphas.Remove(rend);
+            }
+        }
+    }
 }
 
-/*
- * 유기된ㅋ 코드들
- 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.Keypad8))
-        {
-            xRotation -= rotationSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.Keypad5))
-        {
-            xRotation += rotationSpeed * Time.deltaTime;
-        }
 
-        if (Input.GetKey(KeyCode.Keypad6))
-        {
-            yRotation += rotationSpeed * Time.deltaTime;
-            yPlayerRotation += rotationSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.Keypad4))
-        {
-            yRotation -= rotationSpeed * Time.deltaTime;
-            yPlayerRotation -= rotationSpeed * Time.deltaTime;
-        }
+//void LateUpdate()
+//{
+//    Vector3 direction = (playerTransform.position - transform.position).normalized;
+//    RaycastHit[] hits = Physics.RaycastAll(transform.position, direction, Mathf.Infinity,
+//                        1 << LayerMask.NameToLayer("EnvironmentObject"));
 
-    }
+//    for (int i = 0; i < hits.Length; i++)
+//    {
+//        TransObjectTest[] obj = hits[i].transform.GetComponentsInChildren<TransObjectTest>();
 
-
- */
+//        for (int j = 0; j < obj.Length; j++)
+//        {
+//            obj[j]?.BecomeTransparent();
+//        }
+//    }
+//}

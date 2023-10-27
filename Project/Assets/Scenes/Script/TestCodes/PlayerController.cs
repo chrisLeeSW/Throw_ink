@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed = 5f;
     private float defaultPlayerSpeed = 5f;
 
-    public GameObject testPivoit;
+
     private float xRotation;
     private float yRotation;
     private float rotationSpeed = 100f;
@@ -28,9 +28,6 @@ public class PlayerController : MonoBehaviour
     private float speedIncreaseRate = 1f; // 초당 속도 증가량
     private float speedDecreaseRate = 0.5f; // 초당 속도 감소량
     private float maxSpeed = 10f; // HightSpeedPad에서의 최대 속도
-
-    public Image joyStickCircle;
-    public Image mainJoystick;
 
     private void Awake()
     {
@@ -53,7 +50,7 @@ public class PlayerController : MonoBehaviour
             yRotation = 60f;
         else if (yRotation < -60f)
             yRotation = -60f;
-        testPivoit.gameObject.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        
     }
     void Update()
     {
