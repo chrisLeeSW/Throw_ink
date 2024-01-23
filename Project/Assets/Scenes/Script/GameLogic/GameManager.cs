@@ -76,14 +76,16 @@ public class GameManager : MonoBehaviour
     }
     private void Awake()
     {
+        
+    }
+    private void Start()
+    {
         if (SceneManager.GetActiveScene().name == "chapter 0-0 tutorial")
         {
             playerManager.GetPlayerMoveMent().YRotation += 180f;
             playerManager.GetPlayerShootController().YRotation += 180f;
         }
-    }
-    private void Start()
-    {
+
         rotationSpeed = OnGameData.instance.Sensitivity;
         cameraaMove.CameraMoveSpeed = playerManager.GetPlayerMoveSpeed();
     }
