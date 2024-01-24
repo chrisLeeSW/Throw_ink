@@ -9,7 +9,7 @@ public class TutorialInkObjectCode : MonoBehaviour
     private float timerDuration=5f;
     private float moveTime = 3f;
     private float startInkArea;
-    private bool isCoilledPlayer;
+    public bool isCoilledPlayer;
 
 
     private bool isClear;
@@ -30,8 +30,8 @@ public class TutorialInkObjectCode : MonoBehaviour
                 StartCoroutine(SpinObject());
             }
 
-            if (isCoilledPlayer)
-            {
+            //if (isCoilledPlayer)
+            //{
                 startInkArea += Time.deltaTime;
                 if (startInkArea > 1.0f)
                 {
@@ -46,7 +46,7 @@ public class TutorialInkObjectCode : MonoBehaviour
                     }
 
                 }
-            }
+            //}
         }
     }
     private IEnumerator SpinObject()

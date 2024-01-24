@@ -28,6 +28,7 @@ public class InkAreaChecker : MonoBehaviour
 
     public float GetColorRatio()
     {
+        #region ...
         Mesh mesh = GetComponent<MeshFilter>().mesh;
         Vector3[] vertices = mesh.vertices;
         int[] triangles = mesh.triangles;
@@ -42,12 +43,14 @@ public class InkAreaChecker : MonoBehaviour
 
         int targetColorCount = 0;
         int totalColorCount = 0;
-
+        #endregion
         for (int i = 0; i < triangles.Length; i += 3)
         {
+            #region ...
             Vector2 uv0 = mesh.uv[triangles[i]];
             Vector2 uv1 = mesh.uv[triangles[i + 1]];
             Vector2 uv2 = mesh.uv[triangles[i + 2]];
+            #endregion
 
             for (float alpha = 0; alpha <= 1; alpha += 0.05f)
             {
@@ -61,11 +64,11 @@ public class InkAreaChecker : MonoBehaviour
 
                     if (IsColorMatch(pixelColor, targetColor, tolerance))
                     {
-                        //Debug.Log(pixelColor);
                         targetColorCount++;
                     }
                 }
             }
+
         }
 
         float colorRatio = (float)targetColorCount / totalColorCount;

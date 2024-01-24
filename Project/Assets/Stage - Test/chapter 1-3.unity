@@ -509,6 +509,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3446855933504057688, guid: 2af891700f82e49499fd0e70533fe96f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1324219337}
+    - target: {fileID: 3446855933504057688, guid: 2af891700f82e49499fd0e70533fe96f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetButton
+      objectReference: {fileID: 0}
     - target: {fileID: 6095765583548509665, guid: 2af891700f82e49499fd0e70533fe96f, type: 3}
       propertyPath: m_Name
       value: InGameUi
@@ -520,6 +528,14 @@ PrefabInstance:
     - target: {fileID: 7857375785353092513, guid: 2af891700f82e49499fd0e70533fe96f, type: 3}
       propertyPath: gameTimeDurtation
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8928537668038012917, guid: 2af891700f82e49499fd0e70533fe96f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1324219337}
+    - target: {fileID: 8928537668038012917, guid: 2af891700f82e49499fd0e70533fe96f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetButtonJump
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1233,8 +1249,8 @@ MonoBehaviour:
   playerManager: {fileID: 474126100}
   cameraaMove: {fileID: 1138397344}
   cameraoffset: 3
-  moveJoystick: {fileID: 548021513}
-  shootControllerStick: {fileID: 548021512}
+  moveJoystick: {fileID: 548021512}
+  shootControllerStick: {fileID: 548021513}
   shootingButton: {fileID: 548021511}
   playerJumping: {fileID: 548021510}
 --- !u!4 &1324219338
