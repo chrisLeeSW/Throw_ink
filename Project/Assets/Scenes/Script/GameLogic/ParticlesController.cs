@@ -12,7 +12,7 @@ public class ParticlesController : MonoBehaviour
     public ParticleSystem particle;
     List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
 
-    private int wait =3;
+    private int wait = 3;
     private int waitCount;
 
     public Material material;
@@ -31,21 +31,21 @@ public class ParticlesController : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
         if (waitCount < wait)
-           return;
+            return;
         waitCount = 0;
 
         if (other.CompareTag("InkCube"))
         {
             particle.GetCollisionEvents(other, collisionEvents);
-           if (collisionEvents.Count > 0)
-           {
+            if (collisionEvents.Count > 0)
+            {
                 Vector3 paintPosition = collisionEvents[0].intersection;
-                    InkCanvas canvas = other.GetComponent<InkCanvas>();
-                    if (canvas != null)
-                    {
-                        p.Paint(canvas, paintPosition);
-                    }
-           }
+                InkCanvas canvas = other.GetComponent<InkCanvas>();
+                if (canvas != null)
+                {
+                    p.Paint(canvas, paintPosition);
+                }
+            }
         }
     }
 }
